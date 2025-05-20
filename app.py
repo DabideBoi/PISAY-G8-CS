@@ -19,13 +19,15 @@ def learn_module(module):
         return render_template('loops_module.html')
     elif module == 'functions':
         return render_template('functions_module.html')
+    elif module == 'arrays':
+        return render_template('arrays_module.html')
     else:
         return redirect(url_for('index'))
 
 # Serve quiz module pages
 @app.route('/quiz/<module>')
 def quiz_module(module):
-    if module in ['basics', 'conditionals', 'loops', 'functions']:
+    if module in ['basics', 'conditionals', 'loops', 'functions', 'arrays']:
         return render_template('index.html')
     else:
         return redirect(url_for('index'))

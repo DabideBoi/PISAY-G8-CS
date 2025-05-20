@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Arrays (1D & 2D)</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">C++ Arrays (1D & 2D)</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Arrays</h2>
+                    <p>An array is a collection of elements of the same type stored in contiguous memory locations. Arrays provide a convenient way to store and access multiple values of the same data type under a single variable name.</p>
+                    
+                    <h2>One-Dimensional Arrays</h2>
+                    <p>A one-dimensional array is a linear collection of elements accessed by a single index.</p>
+                    
+                    <h3>Declaration and Initialization</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Declaration
+dataType arrayName[arraySize];
+
+// Declaration with initialization
+dataType arrayName[arraySize] = {value1, value2, ..., valueN};
+
+// Declaration with initialization (size deduced from elements)
+dataType arrayName[] = {value1, value2, ..., valueN};</code></pre>
+                    
+                    <p>Example:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Declaration and initialization
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    // Declaration with size deduced from elements
+    char vowels[] = {'a', 'e', 'i', 'o', 'u'};
+    
+    // Declaration without initialization
+    double prices[3];
+    prices[0] = 10.99;
+    prices[1] = 20.49;
+    prices[2] = 15.99;
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Accessing Array Elements</h3>
+                    <p>Array elements are accessed using their index, which starts from 0:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    // Accessing elements
+    cout << "First element: " << numbers[0] << endl;  // 10
+    cout << "Third element: " << numbers[2] << endl;  // 30
+    
+    // Modifying elements
+    numbers[1] = 25;
+    cout << "Modified second element: " << numbers[1] << endl;  // 25
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Array Size</h3>
+                    <p>You can find the size of an array using the <code>sizeof</code> operator:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    // Calculate the number of elements
+    int arraySize = sizeof(numbers) / sizeof(numbers[0]);
+    
+    cout << "Array size: " << arraySize << endl;  // 5
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Iterating Through Arrays</h3>
+                    <p>You can iterate through arrays using loops:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    // Using for loop
+    cout << "Using for loop:" << endl;
+    for(int i = 0; i < 5; i++) {
+        cout << numbers[i] << " ";
+    }
+    cout << endl;
+    
+    // Using range-based for loop (C++11 and later)
+    cout << "Using range-based for loop:" << endl;
+    for(int num : numbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}</code></pre>
+                    
+                    <h2>Two-Dimensional Arrays</h2>
+                    <p>A two-dimensional array is an array of arrays, forming a table-like structure with rows and columns.</p>
+                    
+                    <h3>Declaration and Initialization</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Declaration
+dataType arrayName[rowSize][columnSize];
+
+// Declaration with initialization
+dataType arrayName[rowSize][columnSize] = {
+    {value1, value2, ..., valueN},
+    {value1, value2, ..., valueN},
+    ...
+};</code></pre>
+                    
+                    <p>Example:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Declaration and initialization
+    int matrix[3][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+    
+    // Declaration without initialization
+    double table[2][3];
+    table[0][0] = 1.1;
+    table[0][1] = 1.2;
+    table[0][2] = 1.3;
+    table[1][0] = 2.1;
+    table[1][1] = 2.2;
+    table[1][2] = 2.3;
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Accessing 2D Array Elements</h3>
+                    <p>2D array elements are accessed using two indices: row and column:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[3][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+    
+    // Accessing elements
+    cout << "Element at row 1, column 2: " << matrix[1][2] << endl;  // 7
+    
+    // Modifying elements
+    matrix[0][1] = 20;
+    cout << "Modified element at row 0, column 1: " << matrix[0][1] << endl;  // 20
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Iterating Through 2D Arrays</h3>
+                    <p>You can iterate through 2D arrays using nested loops:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int matrix[3][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+    
+    // Print the matrix
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 4; j++) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <h2>Common Array Operations</h2>
+                    
+                    <h3>Finding the Sum of Array Elements</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    int sum = 0;
+    
+    for(int i = 0; i < 5; i++) {
+        sum += numbers[i];
+    }
+    
+    cout << "Sum of array elements: " << sum << endl;  // 150
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Finding the Maximum Element</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {30, 10, 50, 20, 40};
+    int max = numbers[0];
+    
+    for(int i = 1; i < 5; i++) {
+        if(numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    
+    cout << "Maximum element: " << max << endl;  // 50
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Searching for an Element</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    int searchValue = 30;
+    int position = -1;
+    
+    for(int i = 0; i < 5; i++) {
+        if(numbers[i] == searchValue) {
+            position = i;
+            break;
+        }
+    }
+    
+    if(position != -1) {
+        cout << "Element found at position: " << position << endl;  // 2
+    } else {
+        cout << "Element not found" << endl;
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <h3>Sorting an Array</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;  // For sort function
+using namespace std;
+
+int main() {
+    int numbers[5] = {30, 10, 50, 20, 40};
+    
+    // Using the sort function from the algorithm library
+    sort(numbers, numbers + 5);
+    
+    cout << "Sorted array: ";
+    for(int i = 0; i < 5; i++) {
+        cout << numbers[i] << " ";  // 10 20 30 40 50
+    }
+    cout << endl;
+    
+    return 0;
+}</code></pre>
+                    
+                    <h2>Arrays and Functions</h2>
+                    <p>Arrays can be passed to functions. When an array is passed to a function, what is actually passed is the memory address of the first element (a pointer).</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Function that takes an array as parameter
+void printArray(int arr[], int size) {
+    for(int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+// Function that modifies an array
+void doubleArray(int arr[], int size) {
+    for(int i = 0; i < size; i++) {
+        arr[i] *= 2;
+    }
+}
+
+int main() {
+    int numbers[5] = {10, 20, 30, 40, 50};
+    
+    cout << "Original array: ";
+    printArray(numbers, 5);  // 10 20 30 40 50
+    
+    doubleArray(numbers, 5);
+    
+    cout << "Modified array: ";
+    printArray(numbers, 5);  // 20 40 60 80 100
+    
+    return 0;
+}</code></pre>
+                    
+                    <h2>Common Pitfalls with Arrays</h2>
+                    <ul>
+                        <li><strong>Array Index Out of Bounds:</strong> Accessing an array element with an index that is outside the valid range can lead to undefined behavior.</li>
+                        <li><strong>Uninitialized Arrays:</strong> Elements of an array that are not explicitly initialized have undefined values.</li>
+                        <li><strong>Fixed Size:</strong> The size of an array is fixed at compile time and cannot be changed during runtime. For dynamic sizing, consider using <code>std::vector</code> from the C++ Standard Library.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', module='arrays') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
