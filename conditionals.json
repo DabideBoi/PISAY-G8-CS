@@ -1,0 +1,216 @@
+{
+    "title": "C++ If-Else & Switch Quiz",
+    "description": "Test your knowledge of C++ If-Else statements and Switch cases!",
+    "questions": [
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x > 5) {\n        cout << \"Greater\";\n    } else {\n        cout << \"Lesser\";\n    }\n    \n    return 0;\n}",
+            "options": ["Greater", "Lesser"],
+            "correctIndex": 0,
+            "explanation": "Since x (10) is greater than 5, the if condition is true, and 'Greater' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 3;\n    \n    if (x > 5) {\n        cout << \"A\";\n    } else if (x > 0) {\n        cout << \"B\";\n    } else {\n        cout << \"C\";\n    }\n    \n    return 0;\n}",
+            "options": ["A", "B"],
+            "correctIndex": 1,
+            "explanation": "Since x (3) is not greater than 5 but is greater than 0, the else if condition is true, and 'B' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    \n    switch (x) {\n        case 1:\n            cout << \"One\";\n            break;\n        case 5:\n            cout << \"Five\";\n            break;\n        default:\n            cout << \"Other\";\n    }\n    \n    return 0;\n}",
+            "options": ["One", "Five"],
+            "correctIndex": 1,
+            "explanation": "Since x is 5, the case 5 is matched, and 'Five' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x == 5) {\n        cout << \"Equal to 5\";\n    } else if (x == 10) {\n        cout << \"Equal to 10\";\n    } else {\n        cout << \"Not equal to 5 or 10\";\n    }\n    \n    return 0;\n}",
+            "options": ["Equal to 5", "Equal to 10"],
+            "correctIndex": 1,
+            "explanation": "Since x is 10, the second condition (x == 10) is true, and 'Equal to 10' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 3;\n    \n    switch (x) {\n        case 1:\n            cout << \"One\";\n            break;\n        case 2:\n            cout << \"Two\";\n            break;\n        default:\n            cout << \"Other\";\n    }\n    \n    return 0;\n}",
+            "options": ["Two", "Other"],
+            "correctIndex": 1,
+            "explanation": "Since x is 3, which doesn't match any case, the default case is executed, and 'Other' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    int y = 10;\n    \n    if (x > y) {\n        cout << \"x is greater\";\n    } else {\n        cout << \"y is greater or equal\";\n    }\n    \n    return 0;\n}",
+            "options": ["x is greater", "y is greater or equal"],
+            "correctIndex": 1,
+            "explanation": "Since x (5) is not greater than y (10), the else block is executed, and 'y is greater or equal' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int day = 3;\n    \n    switch (day) {\n        case 1:\n            cout << \"Monday\";\n            break;\n        case 2:\n            cout << \"Tuesday\";\n            break;\n        case 3:\n            cout << \"Wednesday\";\n            break;\n        default:\n            cout << \"Other day\";\n    }\n    \n    return 0;\n}",
+            "options": ["Tuesday", "Wednesday"],
+            "correctIndex": 1,
+            "explanation": "Since day is 3, case 3 is matched, and 'Wednesday' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x % 2 == 0) {\n        cout << \"Even\";\n    } else {\n        cout << \"Odd\";\n    }\n    \n    return 0;\n}",
+            "options": ["Even", "Odd"],
+            "correctIndex": 0,
+            "explanation": "Since x (10) is divisible by 2 (remainder is 0), the if condition is true, and 'Even' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    \n    switch (x % 2) {\n        case 0:\n            cout << \"Even\";\n            break;\n        case 1:\n            cout << \"Odd\";\n            break;\n    }\n    \n    return 0;\n}",
+            "options": ["Even", "Odd"],
+            "correctIndex": 1,
+            "explanation": "Since x % 2 is 1 (5 divided by 2 has a remainder of 1), case 1 is matched, and 'Odd' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    int y = 10;\n    \n    if (x > y) {\n        cout << \"x > y\";\n    } else if (x < y) {\n        cout << \"x < y\";\n    } else {\n        cout << \"x == y\";\n    }\n    \n    return 0;\n}",
+            "options": ["x < y", "x == y"],
+            "correctIndex": 1,
+            "explanation": "Since x (10) is equal to y (10), the else block is executed, and 'x == y' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    \n    if (x > 0)\n        if (x < 10)\n            cout << \"A\";\n        else\n            cout << \"B\";\n    \n    return 0;\n}",
+            "options": ["A", "B"],
+            "correctIndex": 0,
+            "explanation": "The nested if statement checks if x is greater than 0 (true) and then if x is less than 10 (also true), so 'A' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 15;\n    \n    if (x > 0)\n        if (x < 10)\n            cout << \"A\";\n        else\n            cout << \"B\";\n    \n    return 0;\n}",
+            "options": ["A", "B"],
+            "correctIndex": 1,
+            "explanation": "The nested if statement checks if x is greater than 0 (true) and then if x is less than 10 (false), so the else part executes and 'B' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    \n    switch (x) {\n        case 5:\n            cout << \"Five\";\n        case 6:\n            cout << \"Six\";\n            break;\n        default:\n            cout << \"Other\";\n    }\n    \n    return 0;\n}",
+            "options": ["Five", "FiveSix"],
+            "correctIndex": 1,
+            "explanation": "Since there's no break statement after case 5, execution falls through to case 6 as well. This is called 'fall-through' behavior in switch statements."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x = 5) {\n        cout << \"True\";\n    } else {\n        cout << \"False\";\n    }\n    \n    return 0;\n}",
+            "options": ["True", "False"],
+            "correctIndex": 0,
+            "explanation": "The condition (x = 5) is an assignment, not a comparison. It assigns 5 to x and then evaluates to 5, which is non-zero and therefore considered true in C++."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 0;\n    \n    if (x) {\n        cout << \"True\";\n    } else {\n        cout << \"False\";\n    }\n    \n    return 0;\n}",
+            "options": ["True", "False"],
+            "correctIndex": 1,
+            "explanation": "In C++, 0 is considered false in conditional statements, so the else block is executed and 'False' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x > 5 && x < 15) {\n        cout << \"In range\";\n    } else {\n        cout << \"Out of range\";\n    }\n    \n    return 0;\n}",
+            "options": ["In range", "Out of range"],
+            "correctIndex": 0,
+            "explanation": "The logical AND operator (&&) requires both conditions to be true. Since x is greater than 5 and less than 15, the condition is true, and 'In range' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 20;\n    \n    if (x < 5 || x > 15) {\n        cout << \"Out of range\";\n    } else {\n        cout << \"In range\";\n    }\n    \n    return 0;\n}",
+            "options": ["In range", "Out of range"],
+            "correctIndex": 1,
+            "explanation": "The logical OR operator (||) requires at least one condition to be true. Since x is greater than 15, the condition is true, and 'Out of range' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    char grade = 'B';\n    \n    switch (grade) {\n        case 'A':\n            cout << \"Excellent\";\n            break;\n        case 'B':\n            cout << \"Good\";\n            break;\n        case 'C':\n            cout << \"Average\";\n            break;\n        default:\n            cout << \"Poor\";\n    }\n    \n    return 0;\n}",
+            "options": ["Excellent", "Good"],
+            "correctIndex": 1,
+            "explanation": "Since grade is 'B', case 'B' is matched, and 'Good' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    cout << (x > 5 ? \"Greater\" : \"Lesser\");\n    \n    return 0;\n}",
+            "options": ["Greater", "Lesser"],
+            "correctIndex": 0,
+            "explanation": "The ternary operator (condition ? value_if_true : value_if_false) evaluates to 'Greater' because x > 5 is true."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 3;\n    \n    switch (x) {\n        case 1:\n        case 2:\n        case 3:\n            cout << \"Small\";\n            break;\n        case 4:\n        case 5:\n        case 6:\n            cout << \"Medium\";\n            break;\n        default:\n            cout << \"Large\";\n    }\n    \n    return 0;\n}",
+            "options": ["Small", "Medium"],
+            "correctIndex": 0,
+            "explanation": "Since x is 3, case 3 is matched. Since there's no code for case 1 and case 2, and they fall through to case 3, 'Small' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    bool isRaining = true;\n    bool hasUmbrella = false;\n    \n    if (isRaining && hasUmbrella) {\n        cout << \"You'll stay dry\";\n    } else if (isRaining && !hasUmbrella) {\n        cout << \"You'll get wet\";\n    } else {\n        cout << \"Weather is good\";\n    }\n    \n    return 0;\n}",
+            "options": ["You'll stay dry", "You'll get wet"],
+            "correctIndex": 1,
+            "explanation": "Since isRaining is true and hasUmbrella is false, the second condition (isRaining && !hasUmbrella) is true, and 'You'll get wet' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int score = 85;\n    \n    if (score >= 90) {\n        cout << \"A\";\n    } else if (score >= 80) {\n        cout << \"B\";\n    } else if (score >= 70) {\n        cout << \"C\";\n    } else {\n        cout << \"F\";\n    }\n    \n    return 0;\n}",
+            "options": ["A", "B"],
+            "correctIndex": 1,
+            "explanation": "Since score is 85, which is greater than or equal to 80 but less than 90, 'B' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x > 0)\n        cout << \"Positive\";\n    else if (x < 0)\n        cout << \"Negative\";\n    else\n        cout << \"Zero\";\n    \n    cout << \" number\";\n    \n    return 0;\n}",
+            "options": ["Positive", "Positive number"],
+            "correctIndex": 1,
+            "explanation": "Since x is 10, which is greater than 0, 'Positive' is printed. Then, regardless of the if-else condition, ' number' is printed, resulting in 'Positive number'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int month = 4;\n    \n    switch (month) {\n        case 1: case 3: case 5: case 7: case 8: case 10: case 12:\n            cout << \"31 days\";\n            break;\n        case 4: case 6: case 9: case 11:\n            cout << \"30 days\";\n            break;\n        case 2:\n            cout << \"28 or 29 days\";\n            break;\n        default:\n            cout << \"Invalid month\";\n    }\n    \n    return 0;\n}",
+            "options": ["31 days", "30 days"],
+            "correctIndex": 1,
+            "explanation": "Since month is 4 (April), which is one of the months with 30 days, '30 days' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    int y = 5;\n    \n    if (x > y) {\n        cout << \"x > y\";\n    }\n    if (x >= y) {\n        cout << \"x >= y\";\n    }\n    if (x == y) {\n        cout << \"x == y\";\n    }\n    \n    return 0;\n}",
+            "options": ["x >= yx == y", "x == y"],
+            "correctIndex": 0,
+            "explanation": "Since x equals y, the conditions x >= y and x == y are both true, so 'x >= yx == y' is printed (without spaces)."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 1;\n    \n    if (x > 0) {\n        if (x > 10) {\n            cout << \"Large positive\";\n        }\n    } else {\n        cout << \"Non-positive\";\n    }\n    \n    return 0;\n}",
+            "options": ["Large positive", "No output"],
+            "correctIndex": 1,
+            "explanation": "Since x is 1, which is greater than 0, the outer if condition is true. But since x is not greater than 10, the inner if condition is false, and nothing is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x > 5)\n        cout << \"A\";\n    else\n        cout << \"B\";\n        cout << \"C\";\n    \n    return 0;\n}",
+            "options": ["A", "AC"],
+            "correctIndex": 1,
+            "explanation": "Since x is 10, which is greater than 5, 'A' is printed. The statement 'cout << \"C\";' is not part of the else block (no braces), so it's always executed, resulting in 'AC'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    \n    switch (x) {\n        default:\n            cout << \"Default\";\n            break;\n        case 5:\n            cout << \"Five\";\n            break;\n    }\n    \n    return 0;\n}",
+            "options": ["Default", "Five"],
+            "correctIndex": 1,
+            "explanation": "Even though the default case is listed first, the switch statement still matches case 5 since x is 5, and 'Five' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x == 10)\n        if (x == 5)\n            cout << \"A\";\n    else\n        cout << \"B\";\n    \n    return 0;\n}",
+            "options": ["A", "B"],
+            "correctIndex": 1,
+            "explanation": "This is a classic 'dangling else' problem. The else is associated with the nearest if, which is 'if (x == 5)'. Since x is 10, the outer if is true, but the inner if is false, so the else part executes and 'B' is printed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    \n    if (x == 10) {\n        if (x == 5) {\n            cout << \"A\";\n        }\n    } else {\n        cout << \"B\";\n    }\n    \n    return 0;\n}",
+            "options": ["A", "No output"],
+            "correctIndex": 1,
+            "explanation": "With proper braces, the else is clearly associated with the outer if. Since x is 10, the outer if is true, but the inner if is false, so nothing is printed."
+        }
+    ]
+}

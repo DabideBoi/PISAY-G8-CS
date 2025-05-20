@@ -1,0 +1,216 @@
+{
+    "title": "C++ Programming Basics Quiz",
+    "description": "Test your knowledge of fundamental programming concepts in C++!",
+    "questions": [
+        {
+            "question": "What is the correct way to output text in C++?",
+            "code": "// Which of these is the correct way to output \"Hello World\" in C++?",
+            "options": ["cout << \"Hello World\";", "printf(\"Hello World\");"],
+            "correctIndex": 0,
+            "explanation": "In C++, the standard way to output text is using the cout object with the insertion operator (<<)."
+        },
+        {
+            "question": "Which of the following is the correct way to declare a variable in C++?",
+            "code": "// Which is correct?",
+            "options": ["int number = 10;", "number = 10;"],
+            "correctIndex": 0,
+            "explanation": "In C++, variables must be declared with a type before they can be used. The correct syntax is 'type name = value;'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 5;\n    int b = 2;\n    cout << a / b;\n    return 0;\n}",
+            "options": ["2", "2.5"],
+            "correctIndex": 0,
+            "explanation": "When dividing two integers in C++, the result is also an integer. The decimal part is truncated, so 5/2 equals 2."
+        },
+        {
+            "question": "What is the correct way to include the standard input/output library in C++?",
+            "code": "// Which line should be at the beginning of a C++ program?",
+            "options": ["#include <iostream>", "#import <iostream>"],
+            "correctIndex": 0,
+            "explanation": "The correct way to include libraries in C++ is using the #include directive."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << 7 % 3;\n    return 0;\n}",
+            "options": ["1", "2"],
+            "correctIndex": 0,
+            "explanation": "The % operator returns the remainder of a division. 7 divided by 3 is 2 with a remainder of 1, so 7 % 3 equals 1."
+        },
+        {
+            "question": "Which of the following is a valid comment in C++?",
+            "code": "// Choose the valid comment syntax",
+            "options": ["// This is a comment", "/* This is a comment */"],
+            "correctIndex": 0,
+            "explanation": "Both options are actually valid comments in C++. // is used for single-line comments, while /* */ is used for multi-line comments."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    bool isTrue = true;\n    cout << isTrue;\n    return 0;\n}",
+            "options": ["1", "true"],
+            "correctIndex": 0,
+            "explanation": "When a boolean value is printed in C++, true is represented as 1 and false as 0."
+        },
+        {
+            "question": "What is the correct way to read input from the user in C++?",
+            "code": "// Which is the correct way to read an integer from the user?",
+            "options": ["cin >> number;", "number = readLine();"],
+            "correctIndex": 0,
+            "explanation": "In C++, the standard way to read input is using the cin object with the extraction operator (>>)."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    x += 3;\n    cout << x;\n    return 0;\n}",
+            "options": ["8", "5"],
+            "correctIndex": 0,
+            "explanation": "The += operator adds the right operand to the left operand and assigns the result to the left operand. So x += 3 is equivalent to x = x + 3, which is 8."
+        },
+        {
+            "question": "Which of the following is the correct main function signature in C++?",
+            "code": "// Which is the correct main function?",
+            "options": ["int main() { }", "void main() { }"],
+            "correctIndex": 0,
+            "explanation": "In C++, the main function should return an integer value. The correct signature is 'int main()'."
+        },
+        {
+            "question": "What is the correct way to declare a constant in C++?",
+            "code": "// Which is the correct way to declare a constant?",
+            "options": ["const int MAX = 100;", "int const MAX = 100;"],
+            "correctIndex": 0,
+            "explanation": "Both options are actually valid in C++. 'const int MAX = 100;' and 'int const MAX = 100;' are equivalent ways to declare a constant integer."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    float x = 5.0;\n    float y = 2.0;\n    cout << x / y;\n    return 0;\n}",
+            "options": ["2.5", "2"],
+            "correctIndex": 0,
+            "explanation": "When dividing two floating-point numbers, the result is also a floating-point number. So 5.0/2.0 equals 2.5."
+        },
+        {
+            "question": "Which of the following is the correct way to create a single-line comment in C++?",
+            "code": "// Choose the correct syntax for a single-line comment",
+            "options": ["// This is a comment", "/* This is a comment */"],
+            "correctIndex": 0,
+            "explanation": "In C++, // is used for single-line comments, while /* */ is used for multi-line comments."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    int y = ++x;\n    cout << y;\n    return 0;\n}",
+            "options": ["6", "5"],
+            "correctIndex": 0,
+            "explanation": "The prefix increment operator (++x) increments x and then returns the new value. So y becomes 6."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    int y = x++;\n    cout << y;\n    return 0;\n}",
+            "options": ["5", "6"],
+            "correctIndex": 0,
+            "explanation": "The postfix increment operator (x++) returns the current value of x and then increments it. So y becomes 5, and x becomes 6 after the assignment."
+        },
+        {
+            "question": "What is the correct way to declare an array in C++?",
+            "code": "// Which is the correct way to declare an array of 5 integers?",
+            "options": ["int numbers[5];", "array<int> numbers(5);"],
+            "correctIndex": 0,
+            "explanation": "In C++, the standard way to declare an array is using the syntax 'type name[size];'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    int y = 3;\n    cout << x % y;\n    return 0;\n}",
+            "options": ["1", "3"],
+            "correctIndex": 0,
+            "explanation": "The % operator returns the remainder of a division. 10 divided by 3 is 3 with a remainder of 1, so 10 % 3 equals 1."
+        },
+        {
+            "question": "What is the correct way to define a string in C++?",
+            "code": "// Which is the correct way to define a string?",
+            "options": ["string name = \"John\";", "char* name = \"John\";"],
+            "correctIndex": 0,
+            "explanation": "In modern C++, the std::string class is the preferred way to handle strings. You need to include the <string> header and use the 'string' type."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 5;\n    int y = 2;\n    float z = float(x) / y;\n    cout << z;\n    return 0;\n}",
+            "options": ["2.5", "2"],
+            "correctIndex": 0,
+            "explanation": "By casting x to float, the division becomes a floating-point division, resulting in 2.5."
+        },
+        {
+            "question": "What is the correct way to check if two variables are equal in C++?",
+            "code": "// Which is the correct way to check if x equals y?",
+            "options": ["if (x == y)", "if (x = y)"],
+            "correctIndex": 0,
+            "explanation": "In C++, the equality operator is == (double equals). The single equals (=) is the assignment operator."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    bool a = true;\n    bool b = false;\n    cout << (a && b);\n    return 0;\n}",
+            "options": ["0", "1"],
+            "correctIndex": 0,
+            "explanation": "The logical AND operator (&&) returns true only if both operands are true. Since b is false, the result is false, which is printed as 0."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    bool a = true;\n    bool b = false;\n    cout << (a || b);\n    return 0;\n}",
+            "options": ["1", "0"],
+            "correctIndex": 0,
+            "explanation": "The logical OR operator (||) returns true if at least one operand is true. Since a is true, the result is true, which is printed as 1."
+        },
+        {
+            "question": "What is the correct way to include the string library in C++?",
+            "code": "// Which line should be included to use strings in C++?",
+            "options": ["#include <string>", "#include <strings>"],
+            "correctIndex": 0,
+            "explanation": "The correct way to include the string library in C++ is #include <string>."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    cout << (x > 5 ? \"Greater\" : \"Lesser\");\n    return 0;\n}",
+            "options": ["Greater", "Lesser"],
+            "correctIndex": 0,
+            "explanation": "The ternary operator (condition ? value_if_true : value_if_false) evaluates to 'Greater' because x > 5 is true."
+        },
+        {
+            "question": "What is the correct way to declare a constant pointer to a constant integer in C++?",
+            "code": "// Which is the correct declaration?",
+            "options": ["const int* const ptr;", "int const* ptr;"],
+            "correctIndex": 0,
+            "explanation": "The declaration 'const int* const ptr;' creates a constant pointer to a constant integer, meaning both the pointer and the value it points to cannot be changed."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a = 5, b = 10;\n    cout << (a < b) << (a > b);\n    return 0;\n}",
+            "options": ["10", "01"],
+            "correctIndex": 0,
+            "explanation": "The expression (a < b) evaluates to true (printed as 1) and (a > b) evaluates to false (printed as 0)."
+        },
+        {
+            "question": "What is the correct way to define a namespace in C++?",
+            "code": "// Which is the correct way to define a namespace?",
+            "options": ["namespace MyNamespace { /* code */ }", "define namespace MyNamespace { /* code */ }"],
+            "correctIndex": 0,
+            "explanation": "In C++, namespaces are defined using the 'namespace' keyword followed by the namespace name and a block of code."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 10;\n    cout << sizeof(x);\n    return 0;\n}",
+            "options": ["4", "8"],
+            "correctIndex": 0,
+            "explanation": "The sizeof operator returns the size in bytes of a type or variable. On most systems, an int is 4 bytes."
+        },
+        {
+            "question": "What is the correct way to use the scope resolution operator in C++?",
+            "code": "// Which is the correct way to access a function in a namespace?",
+            "options": ["std::cout", "std.cout"],
+            "correctIndex": 0,
+            "explanation": "In C++, the scope resolution operator is :: (double colon). It's used to specify the namespace or class that contains an identifier."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    char c = 'A';\n    cout << int(c);\n    return 0;\n}",
+            "options": ["65", "A"],
+            "correctIndex": 0,
+            "explanation": "Casting a character to an integer gives its ASCII value. The ASCII value of 'A' is 65."
+        }
+    ]
+}

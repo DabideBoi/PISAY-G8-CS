@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Functions</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">C++ Functions</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Functions</h2>
+                    <p>A function is a block of code that performs a specific task. Functions help break our program into smaller and modular chunks, making it more organized, manageable, and reusable.</p>
+                    
+                    <h2>Function Declaration and Definition</h2>
+                    <p>A function declaration tells the compiler about a function's name, return type, and parameters. A function definition provides the actual body of the function.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Function declaration
+returnType functionName(parameterList);
+
+// Function definition
+returnType functionName(parameterList) {
+    // function body
+    // statements
+    return value; // optional
+}</code></pre>
+                    
+                    <p>Example:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Function declaration
+int add(int a, int b);
+
+int main() {
+    int sum = add(5, 3);
+    cout << "Sum: " << sum;
+    return 0;
+}
+
+// Function definition
+int add(int a, int b) {
+    return a + b;
+}</code></pre>
+                    
+                    <h2>Function Parameters</h2>
+                    <p>Parameters are variables used in a function to receive values from the caller. There are three ways to pass parameters to a function:</p>
+                    
+                    <h3>Pass by Value</h3>
+                    <p>In this method, the actual value is passed to the function. Changes made to the parameter inside the function do not affect the original value.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void modifyValue(int x) {
+    x = x + 5; // Changes only the local copy
+    cout << "Inside function: " << x << endl;
+}
+
+int main() {
+    int num = 10;
+    cout << "Before function call: " << num << endl;
+    modifyValue(num);
+    cout << "After function call: " << num << endl;
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>Before function call: 10
+Inside function: 15
+After function call: 10</code></pre>
+                    
+                    <h3>Pass by Reference</h3>
+                    <p>In this method, the memory address of the variable is passed to the function. Changes made to the parameter inside the function affect the original value.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void modifyValue(int &x) {
+    x = x + 5; // Changes the original value
+    cout << "Inside function: " << x << endl;
+}
+
+int main() {
+    int num = 10;
+    cout << "Before function call: " << num << endl;
+    modifyValue(num);
+    cout << "After function call: " << num << endl;
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>Before function call: 10
+Inside function: 15
+After function call: 15</code></pre>
+                    
+                    <h3>Pass by Pointer</h3>
+                    <p>In this method, the memory address of the variable is passed to the function using pointers. Changes made to the parameter inside the function affect the original value.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void modifyValue(int *x) {
+    *x = *x + 5; // Changes the original value
+    cout << "Inside function: " << *x << endl;
+}
+
+int main() {
+    int num = 10;
+    cout << "Before function call: " << num << endl;
+    modifyValue(&num);
+    cout << "After function call: " << num << endl;
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>Before function call: 10
+Inside function: 15
+After function call: 15</code></pre>
+                    
+                    <h2>Return Values</h2>
+                    <p>Functions can return values using the <code>return</code> statement. The return type is specified in the function declaration.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int square(int x) {
+    return x * x;
+}
+
+int main() {
+    int num = 5;
+    int result = square(num);
+    cout << "Square of " << num << " is " << result;
+    return 0;
+}</code></pre>
+                    
+                    <h2>Default Parameters</h2>
+                    <p>C++ allows you to specify default values for function parameters. If a value is not provided for a parameter with a default value, the default value is used.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void printMessage(string message = "Hello, World!") {
+    cout << message << endl;
+}
+
+int main() {
+    printMessage(); // Uses default parameter
+    printMessage("Custom message"); // Uses provided parameter
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>Hello, World!
+Custom message</code></pre>
+                    
+                    <h2>Function Overloading</h2>
+                    <p>Function overloading allows you to have multiple functions with the same name but different parameters.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// Function with two integer parameters
+int add(int a, int b) {
+    return a + b;
+}
+
+// Function with three integer parameters
+int add(int a, int b, int c) {
+    return a + b + c;
+}
+
+// Function with two double parameters
+double add(double a, double b) {
+    return a + b;
+}
+
+int main() {
+    cout << add(5, 3) << endl;        // Calls add(int, int)
+    cout << add(5, 3, 2) << endl;     // Calls add(int, int, int)
+    cout << add(5.2, 3.7) << endl;    // Calls add(double, double)
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>8
+10
+8.9</code></pre>
+                    
+                    <h2>Inline Functions</h2>
+                    <p>Inline functions are a C++ enhancement feature that improves program execution speed. When a function is declared as inline, the compiler places a copy of the function's code at each point where the function is called.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+inline int square(int x) {
+    return x * x;
+}
+
+int main() {
+    cout << square(5);
+    return 0;
+}</code></pre>
+                    
+                    <h2>Recursive Functions</h2>
+                    <p>A recursive function is a function that calls itself. Recursive functions can be used to solve problems that can be broken down into smaller, similar subproblems.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+int main() {
+    int num = 5;
+    cout << "Factorial of " << num << " is " << factorial(num);
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>Factorial of 5 is 120</code></pre>
+                    
+                    <h2>Function Templates</h2>
+                    <p>Function templates allow you to create a function that can work with different data types. The compiler generates the appropriate function definitions for the data types used when the function is called.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+template <typename T>
+T maximum(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    cout << maximum(5, 10) << endl;       // int version
+    cout << maximum(5.5, 10.5) << endl;   // double version
+    cout << maximum('a', 'z') << endl;    // char version
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>10
+10.5
+z</code></pre>
+                    
+                    <h2>Lambda Functions</h2>
+                    <p>Lambda functions (introduced in C++11) are anonymous functions that can be defined inline. They are particularly useful for short functions that are used only once.</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    vector<int> numbers = {1, 2, 3, 4, 5};
+    
+    // Lambda function to print each number
+    for_each(numbers.begin(), numbers.end(), [](int n) {
+        cout << n << " ";
+    });
+    
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>1 2 3 4 5 </code></pre>
+                    
+                    <h2>Practice Exercises</h2>
+                    <ol>
+                        <li>Write a function that calculates the power of a number (x^y).</li>
+                        <li>Create a function that checks if a number is prime.</li>
+                        <li>Write a recursive function to calculate the nth Fibonacci number.</li>
+                        <li>Create a function template that swaps the values of two variables.</li>
+                    </ol>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', module='functions') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

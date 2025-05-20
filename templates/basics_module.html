@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Programming Basics</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">C++ Programming Basics</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to C++</h2>
+                    <p>C++ is a powerful general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language. It offers a combination of high-level and low-level language features, making it suitable for system programming, embedded systems, game development, and more.</p>
+                    
+                    <h2>Basic Syntax</h2>
+                    <p>Every C++ program has at least one function, the <code>main()</code> function, which is the entry point of the program:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Your code here
+    return 0;
+}</code></pre>
+                    
+                    <h3>Comments</h3>
+                    <p>Comments are used to explain code and are ignored by the compiler:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// This is a single-line comment
+
+/* This is a
+   multi-line comment */</code></pre>
+                    
+                    <h3>Input and Output</h3>
+                    <p>C++ uses the <code>iostream</code> library for input and output operations:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout << "Hello World!"; // Output
+    
+    int num;
+    cin >> num; // Input
+    
+    return 0;
+}</code></pre>
+                    
+                    <h2>Variables and Data Types</h2>
+                    <p>Variables are containers for storing data values. In C++, variables must be declared with a specific type:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int myNum = 5;               // Integer
+double myFloatingNum = 5.99;  // Floating point number
+char myLetter = 'D';          // Character
+string myText = "Hello";      // String
+bool myBoolean = true;        // Boolean</code></pre>
+                    
+                    <h3>Constants</h3>
+                    <p>Constants are variables whose values cannot be changed after declaration:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>const int MINUTES_PER_HOUR = 60;
+const float PI = 3.14159;</code></pre>
+                    
+                    <h2>Operators</h2>
+                    <p>C++ provides various operators for performing operations on variables and values:</p>
+                    
+                    <h3>Arithmetic Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int a = 10, b = 5;
+int sum = a + b;      // Addition: 15
+int diff = a - b;     // Subtraction: 5
+int product = a * b;  // Multiplication: 50
+int quotient = a / b; // Division: 2
+int remainder = a % b; // Modulus: 0</code></pre>
+                    
+                    <h3>Assignment Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int x = 10;
+x += 5;  // x = x + 5
+x -= 3;  // x = x - 3
+x *= 2;  // x = x * 2
+x /= 4;  // x = x / 4
+x %= 3;  // x = x % 3</code></pre>
+                    
+                    <h3>Comparison Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int a = 5, b = 10;
+bool equal = (a == b);       // Equal to: false
+bool notEqual = (a != b);    // Not equal to: true
+bool greater = (a > b);      // Greater than: false
+bool less = (a < b);         // Less than: true
+bool greaterEqual = (a >= b); // Greater than or equal to: false
+bool lessEqual = (a <= b);    // Less than or equal to: true</code></pre>
+                    
+                    <h3>Logical Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>bool a = true, b = false;
+bool andResult = a && b;  // Logical AND: false
+bool orResult = a || b;   // Logical OR: true
+bool notResult = !a;      // Logical NOT: false</code></pre>
+                    
+                    <h2>Type Casting</h2>
+                    <p>Type casting is when you convert a variable from one data type to another:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Implicit casting
+int myInt = 9;
+double myDouble = myInt;  // Automatic casting: int to double
+
+// Explicit casting
+double myDouble = 9.78;
+int myInt = (int) myDouble;  // Manual casting: double to int</code></pre>
+                    
+                    <h2>Practice Exercises</h2>
+                    <ol>
+                        <li>Write a program that calculates the area of a rectangle.</li>
+                        <li>Create a program that converts temperature from Celsius to Fahrenheit.</li>
+                        <li>Write a program that swaps the values of two variables.</li>
+                        <li>Create a program that calculates the average of three numbers.</li>
+                    </ol>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', module='basics') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

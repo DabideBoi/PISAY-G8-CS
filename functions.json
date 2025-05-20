@@ -1,0 +1,223 @@
+{
+    "title": "C++ Functions Quiz",
+    "description": "Test your knowledge of C++ functions, parameters, and return values!",
+    "questions": [
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    cout << add(3, 4);\n    return 0;\n}",
+            "options": ["7", "3, 4"],
+            "correctIndex": 0,
+            "explanation": "The add function takes two parameters (a and b) and returns their sum. When called with add(3, 4), it returns 3 + 4 = 7."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid modify(int x) {\n    x = x + 5;\n}\n\nint main() {\n    int num = 10;\n    modify(num);\n    cout << num;\n    return 0;\n}",
+            "options": ["10", "15"],
+            "correctIndex": 0,
+            "explanation": "In C++, when primitive types like int are passed to functions, they are passed by value (a copy is made). Changes to the parameter inside the function don't affect the original variable."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid modify(int &x) {\n    x = x + 5;\n}\n\nint main() {\n    int num = 10;\n    modify(num);\n    cout << num;\n    return 0;\n}",
+            "options": ["10", "15"],
+            "correctIndex": 1,
+            "explanation": "When a parameter is declared with & (reference), changes to the parameter inside the function affect the original variable. So num is modified to 15."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint getValue() {\n    return 42;\n}\n\nint main() {\n    cout << getValue();\n    return 0;\n}",
+            "options": ["42", "0"],
+            "correctIndex": 0,
+            "explanation": "The getValue function returns 42, which is then printed by cout."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint square(int x) {\n    return x * x;\n}\n\nint main() {\n    int result = square(4);\n    cout << result;\n    return 0;\n}",
+            "options": ["16", "8"],
+            "correctIndex": 0,
+            "explanation": "The square function returns the square of its parameter. square(4) returns 4 * 4 = 16."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid printMessage() {\n    cout << \"Hello\";\n}\n\nint main() {\n    printMessage();\n    return 0;\n}",
+            "options": ["Hello", "Nothing (blank output)"],
+            "correctIndex": 0,
+            "explanation": "The printMessage function prints 'Hello' to the console."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b = 5) {\n    return a + b;\n}\n\nint main() {\n    cout << add(3);\n    return 0;\n}",
+            "options": ["8", "3"],
+            "correctIndex": 0,
+            "explanation": "The add function has a default parameter b = 5. When called with only one argument add(3), b takes its default value 5, so the result is 3 + 5 = 8."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint factorial(int n) {\n    if (n <= 1) return 1;\n    return n * factorial(n-1);\n}\n\nint main() {\n    cout << factorial(4);\n    return 0;\n}",
+            "options": ["24", "16"],
+            "correctIndex": 0,
+            "explanation": "This is a recursive function that calculates the factorial of n. factorial(4) = 4 * factorial(3) = 4 * 3 * factorial(2) = 4 * 3 * 2 * factorial(1) = 4 * 3 * 2 * 1 = 24."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint max(int a, int b) {\n    return (a > b) ? a : b;\n}\n\nint main() {\n    cout << max(7, 3);\n    return 0;\n}",
+            "options": ["7", "3"],
+            "correctIndex": 0,
+            "explanation": "The max function returns the larger of its two parameters. Since 7 > 3, it returns 7."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint sum(int a, int b) {\n    return a + b;\n}\n\nint sum(int a, int b, int c) {\n    return a + b + c;\n}\n\nint main() {\n    cout << sum(1, 2) << sum(1, 2, 3);\n    return 0;\n}",
+            "options": ["36", "3 6"],
+            "correctIndex": 0,
+            "explanation": "This demonstrates function overloading. sum(1, 2) calls the first function and returns 3. sum(1, 2, 3) calls the second function and returns 6. The output is '36' because there's no space between the two outputs."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid swap(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int x = 5, y = 10;\n    swap(x, y);\n    cout << x << y;\n    return 0;\n}",
+            "options": ["510", "105"],
+            "correctIndex": 1,
+            "explanation": "The swap function exchanges the values of its two reference parameters. After the call, x becomes 10 and y becomes 5, so the output is '105'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint increment(int x) {\n    return ++x;\n}\n\nint main() {\n    int a = 5;\n    cout << increment(a) << a;\n    return 0;\n}",
+            "options": ["65", "55"],
+            "correctIndex": 0,
+            "explanation": "The increment function increments its parameter and returns the new value. Since the parameter is passed by value, the original variable a is not affected. The output is '65'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint getValue() {\n    static int value = 0;\n    return ++value;\n}\n\nint main() {\n    cout << getValue() << getValue() << getValue();\n    return 0;\n}",
+            "options": ["123", "111"],
+            "correctIndex": 0,
+            "explanation": "The static variable value retains its value between function calls. Each call to getValue() increments value and returns the new value. The output is '123'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\ninline int square(int x) {\n    return x * x;\n}\n\nint main() {\n    cout << square(4);\n    return 0;\n}",
+            "options": ["16", "4"],
+            "correctIndex": 0,
+            "explanation": "The inline keyword suggests to the compiler to replace the function call with the function body. The behavior is the same as a regular function, so square(4) returns 16."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint fibonacci(int n) {\n    if (n <= 1) return n;\n    return fibonacci(n-1) + fibonacci(n-2);\n}\n\nint main() {\n    cout << fibonacci(5);\n    return 0;\n}",
+            "options": ["5", "8"],
+            "correctIndex": 0,
+            "explanation": "This is a recursive function that calculates the nth Fibonacci number. fibonacci(5) = fibonacci(4) + fibonacci(3) = 3 + 2 = 5."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b = 5, int c = 10) {\n    return a + b + c;\n}\n\nint main() {\n    cout << add(3, 7);\n    return 0;\n}",
+            "options": ["20", "15"],
+            "correctIndex": 0,
+            "explanation": "When a function has multiple default parameters, they are filled from right to left. In this call, a=3 and b=7, while c takes its default value 10. So the result is 3 + 7 + 10 = 20."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint& getReference() {\n    static int value = 10;\n    return value;\n}\n\nint main() {\n    getReference() = 20;\n    cout << getReference();\n    return 0;\n}",
+            "options": ["10", "20"],
+            "correctIndex": 1,
+            "explanation": "The function returns a reference to a static variable. The statement getReference() = 20 modifies the static variable, and the next call returns the new value. The output is '20'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint power(int base, int exponent = 2) {\n    int result = 1;\n    for (int i = 0; i < exponent; i++) {\n        result *= base;\n    }\n    return result;\n}\n\nint main() {\n    cout << power(3);\n    return 0;\n}",
+            "options": ["9", "6"],
+            "correctIndex": 0,
+            "explanation": "The power function calculates base raised to the power of exponent. When called with only one argument power(3), exponent takes its default value 2, so the result is 3^2 = 9."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\ntemplate <typename T>\nT maximum(T a, T b) {\n    return (a > b) ? a : b;\n}\n\nint main() {\n    cout << maximum(3, 7);\n    return 0;\n}",
+            "options": ["7", "3"],
+            "correctIndex": 0,
+            "explanation": "This is a function template that works with any type that supports the > operator. When called with maximum(3, 7), it returns the larger value, which is 7."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid printValue(int val) {\n    cout << \"Int: \" << val;\n}\n\nvoid printValue(double val) {\n    cout << \"Double: \" << val;\n}\n\nint main() {\n    printValue(5);\n    return 0;\n}",
+            "options": ["Int: 5", "Double: 5"],
+            "correctIndex": 0,
+            "explanation": "This demonstrates function overloading based on parameter types. Since 5 is an integer literal, the first function is called, and the output is 'Int: 5'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid printValue(int val) {\n    cout << \"Int: \" << val;\n}\n\nvoid printValue(double val) {\n    cout << \"Double: \" << val;\n}\n\nint main() {\n    printValue(5.0);\n    return 0;\n}",
+            "options": ["Int: 5", "Double: 5"],
+            "correctIndex": 1,
+            "explanation": "This demonstrates function overloading based on parameter types. Since 5.0 is a double literal, the second function is called, and the output is 'Double: 5'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint count = 0;\n\nint getCount() {\n    return count;\n}\n\nvoid incrementCount() {\n    count++;\n}\n\nint main() {\n    incrementCount();\n    incrementCount();\n    cout << getCount();\n    return 0;\n}",
+            "options": ["0", "2"],
+            "correctIndex": 1,
+            "explanation": "The variable count is a global variable accessible to all functions. The incrementCount function increments it twice, so getCount returns 2."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint getCount() {\n    static int count = 0;\n    count++;\n    return count;\n}\n\nint main() {\n    cout << getCount() << getCount() << getCount();\n    return 0;\n}",
+            "options": ["123", "111"],
+            "correctIndex": 0,
+            "explanation": "The static variable count retains its value between function calls. Each call to getCount() increments count and returns the new value. The output is '123'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint factorial(int n) {\n    return (n <= 1) ? 1 : n * factorial(n-1);\n}\n\nint main() {\n    cout << factorial(0);\n    return 0;\n}",
+            "options": ["0", "1"],
+            "correctIndex": 1,
+            "explanation": "By definition, the factorial of 0 is 1. The base case of the recursive function handles this correctly, returning 1 when n <= 1."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid swap(int* a, int* b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\nint main() {\n    int x = 5, y = 10;\n    swap(&x, &y);\n    cout << x << y;\n    return 0;\n}",
+            "options": ["510", "105"],
+            "correctIndex": 1,
+            "explanation": "The swap function exchanges the values pointed to by its two pointer parameters. After the call, x becomes 10 and y becomes 5, so the output is '105'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint& max(int& a, int& b) {\n    return (a > b) ? a : b;\n}\n\nint main() {\n    int x = 5, y = 10;\n    max(x, y) = 0;\n    cout << x << y;\n    return 0;\n}",
+            "options": ["50", "00"],
+            "correctIndex": 0,
+            "explanation": "The max function returns a reference to the larger of its two parameters. Since y is larger, max(x, y) returns a reference to y. The assignment max(x, y) = 0 sets y to 0. So the output is '50'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint add(int a, int b) {\n    return a + b;\n}\n\ndouble add(double a, double b) {\n    return a + b;\n}\n\nint main() {\n    cout << add(3, 4.5);\n    return 0;\n}",
+            "options": ["7", "7.5"],
+            "correctIndex": 1,
+            "explanation": "When a function is overloaded and the argument types don't match exactly, the compiler performs implicit type conversion. In this case, 3 is converted to 3.0, and the double version of add is called, returning 7.5."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint calculate(int a, int b, char op = '+') {\n    if (op == '+') return a + b;\n    if (op == '-') return a - b;\n    if (op == '*') return a * b;\n    return a / b;\n}\n\nint main() {\n    cout << calculate(10, 5, '-');\n    return 0;\n}",
+            "options": ["15", "5"],
+            "correctIndex": 1,
+            "explanation": "The calculate function performs different operations based on the op parameter. When called with calculate(10, 5, '-'), it returns 10 - 5 = 5."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint calculate(int a, int b, char op = '+') {\n    if (op == '+') return a + b;\n    if (op == '-') return a - b;\n    if (op == '*') return a * b;\n    return a / b;\n}\n\nint main() {\n    cout << calculate(10, 5);\n    return 0;\n}",
+            "options": ["15", "5"],
+            "correctIndex": 0,
+            "explanation": "When called with only two arguments calculate(10, 5), op takes its default value '+', so the function returns 10 + 5 = 15."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nvoid printArray(int arr[], int size) {\n    for (int i = 0; i < size; i++) {\n        cout << arr[i];\n    }\n}\n\nint main() {\n    int numbers[] = {1, 2, 3, 4, 5};\n    printArray(numbers, 3);\n    return 0;\n}",
+            "options": ["12345", "123"],
+            "correctIndex": 1,
+            "explanation": "The printArray function prints the first 'size' elements of the array. When called with printArray(numbers, 3), it prints the first 3 elements: 1, 2, and 3."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "#include <iostream>\nusing namespace std;\n\nint sum(int count, ...) {\n    va_list args;\n    va_start(args, count);\n    \n    int total = 0;\n    for (int i = 0; i < count; i++) {\n        total += va_arg(args, int);\n    }\n    \n    va_end(args);\n    return total;\n}\n\nint main() {\n    cout << sum(3, 10, 20, 30);\n    return 0;\n}",
+            "options": ["60", "30"],
+            "correctIndex": 0,
+            "explanation": "This function uses variadic arguments (variable number of arguments). The first parameter specifies how many arguments follow. The function sums the 3 values (10, 20, and 30), resulting in 60."
+        }
+    ]
+}

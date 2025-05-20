@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Loops</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">C++ Loops</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Loops</h2>
+                    <p>Loops are used to execute a block of code multiple times. C++ provides several types of loops to handle looping requirements.</p>
+                    
+                    <h2>For Loop</h2>
+                    <p>The <code>for</code> loop is used when you know in advance how many times you want to execute a statement or a block of statements:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>for (initialization; condition; increment/decrement) {
+    // code to be executed
+}</code></pre>
+                    
+                    <p>Example:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 0; i < 5; i++) {
+        cout << i << "\n";
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>0
+1
+2
+3
+4</code></pre>
+                    
+                    <h3>For Loop Components</h3>
+                    <ol>
+                        <li><strong>Initialization:</strong> Executed once before the loop starts. Often used to initialize a counter variable.</li>
+                        <li><strong>Condition:</strong> Evaluated before each loop iteration. If true, the loop continues; if false, the loop ends.</li>
+                        <li><strong>Increment/Decrement:</strong> Executed after each loop iteration. Often used to update the counter variable.</li>
+                    </ol>
+                    
+                    <h2>While Loop</h2>
+                    <p>The <code>while</code> loop loops through a block of code as long as a specified condition is true:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>while (condition) {
+    // code to be executed
+}</code></pre>
+                    
+                    <p>Example:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 0;
+    
+    while (i < 5) {
+        cout << i << "\n";
+        i++;
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>0
+1
+2
+3
+4</code></pre>
+                    
+                    <h2>Do-While Loop</h2>
+                    <p>The <code>do-while</code> loop is a variant of the <code>while</code> loop. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>do {
+    // code to be executed
+} while (condition);</code></pre>
+                    
+                    <p>Example:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int i = 0;
+    
+    do {
+        cout << i << "\n";
+        i++;
+    } while (i < 5);
+    
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>0
+1
+2
+3
+4</code></pre>
+                    
+                    <h3>Key Difference Between While and Do-While</h3>
+                    <p>The key difference between <code>while</code> and <code>do-while</code> is that <code>do-while</code> evaluates its condition at the end of the loop, which means the code block is executed at least once.</p>
+                    
+                    <h2>Nested Loops</h2>
+                    <p>You can also have loops inside loops, which are called nested loops:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Outer loop
+    for (int i = 1; i <= 3; i++) {
+        cout << "Outer: " << i << "\n";
+        
+        // Inner loop
+        for (int j = 1; j <= 3; j++) {
+            cout << " Inner: " << j << "\n";
+        }
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <h2>Loop Control Statements</h2>
+                    <p>C++ provides statements that can be used to control the flow of loops:</p>
+                    
+                    <h3>Break Statement</h3>
+                    <p>The <code>break</code> statement can be used to jump out of a loop:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 0; i < 10; i++) {
+        if (i == 4) {
+            break; // Exit the loop when i is 4
+        }
+        cout << i << "\n";
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>0
+1
+2
+3</code></pre>
+                    
+                    <h3>Continue Statement</h3>
+                    <p>The <code>continue</code> statement breaks one iteration in the loop and continues with the next iteration:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for (int i = 0; i < 10; i++) {
+        if (i == 4) {
+            continue; // Skip the rest of the code in this iteration
+        }
+        cout << i << "\n";
+    }
+    
+    return 0;
+}</code></pre>
+                    
+                    <p>Output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>0
+1
+2
+3
+5
+6
+7
+8
+9</code></pre>
+                    
+                    <h2>Infinite Loops</h2>
+                    <p>An infinite loop occurs when a condition in a loop always evaluates to true, causing the loop to run indefinitely:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Infinite for loop
+for (;;) {
+    // code to be executed
+}
+
+// Infinite while loop
+while (true) {
+    // code to be executed
+}
+
+// Infinite do-while loop
+do {
+    // code to be executed
+} while (true);</code></pre>
+                    
+                    <p>Infinite loops are generally avoided, but they can be useful in certain scenarios, such as in game development or when creating server applications that need to run continuously. In such cases, there should be a way to exit the loop based on certain conditions.</p>
+                    
+                    <h2>Practice Exercises</h2>
+                    <ol>
+                        <li>Write a program that prints the first 10 natural numbers using a for loop.</li>
+                        <li>Create a program that calculates the factorial of a number using a while loop.</li>
+                        <li>Write a program that prints a pattern of stars using nested loops.</li>
+                        <li>Create a program that finds all prime numbers between 1 and 100 using loops.</li>
+                    </ol>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', module='loops') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
