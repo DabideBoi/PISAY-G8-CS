@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Basics</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">HTML Basics</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to HTML</h2>
+                    <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page and consists of a series of elements that tell the browser how to display the content.</p>
+                    
+                    <h2>Basic Structure</h2>
+                    <p>A basic HTML document has the following structure:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My First Heading&lt;/h1&gt;
+    &lt;p&gt;My first paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    
+                    <h3>Explanation</h3>
+                    <ul>
+                        <li>The <code>&lt;!DOCTYPE html&gt;</code> declaration defines this document to be HTML5</li>
+                        <li>The <code>&lt;html&gt;</code> element is the root element of an HTML page</li>
+                        <li>The <code>&lt;head&gt;</code> element contains meta information about the document</li>
+                        <li>The <code>&lt;title&gt;</code> element specifies a title for the document</li>
+                        <li>The <code>&lt;body&gt;</code> element contains the visible page content</li>
+                        <li>The <code>&lt;h1&gt;</code> element defines a large heading</li>
+                        <li>The <code>&lt;p&gt;</code> element defines a paragraph</li>
+                    </ul>
+                    
+                    <h2>HTML Elements</h2>
+                    <p>HTML elements are defined by a start tag, some content, and an end tag:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;tagname&gt;Content goes here...&lt;/tagname&gt;</code></pre>
+                    
+                    <h3>Common HTML Elements</h3>
+                    
+                    <h4>Headings</h4>
+                    <p>HTML headings are defined with the <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags, where <code>&lt;h1&gt;</code> is the most important and <code>&lt;h6&gt;</code> is the least important:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre>
+                    
+                    <h4>Paragraphs</h4>
+                    <p>HTML paragraphs are defined with the <code>&lt;p&gt;</code> tag:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is another paragraph.&lt;/p&gt;</code></pre>
+                    
+                    <h4>Links</h4>
+                    <p>HTML links are defined with the <code>&lt;a&gt;</code> tag:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;a href="https://www.example.com"&gt;This is a link&lt;/a&gt;</code></pre>
+                    
+                    <h4>Images</h4>
+                    <p>HTML images are defined with the <code>&lt;img&gt;</code> tag. The source file (<code>src</code>), alternative text (<code>alt</code>), <code>width</code>, and <code>height</code> are provided as attributes:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;img src="image.jpg" alt="Description of image" width="500" height="300"&gt;</code></pre>
+                    
+                    <h4>Lists</h4>
+                    <p>HTML supports ordered (numbered) and unordered (bulleted) lists:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;!-- Unordered list --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered list --&gt;
+&lt;ol&gt;
+    &lt;li&gt;First item&lt;/li&gt;
+    &lt;li&gt;Second item&lt;/li&gt;
+    &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    
+                    <h4>Tables</h4>
+                    <p>HTML tables are defined with the <code>&lt;table&gt;</code> tag. Each table row is defined with the <code>&lt;tr&gt;</code> tag. A table header is defined with the <code>&lt;th&gt;</code> tag. A table data/cell is defined with the <code>&lt;td&gt;</code> tag:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Header 1&lt;/th&gt;
+        &lt;th&gt;Header 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Row 1, Cell 1&lt;/td&gt;
+        &lt;td&gt;Row 1, Cell 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Row 2, Cell 1&lt;/td&gt;
+        &lt;td&gt;Row 2, Cell 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                    
+                    <h4>Forms</h4>
+                    <p>HTML forms are used to collect user input. The <code>&lt;form&gt;</code> element defines a form and various form elements like <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;select&gt;</code>, etc.:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;form action="/submit-form" method="post"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+                    
+                    <h2>HTML Attributes</h2>
+                    <p>HTML attributes provide additional information about HTML elements:</p>
+                    <ul>
+                        <li>The <code>href</code> attribute specifies the URL of the page the link goes to</li>
+                        <li>The <code>src</code> attribute specifies the path to the image to be displayed</li>
+                        <li>The <code>width</code> and <code>height</code> attributes specify the width and height of an image</li>
+                        <li>The <code>alt</code> attribute specifies an alternate text for an image</li>
+                        <li>The <code>style</code> attribute is used to add styles to an element, such as color, font, size, etc.</li>
+                        <li>The <code>class</code> attribute is used to define equal styles for elements with the same class name</li>
+                        <li>The <code>id</code> attribute is used to specify a unique id for an HTML element</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='web', module='html') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

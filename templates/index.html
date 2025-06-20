@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C++ Quiz</title>
+    <title>Linangan - Computer Science</title>
     <!-- DaisyUI and Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,71 +12,343 @@
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8">
-        <div class="card bg-base-100 shadow-xl max-w-3xl mx-auto">
+        <div class="card bg-base-100 shadow-xl max-w-5xl mx-auto">
             <div class="card-body">
-                <h1 class="card-title text-3xl font-bold text-center mb-6">C++ Quiz</h1>
+                <h1 class="card-title text-3xl font-bold text-center mb-6">Programming Quiz</h1>
                 
                 <!-- Home Screen -->
                 <div id="home-screen">
-                    <p class="text-center mb-6">Test your knowledge of C++ with these interactive quizzes!</p>
+                    <p class="text-center mb-6">Test your knowledge with these interactive programming quizzes!</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Programming Basics Quiz Card -->
-                        <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">Programming Basics</h2>
-                                <p>Learn the fundamental concepts of programming and C++.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='basics') }}" class="btn btn-outline">Learn</a>
-                                    <button class="btn btn-primary topic-btn" data-topic="basics">Start Quiz</button>
+                    <!-- Language Tabs -->
+                    <div class="tabs tabs-boxed mb-6">
+                        <a class="tab tab-active" onclick="showLanguage('cpp')">C++</a>
+                        <a class="tab" onclick="showLanguage('python')">Python</a>
+                        <a class="tab" onclick="showLanguage('javascript')">JavaScript</a>
+                        <a class="tab" onclick="showLanguage('web')">Web Dev</a>
+                        <a class="tab" onclick="showLanguage('java')">Java</a>
+                    </div>
+                    
+                    <!-- C++ Modules -->
+                    <div id="cpp-modules" class="language-modules">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Programming Basics Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Programming Basics</h2>
+                                    <p>Learn the fundamental concepts of programming and C++.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='cpp', module='basics') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="cpp" data-topic="basics">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- If-Else & Switch Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">If-Else & Switch</h2>
+                                    <p>Test your knowledge of conditional statements and their outputs.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='cpp', module='conditionals') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="cpp" data-topic="conditionals">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Loops Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Loops</h2>
+                                    <p>Test your knowledge of for, while, and do-while loops.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='cpp', module='loops') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="cpp" data-topic="loops">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Functions Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Functions</h2>
+                                    <p>Test your knowledge of C++ functions, parameters, and return values.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='cpp', module='functions') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="cpp" data-topic="functions">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Arrays Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Arrays (1D & 2D)</h2>
+                                    <p>Test your knowledge of one-dimensional and two-dimensional arrays in C++.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='cpp', module='arrays') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="cpp" data-topic="arrays">Start Quiz</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- If-Else & Switch Quiz Card -->
-                        <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">If-Else & Switch</h2>
-                                <p>Test your knowledge of conditional statements and their outputs.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='conditionals') }}" class="btn btn-outline">Learn</a>
-                                    <button class="btn btn-primary topic-btn" data-topic="conditionals">Start Quiz</button>
+                    </div>
+                    
+                    <!-- Python Modules -->
+                    <div id="python-modules" class="language-modules hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Python Basics Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Python Basics</h2>
+                                    <p>Learn the fundamental concepts of Python programming.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='python', module='basics') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="python" data-topic="basics">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Data Structures Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Data Structures</h2>
+                                    <p>Test your knowledge of Python's built-in data structures.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='python', module='data_structures') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="python" data-topic="data_structures">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- File I/O Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">File I/O</h2>
+                                    <p>Test your knowledge of file operations in Python.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='python', module='file_io') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="python" data-topic="file_io">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Data Analysis Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Data Analysis with Pandas</h2>
+                                    <p>Test your knowledge of data analysis with the Pandas library.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='python', module='pandas') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="python" data-topic="pandas">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Web Scraping Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Web Scraping</h2>
+                                    <p>Test your knowledge of web scraping with Python.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='python', module='web_scraping') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="python" data-topic="web_scraping">Start Quiz</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Loops Quiz Card -->
-                        <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">Loops</h2>
-                                <p>Test your knowledge of for, while, and do-while loops.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='loops') }}" class="btn btn-outline">Learn</a>
-                                    <button class="btn btn-primary topic-btn" data-topic="loops">Start Quiz</button>
+                    </div>
+                    
+                    <!-- JavaScript Modules -->
+                    <div id="javascript-modules" class="language-modules hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- JavaScript Basics Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">JavaScript Basics</h2>
+                                    <p>Learn the fundamental concepts of JavaScript programming.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='javascript', module='basics') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="javascript" data-topic="basics">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DOM Manipulation Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">DOM Manipulation</h2>
+                                    <p>Test your knowledge of manipulating the Document Object Model.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='javascript', module='dom') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="javascript" data-topic="dom">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Async Programming Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Async Programming</h2>
+                                    <p>Test your knowledge of asynchronous programming in JavaScript.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='javascript', module='async') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="javascript" data-topic="async">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Frontend Frameworks Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Frontend Frameworks</h2>
+                                    <p>Test your knowledge of popular JavaScript frontend frameworks.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='javascript', module='frameworks') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="javascript" data-topic="frameworks">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- APIs Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">APIs</h2>
+                                    <p>Test your knowledge of working with APIs in JavaScript.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='javascript', module='apis') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="javascript" data-topic="apis">Start Quiz</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Functions Quiz Card -->
-                        <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">Functions</h2>
-                                <p>Test your knowledge of C++ functions, parameters, and return values.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='functions') }}" class="btn btn-outline">Learn</a>
-                                    <button class="btn btn-primary topic-btn" data-topic="functions">Start Quiz</button>
+                    </div>
+                    
+                    <!-- Web Development Modules -->
+                    <div id="web-modules" class="language-modules hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- HTML Basics Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">HTML Basics</h2>
+                                    <p>Learn the fundamental concepts of HTML.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='web', module='html') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="web" data-topic="html">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- CSS Styling Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">CSS Styling</h2>
+                                    <p>Test your knowledge of CSS styling techniques.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='web', module='css') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="web" data-topic="css">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Responsive Design Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Responsive Design</h2>
+                                    <p>Test your knowledge of responsive web design techniques.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='web', module='responsive') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="web" data-topic="responsive">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- JavaScript Integration Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">JavaScript Integration</h2>
+                                    <p>Test your knowledge of integrating JavaScript with HTML and CSS.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='web', module='js_integration') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="web" data-topic="js_integration">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Web APIs Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Web APIs</h2>
+                                    <p>Test your knowledge of browser Web APIs.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='web', module='web_apis') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="web" data-topic="web_apis">Start Quiz</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Arrays Quiz Card -->
-                        <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">Arrays (1D & 2D)</h2>
-                                <p>Test your knowledge of one-dimensional and two-dimensional arrays in C++.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='arrays') }}" class="btn btn-outline">Learn</a>
-                                    <button class="btn btn-primary topic-btn" data-topic="arrays">Start Quiz</button>
+                    </div>
+                    
+                    <!-- Java Modules -->
+                    <div id="java-modules" class="language-modules hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Java Basics Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Java Basics</h2>
+                                    <p>Learn the fundamental concepts of Java programming.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='java', module='basics') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="java" data-topic="basics">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- OOP Concepts Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">OOP Concepts</h2>
+                                    <p>Test your knowledge of Object-Oriented Programming in Java.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='java', module='oop') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="java" data-topic="oop">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Collections Framework Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Collections Framework</h2>
+                                    <p>Test your knowledge of Java's Collections Framework.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='java', module='collections') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="java" data-topic="collections">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Multithreading Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">Multithreading</h2>
+                                    <p>Test your knowledge of multithreading in Java.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='java', module='multithreading') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="java" data-topic="multithreading">Start Quiz</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- GUI with JavaFX Quiz Card -->
+                            <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
+                                <div class="card-body">
+                                    <h2 class="card-title">GUI with JavaFX</h2>
+                                    <p>Test your knowledge of building graphical user interfaces with JavaFX.</p>
+                                    <div class="card-actions justify-end mt-4 flex gap-2">
+                                        <a href="{{ url_for('learn_module', language='java', module='javafx') }}" class="btn btn-outline">Learn</a>
+                                        <button class="btn btn-primary topic-btn" data-language="java" data-topic="javafx">Start Quiz</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +357,9 @@
                 
                 <!-- Topic Start Screen -->
                 <div id="start-screen" class="text-center hidden">
-                    <h2 id="topic-title" class="text-2xl font-bold mb-4">C++ If-Else & Switch Quiz</h2>
-                    <p id="topic-description" class="mb-4">Test your knowledge of C++ If-Else statements and Switch cases!</p>
-                    <p class="mb-6">This quiz contains 30 questions about C++ loops and their outputs.</p>
+                    <h2 id="topic-title" class="text-2xl font-bold mb-4">Quiz Title</h2>
+                    <p id="topic-description" class="mb-4">Quiz description</p>
+                    <p class="mb-6">This quiz contains multiple questions to test your knowledge.</p>
                     <div class="flex justify-center gap-4">
                         <button id="back-to-home-btn" class="btn btn-outline">Back to Home</button>
                         <button id="start-btn" class="btn btn-primary">Start Quiz</button>
@@ -97,7 +369,7 @@
                 <!-- Quiz Container -->
                 <div id="quiz-container" class="hidden">
                     <div class="flex justify-between mb-4">
-                        <span class="badge badge-lg">Question <span id="current-question">1</span>/30</span>
+                        <span class="badge badge-lg">Question <span id="current-question">1</span>/<span id="total-questions">30</span></span>
                         <span class="badge badge-lg">Score: <span id="score">0</span></span>
                     </div>
                     

@@ -1,0 +1,41 @@
+{
+    "title": "HTML Basics Quiz",
+    "description": "Test your knowledge of HTML fundamentals!",
+    "questions": [
+        {
+            "question": "What is the correct HTML element for the largest heading?",
+            "code": "<!-- Which tag creates the largest heading? -->",
+            "options": ["<h1>", "<heading>"],
+            "correctIndex": 0,
+            "explanation": "The <h1> tag defines the largest and most important heading in HTML."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "<!DOCTYPE html>\n<html>\n<body>\n  <p>This is <em>emphasized</em> text.</p>\n</body>\n</html>",
+            "options": ["The word 'emphasized' will be displayed in italic", "The word 'emphasized' will be displayed in bold"],
+            "correctIndex": 0,
+            "explanation": "The <em> tag is used to emphasize text, which browsers typically display in italic."
+        },
+        {
+            "question": "What is the correct HTML for creating a hyperlink?",
+            "code": "<!-- Which creates a link to example.com? -->",
+            "options": ["<a href=\"https://example.com\">Example</a>", "<link href=\"https://example.com\">Example</link>"],
+            "correctIndex": 0,
+            "explanation": "The <a> tag with the href attribute is used to create hyperlinks in HTML."
+        },
+        {
+            "question": "Which HTML element is used to define an unordered list?",
+            "code": "<!-- Which creates a bulleted list? -->",
+            "options": ["<ul>", "<ol>"],
+            "correctIndex": 0,
+            "explanation": "The <ul> tag defines an unordered (bulleted) list. The <ol> tag defines an ordered (numbered) list."
+        },
+        {
+            "question": "What is the correct HTML for inserting an image?",
+            "code": "<!-- Which correctly inserts an image? -->",
+            "options": ["<img src=\"image.jpg\" alt=\"Description\">", "<image src=\"image.jpg\" alt=\"Description\">"],
+            "correctIndex": 0,
+            "explanation": "The <img> tag with the src attribute is used to insert images in HTML. The alt attribute provides alternative text for the image."
+        }
+    ]
+}

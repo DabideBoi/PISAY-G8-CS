@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Basics</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Java Basics</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Java</h2>
+                    <p>Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible. It is a general-purpose programming language intended to let application developers write once, run anywhere (WORA), meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.</p>
+                    
+                    <h2>Basic Syntax</h2>
+                    <p>Every Java program has at least one class and a main method:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class HelloWorld {
+    public static void main(String[] args) {
+        // This is the entry point of the program
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+                    
+                    <h3>Comments</h3>
+                    <p>Java supports both single-line and multi-line comments:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// This is a single-line comment
+
+/* 
+   This is a multi-line comment
+   It can span multiple lines
+*/
+
+/**
+ * This is a documentation comment (Javadoc)
+ * It is used to generate documentation for your code
+ */</code></pre>
+                    
+                    <h3>Output</h3>
+                    <p>Java uses the <code>System.out</code> object for output:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Print with a new line at the end
+System.out.println("Hello, World!");
+
+// Print without a new line
+System.out.print("Hello, ");
+System.out.print("World!");
+
+// Formatted output
+System.out.printf("The value is: %d", 42);</code></pre>
+                    
+                    <h2>Variables and Data Types</h2>
+                    <p>Java is a statically-typed language, which means that all variables must be declared before they can be used:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Primitive data types
+int age = 30;                // Integer (whole number)
+float price = 19.99f;        // Floating point number (note the 'f' suffix)
+double salary = 1000.50;     // Double precision floating point
+char grade = 'A';            // Single character
+boolean isActive = true;     // Boolean value (true or false)
+
+// Reference data types
+String name = "John";        // String
+int[] numbers = {1, 2, 3};   // Array
+ArrayList<String> list = new ArrayList<>();  // Collection</code></pre>
+                    
+                    <h3>Common Data Types</h3>
+                    <ul>
+                        <li><strong>Primitive Types:</strong> byte, short, int, long, float, double, boolean, char</li>
+                        <li><strong>Reference Types:</strong> String, Arrays, Classes, Interfaces, Enums</li>
+                    </ul>
+                    
+                    <h2>Operators</h2>
+                    <p>Java provides various operators for performing operations on variables and values:</p>
+                    
+                    <h3>Arithmetic Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int a = 10;
+int b = 5;
+System.out.println(a + b);    // Addition: 15
+System.out.println(a - b);    // Subtraction: 5
+System.out.println(a * b);    // Multiplication: 50
+System.out.println(a / b);    // Division: 2
+System.out.println(a % b);    // Modulus: 0</code></pre>
+                    
+                    <h3>Comparison Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int a = 10;
+int b = 5;
+System.out.println(a == b);   // Equal to: false
+System.out.println(a != b);   // Not equal: true
+System.out.println(a > b);    // Greater than: true
+System.out.println(a < b);    // Less than: false
+System.out.println(a >= b);   // Greater than or equal to: true
+System.out.println(a <= b);   // Less than or equal to: false</code></pre>
+                    
+                    <h3>Logical Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>boolean a = true;
+boolean b = false;
+System.out.println(a && b);  // Logical AND: false
+System.out.println(a || b);  // Logical OR: true
+System.out.println(!a);      // Logical NOT: false</code></pre>
+                    
+                    <h2>Control Flow</h2>
+                    <p>Java provides various control flow statements:</p>
+                    
+                    <h3>If-Else Statement</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int x = 10;
+
+if (x > 5) {
+    System.out.println("x is greater than 5");
+} else if (x == 5) {
+    System.out.println("x is equal to 5");
+} else {
+    System.out.println("x is less than 5");
+}</code></pre>
+                    
+                    <h3>Switch Statement</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>int day = 3;
+String dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    case 3:
+        dayName = "Wednesday";
+        break;
+    // ... other cases
+    default:
+        dayName = "Invalid day";
+}
+
+System.out.println(dayName);  // Output: Wednesday</code></pre>
+                    
+                    <h3>Loops</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// For loop
+for (int i = 0; i < 5; i++) {
+    System.out.println(i);  // Prints 0, 1, 2, 3, 4
+}
+
+// While loop
+int count = 0;
+while (count < 5) {
+    System.out.println(count);
+    count++;
+}
+
+// Do-while loop
+int j = 0;
+do {
+    System.out.println(j);
+    j++;
+} while (j < 5);
+
+// For-each loop (for iterating over arrays and collections)
+int[] numbers = {1, 2, 3, 4, 5};
+for (int num : numbers) {
+    System.out.println(num);
+}</code></pre>
+                    
+                    <h2>Object-Oriented Programming</h2>
+                    <p>Java is an object-oriented programming language. The main principles of OOP are:</p>
+                    <ul>
+                        <li><strong>Encapsulation:</strong> Bundling data and methods that operate on that data</li>
+                        <li><strong>Inheritance:</strong> Creating new classes from existing ones</li>
+                        <li><strong>Polymorphism:</strong> The ability to present the same interface for different underlying forms</li>
+                        <li><strong>Abstraction:</strong> Hiding complex implementation details</li>
+                    </ul>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Class definition
+public class Person {
+    // Fields (attributes)
+    private String name;
+    private int age;
+    
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Methods
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    public void greet() {
+        System.out.println("Hello, my name is " + name);
+    }
+}
+
+// Using the class
+Person person = new Person("John", 30);
+person.greet();  // Output: Hello, my name is John</code></pre>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='java', module='basics') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Frameworks</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">JavaScript Frameworks</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to JavaScript Frameworks</h2>
+                    <p>JavaScript frameworks are pre-written JavaScript code libraries that provide developers with pre-built components and functions for common web development tasks. They help streamline development by providing structure, organization, and solutions to common challenges.</p>
+                    
+                    <h2>Why Use Frameworks?</h2>
+                    <ul>
+                        <li><strong>Efficiency:</strong> Reduce development time by using pre-built components and patterns</li>
+                        <li><strong>Structure:</strong> Provide architectural patterns and organization for your code</li>
+                        <li><strong>Maintainability:</strong> Make code easier to maintain and scale</li>
+                        <li><strong>Community:</strong> Access to large communities, documentation, and resources</li>
+                        <li><strong>Best Practices:</strong> Encourage following established best practices</li>
+                    </ul>
+                    
+                    <h2>React</h2>
+                    <p>React is a JavaScript library for building user interfaces, particularly single-page applications. It's maintained by Facebook and a community of developers.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Component-Based:</strong> Build encapsulated components that manage their own state</li>
+                        <li><strong>Virtual DOM:</strong> Efficiently updates the DOM by only rendering changed components</li>
+                        <li><strong>JSX:</strong> Syntax extension that allows writing HTML-like code in JavaScript</li>
+                        <li><strong>Unidirectional Data Flow:</strong> Data flows down from parent to child components</li>
+                        <li><strong>React Native:</strong> Framework for building native mobile applications</li>
+                    </ul>
+                    
+                    <h3>Basic Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Function Component
+import React from 'react';
+
+function Welcome(props) {
+  return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+}
+
+// Class Component
+import React, { Component } from 'react';
+
+class Welcome extends Component {
+  render() {
+    return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+  }
+}
+
+// Using Hooks (React 16.8+)
+import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  }, [count]);
+  
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() => setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                    
+                    <h2>Vue.js</h2>
+                    <p>Vue.js is a progressive JavaScript framework for building user interfaces. It's designed to be incrementally adoptable and can be used for a wide range of applications.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Approachable:</strong> Easy to understand and integrate with projects</li>
+                        <li><strong>Versatile:</strong> Can be used as a library or a full-featured framework</li>
+                        <li><strong>Reactive:</strong> Automatically updates the DOM when data changes</li>
+                        <li><strong>Component-Based:</strong> Build encapsulated, reusable components</li>
+                        <li><strong>Single-File Components:</strong> Combine template, logic, and styles in one file</li>
+                    </ul>
+                    
+                    <h3>Basic Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Vue 3 Example
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;{{ message }}&lt;/h1&gt;
+    &lt;button @click="increment"&gt;Count: {{ count }}&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      message: 'Hello Vue!',
+      count: 0
+    }
+  },
+  methods: {
+    increment() {
+      this.count++
+    }
+  }
+}
+&lt;/script&gt;
+
+// Vue 3 Composition API
+&lt;script setup&gt;
+import { ref } from 'vue'
+
+const message = ref('Hello Vue!')
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+&lt;/script&gt;</code></pre>
+                    
+                    <h2>Angular</h2>
+                    <p>Angular is a platform and framework for building single-page client applications using HTML and TypeScript. It's maintained by Google and provides a comprehensive solution for front-end development.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>TypeScript:</strong> Built with and encourages the use of TypeScript</li>
+                        <li><strong>Two-way Data Binding:</strong> Synchronizes data between model and view</li>
+                        <li><strong>Dependency Injection:</strong> Built-in system for component dependencies</li>
+                        <li><strong>Comprehensive:</strong> Complete solution with routing, forms, HTTP client, etc.</li>
+                        <li><strong>Testing:</strong> Built with testability in mind</li>
+                    </ul>
+                    
+                    <h3>Basic Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Component
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    &lt;div&gt;
+      &lt;h1&gt;{{ title }}&lt;/h1&gt;
+      &lt;p&gt;Count: {{ count }}&lt;/p&gt;
+      &lt;button (click)="increment()"&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  `
+})
+export class CounterComponent {
+  title = 'Counter App';
+  count = 0;
+  
+  increment() {
+    this.count++;
+  }
+}
+
+// Service
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  private data = [];
+  
+  getData() {
+    return this.data;
+  }
+  
+  addData(item) {
+    this.data.push(item);
+  }
+}</code></pre>
+                    
+                    <h2>Svelte</h2>
+                    <p>Svelte is a radical new approach to building user interfaces. It shifts the work from runtime to compile time, resulting in highly optimized vanilla JavaScript.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>No Virtual DOM:</strong> Compiles components into efficient imperative code</li>
+                        <li><strong>Less Code:</strong> Requires less boilerplate than other frameworks</li>
+                        <li><strong>Truly Reactive:</strong> Fine-grained reactivity without a virtual DOM</li>
+                        <li><strong>Small Bundle Size:</strong> Generates highly optimized JavaScript</li>
+                        <li><strong>Built-in Transitions:</strong> Easy animation and transition effects</li>
+                    </ul>
+                    
+                    <h3>Basic Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;script&gt;
+  let count = 0;
+  
+  function increment() {
+    count += 1;
+  }
+&lt;/script&gt;
+
+&lt;style&gt;
+  button {
+    background: #ff3e00;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+&lt;/style&gt;
+
+&lt;h1&gt;Counter&lt;/h1&gt;
+&lt;p&gt;Count: {count}&lt;/p&gt;
+&lt;button on:click={increment}&gt;Increment&lt;/button&gt;</code></pre>
+                    
+                    <h2>Comparison of Frameworks</h2>
+                    <table class="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>React</th>
+                                <th>Vue</th>
+                                <th>Angular</th>
+                                <th>Svelte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Learning Curve</td>
+                                <td>Moderate</td>
+                                <td>Low</td>
+                                <td>High</td>
+                                <td>Low</td>
+                            </tr>
+                            <tr>
+                                <td>Size</td>
+                                <td>~40KB</td>
+                                <td>~30KB</td>
+                                <td>~150KB</td>
+                                <td>Minimal</td>
+                            </tr>
+                            <tr>
+                                <td>Performance</td>
+                                <td>Good</td>
+                                <td>Good</td>
+                                <td>Good</td>
+                                <td>Excellent</td>
+                            </tr>
+                            <tr>
+                                <td>Community</td>
+                                <td>Very Large</td>
+                                <td>Large</td>
+                                <td>Large</td>
+                                <td>Growing</td>
+                            </tr>
+                            <tr>
+                                <td>Job Market</td>
+                                <td>Excellent</td>
+                                <td>Good</td>
+                                <td>Very Good</td>
+                                <td>Emerging</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h2>State Management</h2>
+                    <p>As applications grow, managing state becomes more complex. Various state management solutions exist for different frameworks:</p>
+                    
+                    <h3>Redux (React)</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Action Types
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+
+// Action Creators
+function increment() {
+  return { type: INCREMENT };
+}
+
+function decrement() {
+  return { type: DECREMENT };
+}
+
+// Reducer
+function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case INCREMENT:
+      return { count: state.count + 1 };
+    case DECREMENT:
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+// Store
+import { createStore } from 'redux';
+const store = createStore(counterReducer);
+
+// Using with React
+import { Provider, useSelector, useDispatch } from 'react-redux';
+
+function Counter() {
+  const count = useSelector(state => state.count);
+  const dispatch = useDispatch();
+  
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() => dispatch(increment())}&gt;+&lt;/button&gt;
+      &lt;button onClick={() => dispatch(decrement())}&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                    
+                    <h3>Vuex (Vue)</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Store
+import { createStore } from 'vuex';
+
+const store = createStore({
+  state() {
+    return {
+      count: 0
+    }
+  },
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+    decrement(state) {
+      state.count--
+    }
+  },
+  actions: {
+    increment(context) {
+      context.commit('increment')
+    },
+    decrement(context) {
+      context.commit('decrement')
+    }
+  },
+  getters: {
+    doubleCount(state) {
+      return state.count * 2
+    }
+  }
+});
+
+// Using in a component
+export default {
+  computed: {
+    count() {
+      return this.$store.state.count
+    },
+    doubleCount() {
+      return this.$store.getters.doubleCount
+    }
+  },
+  methods: {
+    increment() {
+      this.$store.dispatch('increment')
+    },
+    decrement() {
+      this.$store.dispatch('decrement')
+    }
+  }
+}</code></pre>
+                    
+                    <h2>Best Practices</h2>
+                    <ul>
+                        <li><strong>Component Structure:</strong> Keep components small, focused, and reusable</li>
+                        <li><strong>State Management:</strong> Use appropriate state management for your application size</li>
+                        <li><strong>Performance Optimization:</strong> Implement code splitting, lazy loading, and memoization</li>
+                        <li><strong>Testing:</strong> Write unit tests for components and integration tests for workflows</li>
+                        <li><strong>Documentation:</strong> Document components, props, and expected behaviors</li>
+                        <li><strong>Accessibility:</strong> Ensure your application is accessible to all users</li>
+                        <li><strong>SEO:</strong> Consider server-side rendering or static site generation for better SEO</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='javascript', module='frameworks') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

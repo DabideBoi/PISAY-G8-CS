@@ -1,0 +1,41 @@
+{
+    "title": "Python Basics Quiz",
+    "description": "Test your knowledge of fundamental Python programming concepts!",
+    "questions": [
+        {
+            "question": "What is the correct way to create a variable in Python?",
+            "code": "# Which is the correct way to assign 10 to a variable?",
+            "options": ["x = 10", "int x = 10;"],
+            "correctIndex": 0,
+            "explanation": "In Python, variables are dynamically typed and don't require type declarations. You simply use the variable name, equals sign, and the value."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "x = 5\ny = 2\nprint(x / y)",
+            "options": ["2.5", "2"],
+            "correctIndex": 0,
+            "explanation": "In Python 3, division of integers results in a float. So 5/2 equals 2.5."
+        },
+        {
+            "question": "What is the correct way to create a multi-line string in Python?",
+            "code": "# Which creates a multi-line string?",
+            "options": ["'''This is a\nmulti-line string'''", "\"This is a\nmulti-line string\""],
+            "correctIndex": 0,
+            "explanation": "Triple quotes (''' or \"\"\") are used to create multi-line strings in Python."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "x = 10\nif x > 5:\n    print(\"A\")\nelif x > 8:\n    print(\"B\")\nelse:\n    print(\"C\")",
+            "options": ["A", "B"],
+            "correctIndex": 0,
+            "explanation": "The condition x > 5 is True (since x is 10), so 'A' is printed. The elif block is not evaluated because the first condition was True."
+        },
+        {
+            "question": "What is the correct way to check if a key exists in a dictionary?",
+            "code": "my_dict = {'a': 1, 'b': 2}\n# Which is the correct way to check if 'c' is in the dictionary?",
+            "options": ["'c' in my_dict", "my_dict.has_key('c')"],
+            "correctIndex": 0,
+            "explanation": "The 'in' operator is used to check if a key exists in a dictionary. The has_key() method is deprecated in Python 3."
+        }
+    ]
+}

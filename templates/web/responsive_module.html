@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Design</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Responsive Web Design</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Responsive Web Design</h2>
+                    <p>Responsive Web Design (RWD) is an approach to web design that makes web pages render well on a variety of devices and window or screen sizes. It ensures that websites look good and function properly regardless of the device being used to view them, from desktop computers to mobile phones.</p>
+                    
+                    <h2>Core Principles of Responsive Design</h2>
+                    <h3>1. Fluid Grids</h3>
+                    <p>Using relative units like percentages instead of fixed units like pixels for layout elements:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    width: 33.33%; /* Instead of fixed width in pixels */
+    float: left;
+    padding: 0 15px;
+}</code></pre>
+                    
+                    <h3>2. Flexible Images</h3>
+                    <p>Making images scale with their containing element:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+                    
+                    <h3>3. Media Queries</h3>
+                    <p>Using CSS media queries to apply different styles based on device characteristics:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Base styles for all devices */
+.column {
+    width: 100%;
+}
+
+/* Styles for tablets and larger */
+@media (min-width: 768px) {
+    .column {
+        width: 50%;
+    }
+}
+
+/* Styles for desktops and larger */
+@media (min-width: 1024px) {
+    .column {
+        width: 33.33%;
+    }
+}</code></pre>
+                    
+                    <h2>Viewport Meta Tag</h2>
+                    <p>The viewport meta tag is crucial for responsive design. It tells the browser how to control the page's dimensions and scaling:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                    
+                    <p>This tag ensures that:</p>
+                    <ul>
+                        <li><code>width=device-width</code>: Sets the width of the page to follow the screen width of the device</li>
+                        <li><code>initial-scale=1.0</code>: Sets the initial zoom level when the page is first loaded</li>
+                    </ul>
+                    
+                    <h2>Media Queries in Depth</h2>
+                    <p>Media queries allow you to apply CSS styles based on various device characteristics:</p>
+                    
+                    <h3>Width and Height</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Apply styles when viewport width is between 768px and 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Tablet-specific styles */
+}
+
+/* Apply styles when viewport height is less than 500px */
+@media (max-height: 500px) {
+    /* Styles for short viewports */
+}</code></pre>
+                    
+                    <h3>Device Type</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Apply styles only for screens (not print) */
+@media screen {
+    /* Screen-specific styles */
+}
+
+/* Apply styles only when printing */
+@media print {
+    /* Print-specific styles */
+    .no-print {
+        display: none;
+    }
+}</code></pre>
+                    
+                    <h3>Orientation</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Apply styles when device is in landscape orientation */
+@media (orientation: landscape) {
+    /* Landscape styles */
+}
+
+/* Apply styles when device is in portrait orientation */
+@media (orientation: portrait) {
+    /* Portrait styles */
+}</code></pre>
+                    
+                    <h3>Resolution</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Apply styles for high-resolution displays (like Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), 
+       (min-resolution: 192dpi) {
+    /* High-resolution styles */
+}</code></pre>
+                    
+                    <h2>Mobile-First Approach</h2>
+                    <p>Mobile-first is a design strategy that prioritizes designing for mobile devices first, then progressively enhancing for larger screens:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Base styles for mobile devices */
+.container {
+    padding: 10px;
+}
+
+/* Enhanced styles for tablets */
+@media (min-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+}
+
+/* Enhanced styles for desktops */
+@media (min-width: 1024px) {
+    .container {
+        padding: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}</code></pre>
+                    
+                    <h2>Responsive Layout Techniques</h2>
+                    
+                    <h3>CSS Flexbox</h3>
+                    <p>Flexbox is a one-dimensional layout method for arranging items in rows or columns:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically on mobile */
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row; /* Arrange items horizontally on larger screens */
+    }
+    
+    .item {
+        flex: 1; /* Each item takes equal width */
+    }
+}</code></pre>
+                    
+                    <h3>CSS Grid</h3>
+                    <p>CSS Grid is a two-dimensional layout system for creating complex grid-based layouts:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr); /* Four columns on desktops */
+    }
+}</code></pre>
+                    
+                    <h3>Responsive Typography</h3>
+                    <p>Making text size adapt to different screen sizes:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* Base font size */
+html {
+    font-size: 16px;
+}
+
+/* Fluid typography using viewport width */
+h1 {
+    font-size: calc(1.5rem + 2vw);
+}
+
+p {
+    font-size: 1rem; /* 16px */
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1200px) {
+    html {
+        font-size: 20px;
+    }
+}</code></pre>
+                    
+                    <h2>Responsive Images</h2>
+                    
+                    <h3>Basic Responsive Images</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+                    
+                    <h3>Art Direction with the picture Element</h3>
+                    <p>Using different images based on viewport size:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;picture&gt;
+    &lt;source media="(min-width: 1024px)" srcset="large.jpg"&gt;
+    &lt;source media="(min-width: 768px)" srcset="medium.jpg"&gt;
+    &lt;img src="small.jpg" alt="Description"&gt;
+&lt;/picture&gt;</code></pre>
+                    
+                    <h3>Resolution Switching with srcset</h3>
+                    <p>Providing multiple resolutions of the same image:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;img src="image-1x.jpg"
+     srcset="image-1x.jpg 1x, image-2x.jpg 2x, image-3x.jpg 3x"
+     alt="Description"&gt;</code></pre>
+                    
+                    <h3>Size Hints with sizes Attribute</h3>
+                    <p>Telling the browser how large the image will be displayed:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;img src="image-400.jpg"
+     srcset="image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w"
+     sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+     alt="Description"&gt;</code></pre>
+                    
+                    <h2>Responsive Navigation Patterns</h2>
+                    
+                    <h3>Hamburger Menu</h3>
+                    <p>A common pattern for mobile navigation:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* HTML */
+&lt;button class="menu-toggle" aria-expanded="false" aria-controls="menu"&gt;
+    &lt;span class="sr-only"&gt;Menu&lt;/span&gt;
+    &lt;span class="hamburger"&gt;&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;nav id="menu" class="nav-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+/* CSS */
+.nav-menu {
+    display: none;
+}
+
+.nav-menu.active {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+    
+    .nav-menu {
+        display: block;
+    }
+    
+    .nav-menu ul {
+        display: flex;
+    }
+}</code></pre>
+                    
+                    <h2>Testing Responsive Designs</h2>
+                    <p>Methods for testing responsive websites:</p>
+                    <ul>
+                        <li><strong>Browser Developer Tools:</strong> Most modern browsers have responsive design mode</li>
+                        <li><strong>Resize Browser Window:</strong> Manually resize your browser window</li>
+                        <li><strong>Device Testing:</strong> Test on actual mobile devices</li>
+                        <li><strong>Online Tools:</strong> Services like BrowserStack or Responsively App</li>
+                    </ul>
+                    
+                    <h2>Best Practices</h2>
+                    <ul>
+                        <li><strong>Design Mobile-First:</strong> Start with mobile designs and progressively enhance for larger screens</li>
+                        <li><strong>Use Relative Units:</strong> Prefer percentages, em, rem, vh, vw over fixed pixel values</li>
+                        <li><strong>Test on Real Devices:</strong> Emulators and responsive tools are helpful but not perfect</li>
+                        <li><strong>Optimize Images:</strong> Use appropriate image formats and compression</li>
+                        <li><strong>Consider Performance:</strong> Mobile users may have slower connections</li>
+                        <li><strong>Use Feature Detection:</strong> Check if features are supported before using them</li>
+                        <li><strong>Ensure Accessibility:</strong> Responsive design should work for all users</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='web', module='responsive') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

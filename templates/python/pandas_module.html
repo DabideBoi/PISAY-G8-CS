@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Pandas</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Python Pandas</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Pandas</h2>
+                    <p>Pandas is a powerful Python library for data analysis and manipulation. It provides data structures for efficiently storing and manipulating large datasets, as well as tools for reading and writing data between in-memory data structures and different file formats.</p>
+                    
+                    <h2>Installation</h2>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Install pandas using pip
+pip install pandas
+
+# Import pandas in your Python script
+import pandas as pd</code></pre>
+                    
+                    <h2>Key Data Structures</h2>
+                    <h3>Series</h3>
+                    <p>A Series is a one-dimensional labeled array capable of holding any data type:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import pandas as pd
+import numpy as np
+
+# Creating a Series from a list
+s = pd.Series([1, 3, 5, np.nan, 6, 8])
+print(s)
+# Output:
+# 0    1.0
+# 1    3.0
+# 2    5.0
+# 3    NaN
+# 4    6.0
+# 5    8.0
+# dtype: float64
+
+# Creating a Series with custom index
+s = pd.Series([1, 2, 3, 4], index=['a', 'b', 'c', 'd'])
+print(s)
+# Output:
+# a    1
+# b    2
+# c    3
+# d    4
+# dtype: int64
+
+# Creating a Series from a dictionary
+d = {'a': 1, 'b': 2, 'c': 3}
+s = pd.Series(d)
+print(s)
+# Output:
+# a    1
+# b    2
+# c    3
+# dtype: int64</code></pre>
+                    
+                    <h3>DataFrame</h3>
+                    <p>A DataFrame is a two-dimensional labeled data structure with columns of potentially different types:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a DataFrame from a dictionary
+data = {'Name': ['John', 'Anna', 'Peter', 'Linda'],
+        'Age': [28, 22, 35, 32],
+        'City': ['New York', 'Paris', 'Berlin', 'London']}
+df = pd.DataFrame(data)
+print(df)
+# Output:
+#     Name  Age      City
+# 0   John   28  New York
+# 1   Anna   22     Paris
+# 2  Peter   35    Berlin
+# 3  Linda   32    London
+
+# Creating a DataFrame from a NumPy array
+dates = pd.date_range('20230101', periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
+print(df)
+# Output:
+#                    A         B         C         D
+# 2023-01-01  0.469112 -0.282863 -1.509059 -1.135632
+# 2023-01-02  1.212112 -0.173215  0.119209 -1.044236
+# ...
+
+# Creating a DataFrame from a CSV file
+df = pd.read_csv('data.csv')
+
+# Creating a DataFrame from an Excel file
+df = pd.read_excel('data.xlsx', sheet_name='Sheet1')</code></pre>
+                    
+                    <h2>Basic Operations</h2>
+                    <h3>Viewing Data</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># View the first 5 rows
+print(df.head())
+
+# View the last 5 rows
+print(df.tail())
+
+# Display the DataFrame's index, columns, and data
+print(df.index)
+print(df.columns)
+print(df.values)
+
+# Get a statistical summary of the DataFrame
+print(df.describe())
+
+# Transpose the DataFrame
+print(df.T)
+
+# Sort the DataFrame by a column
+print(df.sort_values(by='Age'))</code></pre>
+                    
+                    <h3>Selection and Indexing</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Selecting a single column (returns a Series)
+print(df['Name'])
+
+# Selecting multiple columns
+print(df[['Name', 'Age']])
+
+# Selecting rows by position
+print(df.iloc[0])  # First row
+print(df.iloc[0:3])  # First three rows
+print(df.iloc[[0, 2, 4]])  # Specific rows
+print(df.iloc[0:3, 0:2])  # First three rows and first two columns
+
+# Selecting rows by label
+print(df.loc['2023-01-01'])  # Row with label '2023-01-01'
+print(df.loc['2023-01-01':'2023-01-03'])  # Rows from '2023-01-01' to '2023-01-03'
+print(df.loc['2023-01-01', 'A'])  # Value at row '2023-01-01', column 'A'
+
+# Boolean indexing
+print(df[df['Age'] > 30])  # Rows where Age is greater than 30
+print(df[(df['Age'] > 30) & (df['City'] == 'London')])  # Combining conditions</code></pre>
+                    
+                    <h3>Data Manipulation</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Adding a new column
+df['Gender'] = ['M', 'F', 'M', 'F']
+
+# Deleting a column
+df = df.drop('Gender', axis=1)  # axis=1 for columns, axis=0 for rows
+
+# Renaming columns
+df = df.rename(columns={'Name': 'Full Name', 'Age': 'Years'})
+
+# Handling missing values
+print(df.isnull())  # Check for missing values
+print(df.isnull().sum())  # Count missing values in each column
+df = df.fillna(0)  # Fill missing values with 0
+df = df.dropna()  # Drop rows with any missing values
+
+# Applying functions
+df['Age'] = df['Age'].apply(lambda x: x + 1)  # Add 1 to each age
+
+# Grouping data
+grouped = df.groupby('City')
+print(grouped.mean())  # Mean of numeric columns for each city
+print(grouped.size())  # Count of rows for each city
+print(grouped['Age'].agg(['min', 'max', 'mean', 'count']))  # Multiple aggregations</code></pre>
+                    
+                    <h2>Merging and Joining</h2>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating two DataFrames
+df1 = pd.DataFrame({'key': ['A', 'B', 'C', 'D'],
+                   'value1': [1, 2, 3, 4]})
+df2 = pd.DataFrame({'key': ['B', 'D', 'E', 'F'],
+                   'value2': [5, 6, 7, 8]})
+
+# Inner join (only keys that appear in both DataFrames)
+merged_inner = pd.merge(df1, df2, on='key', how='inner')
+print(merged_inner)
+# Output:
+#   key  value1  value2
+# 0   B       2       5
+# 1   D       4       6
+
+# Left join (all keys from left DataFrame)
+merged_left = pd.merge(df1, df2, on='key', how='left')
+print(merged_left)
+# Output:
+#   key  value1  value2
+# 0   A       1     NaN
+# 1   B       2     5.0
+# 2   C       3     NaN
+# 3   D       4     6.0
+
+# Right join (all keys from right DataFrame)
+merged_right = pd.merge(df1, df2, on='key', how='right')
+
+# Outer join (all keys from both DataFrames)
+merged_outer = pd.merge(df1, df2, on='key', how='outer')
+
+# Concatenating DataFrames
+df3 = pd.DataFrame({'A': [5, 6], 'B': [7, 8]})
+df4 = pd.DataFrame({'A': [9, 10], 'B': [11, 12]})
+concatenated = pd.concat([df3, df4])
+print(concatenated)
+# Output:
+#    A   B
+# 0  5   7
+# 1  6   8
+# 0  9  11
+# 1 10  12</code></pre>
+                    
+                    <h2>Input and Output</h2>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Reading data
+df = pd.read_csv('data.csv')
+df = pd.read_excel('data.xlsx')
+df = pd.read_json('data.json')
+df = pd.read_sql('SELECT * FROM table', connection)
+
+# Writing data
+df.to_csv('output.csv', index=False)
+df.to_excel('output.xlsx', sheet_name='Sheet1')
+df.to_json('output.json')
+df.to_sql('table_name', connection)</code></pre>
+                    
+                    <h2>Data Visualization</h2>
+                    <p>Pandas integrates with Matplotlib to provide basic plotting capabilities:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import matplotlib.pyplot as plt
+
+# Line plot
+df.plot()
+
+# Bar plot
+df.plot.bar()
+
+# Histogram
+df['Age'].plot.hist(bins=20)
+
+# Scatter plot
+df.plot.scatter(x='Age', y='Salary')
+
+# Box plot
+df.plot.box()
+
+# Area plot
+df.plot.area()
+
+# Pie chart
+df.plot.pie(y='Age')</code></pre>
+                    
+                    <h2>Time Series</h2>
+                    <p>Pandas has extensive capabilities for working with time series data:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a date range
+dates = pd.date_range('20230101', periods=6)
+print(dates)
+# Output:
+# DatetimeIndex(['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04',
+#                '2023-01-05', '2023-01-06'],
+#               dtype='datetime64[ns]', freq='D')
+
+# Creating a time series DataFrame
+ts = pd.Series(np.random.randn(len(dates)), index=dates)
+print(ts)
+
+# Resampling
+ts_month = ts.resample('M').mean()  # Monthly average
+ts_year = ts.resample('A').mean()   # Annual average
+
+# Time zone handling
+ts_utc = ts.tz_localize('UTC')
+ts_us = ts_utc.tz_convert('US/Eastern')
+
+# Date shifting
+ts.shift(1)  # Shift values by 1 period
+ts.shift(-1)  # Shift values by -1 period</code></pre>
+                    
+                    <h2>Best Practices</h2>
+                    <ul>
+                        <li>Use vectorized operations instead of loops for better performance.</li>
+                        <li>Chain operations using method chaining for cleaner code.</li>
+                        <li>Use the <code>inplace=True</code> parameter to modify DataFrames in place when appropriate.</li>
+                        <li>Use <code>loc</code> and <code>iloc</code> for explicit indexing to avoid SettingWithCopyWarning.</li>
+                        <li>Use <code>pd.read_csv</code> with appropriate parameters (like <code>dtype</code>, <code>parse_dates</code>) for efficient data loading.</li>
+                        <li>Use <code>categories</code> data type for categorical data to save memory.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='python', module='pandas') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

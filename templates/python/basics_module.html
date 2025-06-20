@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Programming Basics</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Python Programming Basics</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Python</h2>
+                    <p>Python is a high-level, interpreted programming language known for its readability and simplicity. Created by Guido van Rossum and first released in 1991, Python emphasizes code readability with its notable use of significant whitespace.</p>
+                    
+                    <h2>Basic Syntax</h2>
+                    <p>Python uses indentation to define code blocks, unlike many other languages that use braces:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># A simple Python program
+def greet(name):
+    # This is a function that greets the person passed in as a parameter
+    print(f"Hello, {name}!")
+    
+# Function call
+greet("World")</code></pre>
+                    
+                    <h3>Comments</h3>
+                    <p>Comments in Python start with the hash character (#) and extend to the end of the line:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># This is a single-line comment
+
+"""
+This is a multi-line comment or docstring.
+It can span multiple lines.
+"""</code></pre>
+                    
+                    <h3>Input and Output</h3>
+                    <p>Python uses the <code>print()</code> function for output and <code>input()</code> function for input:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Output
+print("Hello, World!")
+
+# Input
+name = input("Enter your name: ")
+print(f"Hello, {name}!")</code></pre>
+                    
+                    <h2>Variables and Data Types</h2>
+                    <p>Python is dynamically typed, meaning you don't need to declare the type of a variable:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>x = 5               # Integer
+y = 5.99            # Float
+name = "John"       # String
+is_valid = True     # Boolean</code></pre>
+                    
+                    <h3>Common Data Types</h3>
+                    <ul>
+                        <li><strong>Numeric Types:</strong> int, float, complex</li>
+                        <li><strong>Sequence Types:</strong> list, tuple, range</li>
+                        <li><strong>Mapping Type:</strong> dict</li>
+                        <li><strong>Set Types:</strong> set, frozenset</li>
+                        <li><strong>Boolean Type:</strong> bool</li>
+                        <li><strong>None Type:</strong> NoneType</li>
+                    </ul>
+                    
+                    <h2>Operators</h2>
+                    <p>Python provides various operators for performing operations on variables and values:</p>
+                    
+                    <h3>Arithmetic Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>a = 10
+b = 5
+print(a + b)    # Addition: 15
+print(a - b)    # Subtraction: 5
+print(a * b)    # Multiplication: 50
+print(a / b)    # Division: 2.0
+print(a % b)    # Modulus: 0
+print(a ** b)   # Exponentiation: 100000
+print(a // b)   # Floor division: 2</code></pre>
+                    
+                    <h3>Comparison Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>a = 10
+b = 5
+print(a == b)   # Equal: False
+print(a != b)   # Not equal: True
+print(a > b)    # Greater than: True
+print(a < b)    # Less than: False
+print(a >= b)   # Greater than or equal to: True
+print(a <= b)   # Less than or equal to: False</code></pre>
+                    
+                    <h3>Logical Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>a = True
+b = False
+print(a and b)  # Logical AND: False
+print(a or b)   # Logical OR: True
+print(not a)    # Logical NOT: False</code></pre>
+                    
+                    <h2>Control Flow</h2>
+                    <p>Python uses indentation to define blocks of code in control flow statements:</p>
+                    
+                    <h3>If-Else Statement</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>x = 10
+
+if x > 5:
+    print("x is greater than 5")
+elif x == 5:
+    print("x is equal to 5")
+else:
+    print("x is less than 5")</code></pre>
+                    
+                    <h3>Loops</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># For loop
+for i in range(5):
+    print(i)  # Prints 0, 1, 2, 3, 4
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1</code></pre>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='python', module='basics') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

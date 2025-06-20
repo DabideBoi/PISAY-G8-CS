@@ -1,30 +1,57 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Quiz questions organized by topic
-    let quizData = {};
+    // Quiz questions organized by language and topic
+    let quizData = {
+        cpp: {},
+        python: {},
+        javascript: {},
+        web: {},
+        java: {}
+    };
     
     // Load quiz data from JSON files
     async function loadQuizData() {
         try {
-            // Define the topics to load
-            const topics = ['basics', 'conditionals', 'loops', 'functions'];
+            // Define the languages and topics to load
+            const languages = {
+                cpp: ['basics', 'conditionals', 'loops', 'functions', 'arrays'],
+                python: ['basics', 'data_structures', 'file_io', 'pandas', 'web_scraping'],
+                javascript: ['basics', 'dom', 'async', 'frameworks', 'apis'],
+                web: ['html', 'css', 'responsive', 'js_integration', 'web_apis'],
+                java: ['basics', 'oop', 'collections', 'multithreading', 'javafx']
+            };
             
-            // Load each topic's data
-            const promises = topics.map(topic => 
-                fetch(`/data/${topic}.json`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`Failed to load ${topic}.json`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        quizData[topic] = data;
-                    })
-            );
+            // Load each language's topics
+            const promises = [];
+            
+            for (const [language, topics] of Object.entries(languages)) {
+                for (const topic of topics) {
+                    promises.push(
+                        fetch(`/data/${language}/${topic}.json`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    console.warn(`Failed to load ${language}/${topic}.json - This module might not be available yet`);
+                                    return null;
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data) {
+                                    if (!quizData[language]) {
+                                        quizData[language] = {};
+                                    }
+                                    quizData[language][topic] = data;
+                                }
+                            })
+                            .catch(error => {
+                                console.error(`Error loading ${language}/${topic}.json:`, error);
+                            })
+                    );
+                }
+            }
             
             // Wait for all data to be loaded
             await Promise.all(promises);
-            console.log('All quiz data loaded successfully');
+            console.log('Quiz data loaded successfully');
             
             // Initialize the quiz after data is loaded
             initializeQuiz();
@@ -47,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const topicTitle = document.getElementById('topic-title');
         const topicDescription = document.getElementById('topic-description');
+        const totalQuestionsElement = document.getElementById('total-questions');
         
         const topicBtns = document.querySelectorAll('.topic-btn');
         const startBtn = document.getElementById('start-btn');
@@ -67,17 +95,36 @@ document.addEventListener('DOMContentLoaded', function() {
         const feedbackMessage = document.getElementById('feedback-message');
 
         // Quiz state
+        let currentLanguage = '';
         let currentTopic = '';
         let currentQuestionIndex = 0;
         let score = 0;
         let userAnswers = [];
         let reviewMode = false;
 
+        // Language tab switching
+        window.showLanguage = function(language) {
+            // Hide all language modules
+            document.querySelectorAll('.language-modules').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show the selected language's modules
+            document.getElementById(`${language}-modules`).classList.remove('hidden');
+            
+            // Update active tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('tab-active');
+            });
+            document.querySelector(`.tab[onclick="showLanguage('${language}')"]`).classList.add('tab-active');
+        };
+
         // Topic selection
         topicBtns.forEach(btn => {
             btn.addEventListener('click', () => {
+                const language = btn.getAttribute('data-language');
                 const topic = btn.getAttribute('data-topic');
-                selectTopic(topic);
+                selectTopic(language, topic);
             });
         });
         
@@ -91,12 +138,19 @@ document.addEventListener('DOMContentLoaded', function() {
         restartBtn.addEventListener('click', restartQuiz);
 
         // Select a topic
-        function selectTopic(topic) {
+        function selectTopic(language, topic) {
+            // Check if the quiz data is available
+            if (!quizData[language] || !quizData[language][topic]) {
+                alert(`The ${topic} module for ${language} is not available yet. Please check back later.`);
+                return;
+            }
+            
+            currentLanguage = language;
             currentTopic = topic;
             
             // Update topic title and description
-            topicTitle.textContent = quizData[topic].title;
-            topicDescription.textContent = quizData[topic].description;
+            topicTitle.textContent = quizData[language][topic].title;
+            topicDescription.textContent = quizData[language][topic].description;
             
             // Show start screen
             homeScreen.classList.add('hidden');
@@ -119,8 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             currentQuestionIndex = 0;
             score = 0;
-            userAnswers = Array(quizData[currentTopic].questions.length).fill(null);
+            userAnswers = Array(quizData[currentLanguage][currentTopic].questions.length).fill(null);
             reviewMode = false;
+            
+            // Update total questions
+            totalQuestionsElement.textContent = quizData[currentLanguage][currentTopic].questions.length;
             
             showQuestion(currentQuestionIndex);
             updateScore();
@@ -128,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Show a specific question
         function showQuestion(index) {
-            const question = quizData[currentTopic].questions[index];
+            const question = quizData[currentLanguage][currentTopic].questions[index];
             
             // Update question number
             currentQuestionElement.textContent = index + 1;
@@ -179,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Select an option
         function selectOption(optionIndex) {
-            const question = quizData[currentTopic].questions[currentQuestionIndex];
+            const question = quizData[currentLanguage][currentTopic].questions[currentQuestionIndex];
             
             // Save user's answer
             userAnswers[currentQuestionIndex] = optionIndex;
@@ -193,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 feedbackMessage.textContent = 'Correct! ' + question.explanation;
                 
                 // Update score if this is the first correct answer for this question
-                if (userAnswers.filter((ans, i) => ans === quizData[currentTopic].questions[i].correctIndex).length > score) {
+                if (userAnswers.filter((ans, i) => ans === quizData[currentLanguage][currentTopic].questions[i].correctIndex).length > score) {
                     score++;
                     updateScore();
                 }
@@ -225,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Show next question
         function showNextQuestion() {
-            if (currentQuestionIndex < quizData[currentTopic].questions.length - 1) {
+            if (currentQuestionIndex < quizData[currentLanguage][currentTopic].questions.length - 1) {
                 currentQuestionIndex++;
                 showQuestion(currentQuestionIndex);
             } else {
@@ -238,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
             quizContainer.classList.add('hidden');
             resultsScreen.classList.remove('hidden');
             
-            finalScoreElement.textContent = `${score}/${quizData[currentTopic].questions.length}`;
+            finalScoreElement.textContent = `${score}/${quizData[currentLanguage][currentTopic].questions.length}`;
         }
 
         // Review quiz
@@ -266,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
             prevBtn.disabled = currentQuestionIndex === 0;
             
             if (reviewMode) {
-                nextBtn.disabled = currentQuestionIndex === quizData[currentTopic].questions.length - 1;
+                nextBtn.disabled = currentQuestionIndex === quizData[currentLanguage][currentTopic].questions.length - 1;
             } else {
                 nextBtn.disabled = userAnswers[currentQuestionIndex] === null;
             }

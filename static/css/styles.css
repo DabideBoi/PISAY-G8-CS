@@ -83,3 +83,35 @@ pre {
 .variable {
     color: #e06c75;
 }
+
+/* Custom styles for language tabs */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #f0f0f0;
+}
+
+.tab.tab-active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+/* Make sure language modules are properly hidden */
+.language-modules.hidden {
+    display: none !important;
+}

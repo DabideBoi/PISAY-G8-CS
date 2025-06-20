@@ -1,0 +1,41 @@
+{
+    "title": "Python Pandas Quiz",
+    "description": "Test your knowledge of data analysis with the Pandas library!",
+    "questions": [
+        {
+            "question": "What is the correct way to create a DataFrame from a dictionary in Pandas?",
+            "code": "import pandas as pd\n\n# Which creates a DataFrame from this dictionary?\ndata = {'Name': ['John', 'Anna'], 'Age': [28, 22]}",
+            "options": ["pd.DataFrame(data)", "pd.Series(data)"],
+            "correctIndex": 0,
+            "explanation": "pd.DataFrame(data) is the correct way to create a DataFrame from a dictionary in Pandas."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\nprint(df['A'].mean())",
+            "options": ["2.0", "3.5"],
+            "correctIndex": 0,
+            "explanation": "The mean of column 'A' (values 1, 2, 3) is 2.0."
+        },
+        {
+            "question": "What is the correct way to filter rows in a DataFrame?",
+            "code": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\n# Which filters rows where column A > 1?",
+            "options": ["df[df['A'] > 1]", "df.filter(A > 1)"],
+            "correctIndex": 0,
+            "explanation": "To filter rows in a DataFrame, you use boolean indexing: df[condition], where condition is a Series of boolean values."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "import pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, None], 'B': [4, None, 6]})\nprint(df.isnull().sum())",
+            "options": ["A    1\nB    1\ndtype: int64", "A    1\nB    1\ndtype: float64"],
+            "correctIndex": 0,
+            "explanation": "The isnull() method returns a DataFrame of the same shape with boolean values indicating whether each value is null. The sum() method counts the number of True values (nulls) in each column."
+        },
+        {
+            "question": "What is the correct way to join two DataFrames in pandas?",
+            "code": "import pandas as pd\n\ndf1 = pd.DataFrame({'key': ['A', 'B'], 'val1': [1, 2]})\ndf2 = pd.DataFrame({'key': ['A', 'C'], 'val2': [3, 4]})\n# Which performs an inner join on the 'key' column?",
+            "options": ["pd.merge(df1, df2, on='key', how='inner')", "pd.join(df1, df2, on='key', how='inner')"],
+            "correctIndex": 0,
+            "explanation": "The pd.merge() function is used to join DataFrames. With how='inner', it returns only the rows where the join key appears in both DataFrames."
+        }
+    ]
+}

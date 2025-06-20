@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python File I/O</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Python File I/O</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to File I/O in Python</h2>
+                    <p>File Input/Output (I/O) operations are essential for working with external data in Python. Python provides built-in functions and methods to read from and write to files, making it easy to work with data stored on disk.</p>
+                    
+                    <h2>Opening and Closing Files</h2>
+                    <p>The <code>open()</code> function is used to open files in Python. It returns a file object that can be used to read from or write to the file:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Basic syntax
+file = open(filename, mode)
+
+# Common modes:
+# 'r' - Read (default)
+# 'w' - Write (creates a new file or truncates an existing file)
+# 'a' - Append (adds to the end of the file)
+# 'b' - Binary mode
+# 't' - Text mode (default)
+# '+' - Read and write
+
+# Examples
+file = open('example.txt', 'r')  # Open for reading
+file = open('example.txt', 'w')  # Open for writing
+file = open('example.txt', 'a')  # Open for appending
+file = open('image.jpg', 'rb')   # Open binary file for reading
+
+# Always close files when done
+file.close()</code></pre>
+                    
+                    <h2>Using Context Managers (with statement)</h2>
+                    <p>The recommended way to work with files is using the <code>with</code> statement, which automatically closes the file when the block is exited:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Using with statement (context manager)
+with open('example.txt', 'r') as file:
+    # File operations here
+    content = file.read()
+    
+# File is automatically closed when the block is exited</code></pre>
+                    
+                    <h2>Reading from Files</h2>
+                    <p>Python provides several methods to read from files:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Read the entire file as a string
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# Read one line at a time
+with open('example.txt', 'r') as file:
+    line = file.readline()
+    print(line)  # Includes the newline character
+
+# Read all lines into a list
+with open('example.txt', 'r') as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line.strip())  # strip() removes the newline character
+
+# Iterate through the file line by line (memory efficient)
+with open('example.txt', 'r') as file:
+    for line in file:
+        print(line.strip())</code></pre>
+                    
+                    <h2>Writing to Files</h2>
+                    <p>Python provides methods to write to files:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Write a string to a file
+with open('example.txt', 'w') as file:
+    file.write('Hello, World!')  # Overwrites the file if it exists
+
+# Write multiple lines
+with open('example.txt', 'w') as file:
+    file.write('Line 1\n')
+    file.write('Line 2\n')
+    
+# Append to a file
+with open('example.txt', 'a') as file:
+    file.write('This will be added to the end of the file\n')
+    
+# Write multiple lines at once
+lines = ['Line 1\n', 'Line 2\n', 'Line 3\n']
+with open('example.txt', 'w') as file:
+    file.writelines(lines)  # Note: writelines() doesn't add newlines</code></pre>
+                    
+                    <h2>File Positions</h2>
+                    <p>You can control the position within a file using <code>seek()</code> and <code>tell()</code> methods:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>with open('example.txt', 'r') as file:
+    # Get the current position
+    position = file.tell()
+    print(f"Current position: {position}")
+    
+    # Read some content
+    content = file.read(5)  # Read 5 characters
+    print(f"Content: {content}")
+    
+    # Get the new position
+    position = file.tell()
+    print(f"New position: {position}")
+    
+    # Move to a specific position
+    file.seek(0)  # Move to the beginning of the file
+    print(f"Back to the beginning: {file.read(5)}")
+    
+    # Move relative to the current position
+    file.seek(3, 1)  # Move 3 characters forward from current position
+    
+    # Move relative to the end of the file
+    file.seek(0, 2)  # Move to the end of the file</code></pre>
+                    
+                    <h2>File and Directory Operations</h2>
+                    <p>Python's <code>os</code> and <code>os.path</code> modules provide functions for working with files and directories:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import os
+
+# Check if a file exists
+if os.path.exists('example.txt'):
+    print('File exists')
+    
+# Get file information
+if os.path.isfile('example.txt'):
+    print('It is a file')
+    print(f"Size: {os.path.getsize('example.txt')} bytes")
+    print(f"Last modified: {os.path.getmtime('example.txt')}")
+    
+# Directory operations
+if os.path.isdir('my_directory'):
+    print('It is a directory')
+    
+# Create a directory
+os.mkdir('new_directory')  # Creates a single directory
+os.makedirs('path/to/nested/directory')  # Creates nested directories
+
+# List directory contents
+files = os.listdir('.')  # List files in the current directory
+print(files)
+
+# Delete files and directories
+os.remove('file_to_delete.txt')  # Delete a file
+os.rmdir('empty_directory')  # Delete an empty directory
+import shutil
+shutil.rmtree('directory_with_contents')  # Delete a directory and its contents</code></pre>
+                    
+                    <h2>Working with CSV Files</h2>
+                    <p>Python's <code>csv</code> module makes it easy to work with CSV files:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import csv
+
+# Reading a CSV file
+with open('data.csv', 'r', newline='') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)  # Each row is a list of values
+
+# Reading a CSV file with headers
+with open('data.csv', 'r', newline='') as file:
+    reader = csv.DictReader(file)  # Assumes first row contains headers
+    for row in reader:
+        print(row)  # Each row is a dictionary
+
+# Writing to a CSV file
+data = [
+    ['Name', 'Age', 'Country'],
+    ['Alice', 25, 'USA'],
+    ['Bob', 30, 'Canada'],
+    ['Charlie', 35, 'UK']
+]
+with open('output.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+# Writing to a CSV file using dictionaries
+data = [
+    {'Name': 'Alice', 'Age': 25, 'Country': 'USA'},
+    {'Name': 'Bob', 'Age': 30, 'Country': 'Canada'},
+    {'Name': 'Charlie', 'Age': 35, 'Country': 'UK'}
+]
+with open('output.csv', 'w', newline='') as file:
+    fieldnames = ['Name', 'Age', 'Country']
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerows(data)</code></pre>
+                    
+                    <h2>Working with JSON Files</h2>
+                    <p>Python's <code>json</code> module makes it easy to work with JSON files:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import json
+
+# Reading a JSON file
+with open('data.json', 'r') as file:
+    data = json.load(file)
+    print(data)  # Python dictionary or list
+
+# Writing to a JSON file
+data = {
+    'name': 'Alice',
+    'age': 25,
+    'is_student': True,
+    'courses': ['Python', 'Data Science', 'Machine Learning']
+}
+with open('output.json', 'w') as file:
+    json.dump(data, file, indent=4)  # indent for pretty printing</code></pre>
+                    
+                    <h2>Best Practices</h2>
+                    <ul>
+                        <li>Always use the <code>with</code> statement to ensure files are properly closed.</li>
+                        <li>Use appropriate error handling (try/except) when working with files.</li>
+                        <li>Be careful with write mode ('w') as it overwrites existing files.</li>
+                        <li>For large files, read line by line instead of loading the entire file into memory.</li>
+                        <li>Use the appropriate modules (csv, json) for specific file formats.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='python', module='file_io') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

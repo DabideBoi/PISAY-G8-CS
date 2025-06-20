@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Data Structures</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Python Data Structures</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Python Data Structures</h2>
+                    <p>Python provides several built-in data structures that allow you to store, organize, and manipulate data efficiently. Understanding these data structures is essential for writing effective Python code.</p>
+                    
+                    <h2>Lists</h2>
+                    <p>Lists are ordered, mutable collections that can store elements of different types:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a list
+my_list = [1, 2, 3, 'Python', True]
+
+# Accessing elements (indexing starts at 0)
+print(my_list[0])  # Output: 1
+print(my_list[-1])  # Output: True (negative indexing starts from the end)
+
+# Modifying elements
+my_list[0] = 100
+print(my_list)  # Output: [100, 2, 3, 'Python', True]
+
+# Common list methods
+my_list.append(6)  # Add an element to the end
+my_list.insert(1, 'inserted')  # Insert at specific position
+my_list.remove('Python')  # Remove by value
+popped_value = my_list.pop()  # Remove and return the last element
+my_list.sort()  # Sort the list (elements must be of comparable types)
+my_list.reverse()  # Reverse the list</code></pre>
+                    
+                    <h2>Tuples</h2>
+                    <p>Tuples are ordered, immutable collections that can store elements of different types:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a tuple
+my_tuple = (1, 2, 3, 'Python', True)
+
+# Accessing elements
+print(my_tuple[0])  # Output: 1
+print(my_tuple[-1])  # Output: True
+
+# Attempting to modify a tuple will result in an error
+# my_tuple[0] = 100  # TypeError: 'tuple' object does not support item assignment
+
+# Tuple methods
+print(my_tuple.count(1))  # Count occurrences of a value
+print(my_tuple.index('Python'))  # Find the index of a value</code></pre>
+                    
+                    <h2>Dictionaries</h2>
+                    <p>Dictionaries are mutable, unordered collections of key-value pairs:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a dictionary
+my_dict = {'name': 'John', 'age': 30, 'city': 'New York'}
+
+# Accessing values
+print(my_dict['name'])  # Output: John
+print(my_dict.get('age'))  # Output: 30 (safer method)
+
+# Modifying values
+my_dict['age'] = 31
+my_dict['email'] = 'john@example.com'  # Add new key-value pair
+print(my_dict)  # Output: {'name': 'John', 'age': 31, 'city': 'New York', 'email': 'john@example.com'}
+
+# Dictionary methods
+print(my_dict.keys())  # Get all keys
+print(my_dict.values())  # Get all values
+print(my_dict.items())  # Get all key-value pairs
+my_dict.pop('city')  # Remove a key-value pair</code></pre>
+                    
+                    <h2>Sets</h2>
+                    <p>Sets are unordered, mutable collections of unique elements:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a set
+my_set = {1, 2, 3, 3, 4}  # Duplicate values are automatically removed
+print(my_set)  # Output: {1, 2, 3, 4}
+
+# Set operations
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+
+# Union: elements in either set
+print(set1.union(set2))  # Output: {1, 2, 3, 4, 5}
+# or using the | operator
+print(set1 | set2)  # Output: {1, 2, 3, 4, 5}
+
+# Intersection: elements in both sets
+print(set1.intersection(set2))  # Output: {3}
+# or using the & operator
+print(set1 & set2)  # Output: {3}
+
+# Difference: elements in set1 but not in set2
+print(set1.difference(set2))  # Output: {1, 2}
+# or using the - operator
+print(set1 - set2)  # Output: {1, 2}
+
+# Symmetric difference: elements in either set, but not in both
+print(set1.symmetric_difference(set2))  # Output: {1, 2, 4, 5}
+# or using the ^ operator
+print(set1 ^ set2)  # Output: {1, 2, 4, 5}</code></pre>
+                    
+                    <h2>List Comprehensions</h2>
+                    <p>List comprehensions provide a concise way to create lists:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Creating a list of squares
+squares = [x**2 for x in range(10)]
+print(squares)  # Output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+# List comprehension with condition
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+print(even_squares)  # Output: [0, 4, 16, 36, 64]
+
+# Dictionary comprehension
+dict_comp = {x: x**2 for x in range(5)}
+print(dict_comp)  # Output: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+# Set comprehension
+set_comp = {x**2 for x in range(5)}
+print(set_comp)  # Output: {0, 1, 4, 9, 16}</code></pre>
+                    
+                    <h2>When to Use Each Data Structure</h2>
+                    <ul>
+                        <li><strong>Lists:</strong> Use when you need an ordered collection that might change.</li>
+                        <li><strong>Tuples:</strong> Use when you need an ordered collection that should not change.</li>
+                        <li><strong>Dictionaries:</strong> Use when you need to associate values with keys for fast lookup.</li>
+                        <li><strong>Sets:</strong> Use when you need to store unique values and perform set operations.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='python', module='data_structures') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

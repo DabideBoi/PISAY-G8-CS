@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java JavaFX</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Java JavaFX</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to JavaFX</h2>
+                    <p>JavaFX is a set of graphics and media packages that enables developers to design, create, test, debug, and deploy rich client applications that operate consistently across diverse platforms. JavaFX is intended to replace Swing as the standard GUI library for Java SE.</p>
+                    
+                    <p>Key features of JavaFX include:</p>
+                    <ul>
+                        <li>Modern UI controls and CSS styling</li>
+                        <li>Hardware-accelerated graphics pipeline</li>
+                        <li>FXML for UI design separation</li>
+                        <li>Scene Builder for visual layout design</li>
+                        <li>Rich set of UI controls and charts</li>
+                        <li>Support for 2D and 3D graphics</li>
+                        <li>Media playback support</li>
+                        <li>Web content integration</li>
+                    </ul>
+                    
+                    <h2>JavaFX Architecture</h2>
+                    <p>JavaFX applications follow a specific architecture:</p>
+                    
+                    <img src="https://docs.oracle.com/javafx/2/architecture/img/jfxar_dt_001_arch-diag.png" alt="JavaFX Architecture" class="mx-auto my-6 max-w-full">
+                    
+                    <p>The main components of JavaFX architecture are:</p>
+                    <ul>
+                        <li><strong>Stage:</strong> The top-level JavaFX container (window)</li>
+                        <li><strong>Scene:</strong> The container for all content</li>
+                        <li><strong>Scene Graph:</strong> A hierarchical tree of nodes representing the visual elements</li>
+                        <li><strong>Nodes:</strong> The visual elements that make up the scene graph</li>
+                    </ul>
+                    
+                    <h2>Getting Started with JavaFX</h2>
+                    
+                    <h3>Setting Up JavaFX</h3>
+                    <p>Since Java 11, JavaFX is no longer bundled with the JDK. You need to add it as a dependency to your project:</p>
+                    
+                    <p>For Maven:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.openjfx&lt;/groupId&gt;
+        &lt;artifactId&gt;javafx-controls&lt;/artifactId&gt;
+        &lt;version&gt;17.0.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.openjfx&lt;/groupId&gt;
+        &lt;artifactId&gt;javafx-fxml&lt;/artifactId&gt;
+        &lt;version&gt;17.0.2&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+                    
+                    <p>For Gradle:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>dependencies {
+    implementation 'org.openjfx:javafx-controls:17.0.2'
+    implementation 'org.openjfx:javafx-fxml:17.0.2'
+}</code></pre>
+                    
+                    <h3>Basic JavaFX Application</h3>
+                    <p>Here's a simple JavaFX application that displays a window with a button:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class HelloWorldApp extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a button
+        Button btn = new Button("Say Hello");
+        
+        // Set button action
+        btn.setOnAction(event -> System.out.println("Hello, JavaFX!"));
+        
+        // Create a layout and add the button to it
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        
+        // Create a scene with the layout
+        Scene scene = new Scene(root, 300, 250);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("Hello JavaFX");
+        primaryStage.setScene(scene);
+        
+        // Show the stage
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        // Launch the application
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h2>JavaFX UI Components</h2>
+                    
+                    <h3>Layout Panes</h3>
+                    <p>JavaFX provides various layout panes to organize UI components:</p>
+                    
+                    <ul>
+                        <li><strong>BorderPane:</strong> Divides the space into top, right, bottom, left, and center regions</li>
+                        <li><strong>HBox:</strong> Arranges components in a single horizontal row</li>
+                        <li><strong>VBox:</strong> Arranges components in a single vertical column</li>
+                        <li><strong>GridPane:</strong> Arranges components in a flexible grid of rows and columns</li>
+                        <li><strong>FlowPane:</strong> Arranges components in a flow that wraps at the boundary</li>
+                        <li><strong>StackPane:</strong> Stacks components on top of each other</li>
+                        <li><strong>AnchorPane:</strong> Anchors components to the edges of the container</li>
+                    </ul>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class LayoutExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a BorderPane
+        BorderPane borderPane = new BorderPane();
+        
+        // Create components for each region
+        Label topLabel = new Label("Top Region");
+        HBox topRegion = new HBox(topLabel);
+        topRegion.setStyle("-fx-background-color: lightblue; -fx-padding: 10px;");
+        
+        Label leftLabel = new Label("Left Region");
+        VBox leftRegion = new VBox(leftLabel);
+        leftRegion.setStyle("-fx-background-color: lightgreen; -fx-padding: 10px;");
+        
+        Label centerLabel = new Label("Center Region");
+        VBox centerRegion = new VBox(centerLabel);
+        centerRegion.setStyle("-fx-background-color: white; -fx-padding: 10px;");
+        
+        Label rightLabel = new Label("Right Region");
+        VBox rightRegion = new VBox(rightLabel);
+        rightRegion.setStyle("-fx-background-color: lightgreen; -fx-padding: 10px;");
+        
+        Label bottomLabel = new Label("Bottom Region");
+        HBox bottomRegion = new HBox(bottomLabel);
+        bottomRegion.setStyle("-fx-background-color: lightblue; -fx-padding: 10px;");
+        
+        // Set the regions in the BorderPane
+        borderPane.setTop(topRegion);
+        borderPane.setLeft(leftRegion);
+        borderPane.setCenter(centerRegion);
+        borderPane.setRight(rightRegion);
+        borderPane.setBottom(bottomRegion);
+        
+        // Create a scene with the BorderPane
+        Scene scene = new Scene(borderPane, 400, 300);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("Layout Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h3>UI Controls</h3>
+                    <p>JavaFX provides a rich set of UI controls:</p>
+                    
+                    <ul>
+                        <li><strong>Button:</strong> A standard push button</li>
+                        <li><strong>Label:</strong> A non-editable text control</li>
+                        <li><strong>TextField:</strong> A text input control</li>
+                        <li><strong>PasswordField:</strong> A text input control that masks the input</li>
+                        <li><strong>TextArea:</strong> A multi-line text input control</li>
+                        <li><strong>CheckBox:</strong> A control with a checked or unchecked state</li>
+                        <li><strong>RadioButton:</strong> A control that can be selected within a ToggleGroup</li>
+                        <li><strong>ComboBox:</strong> A drop-down list control</li>
+                        <li><strong>ListView:</strong> A list of selectable items</li>
+                        <li><strong>TableView:</strong> A table of data with columns</li>
+                        <li><strong>DatePicker:</strong> A control for selecting dates</li>
+                        <li><strong>Slider:</strong> A control for selecting a value from a range</li>
+                        <li><strong>ProgressBar:</strong> A control that visualizes progress</li>
+                    </ul>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class ControlsExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a GridPane layout
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10));
+        grid.setHgap(10);
+        grid.setVgap(10);
+        
+        // Add controls to the grid
+        
+        // Label and TextField
+        grid.add(new Label("Name:"), 0, 0);
+        TextField nameField = new TextField();
+        grid.add(nameField, 1, 0);
+        
+        // Label and PasswordField
+        grid.add(new Label("Password:"), 0, 1);
+        PasswordField passwordField = new PasswordField();
+        grid.add(passwordField, 1, 1);
+        
+        // CheckBox
+        CheckBox rememberMeCheckBox = new CheckBox("Remember me");
+        grid.add(rememberMeCheckBox, 1, 2);
+        
+        // RadioButtons with ToggleGroup
+        grid.add(new Label("Gender:"), 0, 3);
+        ToggleGroup genderGroup = new ToggleGroup();
+        RadioButton maleRadio = new RadioButton("Male");
+        maleRadio.setToggleGroup(genderGroup);
+        RadioButton femaleRadio = new RadioButton("Female");
+        femaleRadio.setToggleGroup(genderGroup);
+        RadioButton otherRadio = new RadioButton("Other");
+        otherRadio.setToggleGroup(genderGroup);
+        
+        GridPane radioGrid = new GridPane();
+        radioGrid.setHgap(10);
+        radioGrid.add(maleRadio, 0, 0);
+        radioGrid.add(femaleRadio, 1, 0);
+        radioGrid.add(otherRadio, 2, 0);
+        grid.add(radioGrid, 1, 3);
+        
+        // ComboBox
+        grid.add(new Label("Country:"), 0, 4);
+        ComboBox<String> countryComboBox = new ComboBox<>();
+        countryComboBox.getItems().addAll("USA", "Canada", "UK", "Australia", "Germany");
+        grid.add(countryComboBox, 1, 4);
+        
+        // DatePicker
+        grid.add(new Label("Birth Date:"), 0, 5);
+        DatePicker datePicker = new DatePicker();
+        grid.add(datePicker, 1, 5);
+        
+        // Slider
+        grid.add(new Label("Age:"), 0, 6);
+        Slider ageSlider = new Slider(0, 100, 25);
+        ageSlider.setShowTickLabels(true);
+        ageSlider.setShowTickMarks(true);
+        ageSlider.setMajorTickUnit(25);
+        ageSlider.setMinorTickCount(5);
+        ageSlider.setBlockIncrement(5);
+        grid.add(ageSlider, 1, 6);
+        
+        // Button
+        Button submitButton = new Button("Submit");
+        submitButton.setOnAction(event -> {
+            System.out.println("Name: " + nameField.getText());
+            System.out.println("Remember Me: " + rememberMeCheckBox.isSelected());
+            
+            RadioButton selectedRadio = (RadioButton) genderGroup.getSelectedToggle();
+            if (selectedRadio != null) {
+                System.out.println("Gender: " + selectedRadio.getText());
+            }
+            
+            System.out.println("Country: " + countryComboBox.getValue());
+            System.out.println("Birth Date: " + datePicker.getValue());
+            System.out.println("Age: " + (int) ageSlider.getValue());
+        });
+        grid.add(submitButton, 1, 7);
+        
+        // Create a scene with the grid
+        Scene scene = new Scene(grid, 400, 350);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("Controls Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h2>Event Handling</h2>
+                    <p>JavaFX uses an event-driven programming model. Events are generated when the user interacts with the UI, and event handlers respond to these events.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class EventHandlingExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create UI components
+        Label messageLabel = new Label("Enter your name:");
+        TextField nameField = new TextField();
+        Button submitButton = new Button("Submit");
+        Label resultLabel = new Label();
+        
+        // Method 1: Using an anonymous inner class
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String name = nameField.getText();
+                resultLabel.setText("Hello, " + name + "!");
+            }
+        });
+        
+        // Method 2: Using a lambda expression (more concise)
+        // submitButton.setOnAction(event -> {
+        //     String name = nameField.getText();
+        //     resultLabel.setText("Hello, " + name + "!");
+        // });
+        
+        // Method 3: Using a named method reference
+        // submitButton.setOnAction(this::handleSubmitButtonAction);
+        
+        // Mouse event example
+        submitButton.setOnMouseEntered(event -> {
+            submitButton.setStyle("-fx-background-color: lightblue;");
+        });
+        
+        submitButton.setOnMouseExited(event -> {
+            submitButton.setStyle("");
+        });
+        
+        // Create a layout and add components
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(10));
+        root.getChildren().addAll(messageLabel, nameField, submitButton, resultLabel);
+        
+        // Create a scene with the layout
+        Scene scene = new Scene(root, 300, 200);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("Event Handling Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    // Method for Method 3 event handling
+    private void handleSubmitButtonAction(ActionEvent event) {
+        // Implementation here
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h2>FXML and Scene Builder</h2>
+                    <p>FXML is an XML-based language that provides a convenient way to define user interfaces. Scene Builder is a visual layout tool for designing JavaFX application user interfaces.</p>
+                    
+                    <h3>FXML Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;?import javafx.geometry.Insets?&gt;
+&lt;?import javafx.scene.control.Button?&gt;
+&lt;?import javafx.scene.control.Label?&gt;
+&lt;?import javafx.scene.control.TextField?&gt;
+&lt;?import javafx.scene.layout.VBox?&gt;
+
+&lt;VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.FXMLExampleController"&gt;
+    &lt;padding&gt;
+        &lt;Insets top="10" right="10" bottom="10" left="10"/&gt;
+    &lt;/padding&gt;
+    
+    &lt;Label text="Enter your name:"/&gt;
+    &lt;TextField fx:id="nameField"/&gt;
+    &lt;Button text="Submit" onAction="#handleSubmitButtonAction"/&gt;
+    &lt;Label fx:id="resultLabel"/&gt;
+&lt;/VBox&gt;</code></pre>
+                    
+                    <h3>Controller Class</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>package com.example;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+public class FXMLExampleController {
+    
+    @FXML
+    private TextField nameField;
+    
+    @FXML
+    private Label resultLabel;
+    
+    @FXML
+    private void handleSubmitButtonAction(ActionEvent event) {
+        String name = nameField.getText();
+        resultLabel.setText("Hello, " + name + "!");
+    }
+}</code></pre>
+                    
+                    <h3>Loading FXML</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class FXMLExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // Load the FXML file
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/example.fxml"));
+        
+        // Create a scene with the loaded FXML
+        Scene scene = new Scene(root, 300, 200);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("FXML Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h2>CSS Styling</h2>
+                    <p>JavaFX supports CSS styling to customize the appearance of UI components.</p>
+                    
+                    <h3>CSS Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* styles.css */
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-color: #f0f0f0;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.text-field {
+    -fx-padding: 8px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}</code></pre>
+                    
+                    <h3>Applying CSS</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class CSSExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create UI components
+        Label messageLabel = new Label("Enter your name:");
+        TextField nameField = new TextField();
+        Button submitButton = new Button("Submit");
+        Label resultLabel = new Label();
+        
+        // Set button action
+        submitButton.setOnAction(event -> {
+            String name = nameField.getText();
+            resultLabel.setText("Hello, " + name + "!");
+        });
+        
+        // Create a layout and add components
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(10));
+        root.getChildren().addAll(messageLabel, nameField, submitButton, resultLabel);
+        
+        // Create a scene with the layout
+        Scene scene = new Scene(root, 300, 200);
+        
+        // Apply CSS
+        scene.getStylesheets().add(getClass().getResource("/com/example/styles.css").toExternalForm());
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("CSS Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h2>Charts and Graphics</h2>
+                    <p>JavaFX provides a rich set of charts and graphics capabilities.</p>
+                    
+                    <h3>Charts Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+
+public class ChartExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create axes
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Programming Language");
+        
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Popularity (%)");
+        
+        // Create the chart
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.setTitle("Programming Language Popularity");
+        
+        // Create a data series
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("2023");
+        series.getData().add(new XYChart.Data<>("Java", 17.3));
+        series.getData().add(new XYChart.Data<>("Python", 15.9));
+        series.getData().add(new XYChart.Data<>("JavaScript", 8.8));
+        series.getData().add(new XYChart.Data<>("C#", 7.5));
+        series.getData().add(new XYChart.Data<>("C++", 6.8));
+        
+        // Add the series to the chart
+        barChart.getData().add(series);
+        
+        // Create a scene with the chart
+        Scene scene = new Scene(barChart, 800, 600);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("Chart Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h3>Canvas Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class CanvasExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a canvas
+        Canvas canvas = new Canvas(400, 400);
+        
+        // Get the graphics context
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        
+        // Draw shapes
+        drawShapes(gc);
+        
+        // Create a layout and add the canvas
+        StackPane root = new StackPane();
+        root.getChildren().add(canvas);
+        
+        // Create a scene with the layout
+        Scene scene = new Scene(root, 400, 400);
+        
+        // Set the scene on the stage
+        primaryStage.setTitle("Canvas Example");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    private void drawShapes(GraphicsContext gc) {
+        // Set line width
+        gc.setLineWidth(2.0);
+        
+        // Draw a rectangle
+        gc.setStroke(Color.RED);
+        gc.strokeRect(50, 50, 100, 100);
+        
+        // Fill a rectangle
+        gc.setFill(Color.BLUE);
+        gc.fillRect(200, 50, 100, 100);
+        
+        // Draw a rounded rectangle
+        gc.setStroke(Color.GREEN);
+        gc.strokeRoundRect(50, 200, 100, 100, 20, 20);
+        
+        // Fill a rounded rectangle
+        gc.setFill(Color.ORANGE);
+        gc.fillRoundRect(200, 200, 100, 100, 20, 20);
+        
+        // Draw a circle
+        gc.setStroke(Color.PURPLE);
+        gc.strokeOval(100, 100, 50, 50);
+        
+        // Fill an oval
+        gc.setFill(Color.CYAN);
+        gc.fillOval(250, 250, 80, 40);
+        
+        // Draw a line
+        gc.setStroke(Color.BLACK);
+        gc.strokeLine(50, 50, 350, 350);
+        
+        // Draw text
+        gc.setFill(Color.BLACK);
+        gc.fillText("Hello, Canvas!", 150, 30);
+    }
+    
+    public static void main(String[] args) {
+        launch(args);
+    }
+}</code></pre>
+                    
+                    <h2>Animation</h2>
+                    <p>JavaFX provides various animation capabilities to create dynamic user interfaces.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class AnimationExample extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        // Create a pane
+        Pane root = new Pane();
+        
+        // Create a rectangle
+        Rectangle rect = new Rectangle(50, 50, 100, 100);
+        rect.setFill(Color.BLUE);
+        
+        // Add the rectangle to the pane
+        root.getChildren().add(rect);
+        
+        // Create a fade transition
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), rect);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.3);
+        fadeTransition.setCycleCount(2);
+        fadeTransition.setAutoReverse(true);
+        
+        // Create a translate transition
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2),

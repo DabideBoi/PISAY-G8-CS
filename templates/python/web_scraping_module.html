@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Web Scraping</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Python Web Scraping</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Web Scraping</h2>
+                    <p>Web scraping is the process of extracting data from websites. Python offers several libraries that make web scraping straightforward and efficient. However, it's important to note that web scraping should be done responsibly and ethically, respecting website terms of service and robots.txt files.</p>
+                    
+                    <h2>Key Libraries for Web Scraping</h2>
+                    <h3>Requests</h3>
+                    <p>The Requests library is used to send HTTP requests to web servers and retrieve the HTML content of web pages:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Installing Requests
+pip install requests
+
+# Basic usage
+import requests
+
+# Send a GET request to a website
+response = requests.get('https://example.com')
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Get the HTML content
+    html_content = response.text
+    print(html_content)
+else:
+    print(f"Failed to retrieve the page: {response.status_code}")
+
+# Adding headers to mimic a browser
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
+response = requests.get('https://example.com', headers=headers)
+
+# Handling cookies and sessions
+session = requests.Session()
+session.get('https://example.com')  # This will store cookies
+response = session.get('https://example.com/profile')  # Uses stored cookies</code></pre>
+                    
+                    <h3>BeautifulSoup</h3>
+                    <p>BeautifulSoup is a Python library for parsing HTML and XML documents. It creates a parse tree that can be used to extract data from HTML:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Installing BeautifulSoup
+pip install beautifulsoup4
+
+# Basic usage
+from bs4 import BeautifulSoup
+import requests
+
+# Get the HTML content
+response = requests.get('https://example.com')
+html_content = response.text
+
+# Create a BeautifulSoup object
+soup = BeautifulSoup(html_content, 'html.parser')
+
+# Pretty-print the HTML
+print(soup.prettify())
+
+# Finding elements by tag name
+title = soup.title  # Get the title tag
+print(title.text)   # Get the text within the title tag
+
+# Finding all occurrences of a tag
+all_paragraphs = soup.find_all('p')
+for paragraph in all_paragraphs:
+    print(paragraph.text)
+
+# Finding elements by class
+elements = soup.find_all(class_='container')
+for element in elements:
+    print(element.text)
+
+# Finding elements by ID
+element = soup.find(id='main-content')
+print(element.text)
+
+# Finding elements by attributes
+links = soup.find_all('a', href=True)
+for link in links:
+    print(link['href'])
+
+# Navigating the parse tree
+first_paragraph = soup.p
+print(first_paragraph.parent.name)  # Parent tag name
+print(first_paragraph.next_sibling)  # Next sibling
+print(first_paragraph.previous_sibling)  # Previous sibling
+
+# CSS selectors
+elements = soup.select('div.container p')  # All paragraphs inside div with class 'container'
+for element in elements:
+    print(element.text)</code></pre>
+                    
+                    <h3>Scrapy</h3>
+                    <p>Scrapy is a more advanced framework for web scraping that provides a complete solution for crawling websites and extracting structured data:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Installing Scrapy
+pip install scrapy
+
+# Creating a new Scrapy project
+scrapy startproject myproject
+cd myproject
+
+# Creating a new spider
+scrapy genspider example example.com
+
+# Example spider code (in myproject/spiders/example.py)
+import scrapy
+
+class ExampleSpider(scrapy.Spider):
+    name = 'example'
+    allowed_domains = ['example.com']
+    start_urls = ['http://example.com']
+
+    def parse(self, response):
+        # Extract data
+        title = response.css('title::text').get()
+        paragraphs = response.css('p::text').getall()
+        
+        # Yield the extracted data
+        yield {
+            'title': title,
+            'paragraphs': paragraphs
+        }
+        
+        # Follow links to other pages
+        for link in response.css('a::attr(href)').getall():
+            yield response.follow(link, self.parse)
+
+# Running the spider
+scrapy crawl example -o output.json</code></pre>
+                    
+                    <h3>Selenium</h3>
+                    <p>Selenium is used for automating web browsers, which is useful for scraping dynamic websites that load content using JavaScript:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Installing Selenium
+pip install selenium
+
+# You also need a webdriver (e.g., ChromeDriver for Chrome)
+# Download from: https://sites.google.com/a/chromium.org/chromedriver/downloads
+
+# Basic usage
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
+# Set up the driver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
+# Navigate to a website
+driver.get('https://example.com')
+
+# Get the page source
+html_content = driver.page_source
+
+# Find elements
+title = driver.title
+print(title)
+
+# Find elements by various methods
+element = driver.find_element(By.ID, 'main-content')
+elements = driver.find_elements(By.CLASS_NAME, 'container')
+elements = driver.find_elements(By.TAG_NAME, 'p')
+elements = driver.find_elements(By.CSS_SELECTOR, 'div.container p')
+elements = driver.find_elements(By.XPATH, '//div[@class="container"]/p')
+
+# Interacting with elements
+input_field = driver.find_element(By.NAME, 'search')
+input_field.send_keys('search query')
+submit_button = driver.find_element(By.ID, 'submit')
+submit_button.click()
+
+# Wait for elements to load
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+element = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, 'dynamic-content'))
+)
+
+# Close the browser
+driver.quit()</code></pre>
+                    
+                    <h2>Common Web Scraping Techniques</h2>
+                    <h3>Extracting Text and Links</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import requests
+from bs4 import BeautifulSoup
+
+response = requests.get('https://example.com')
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Extract all text from the page
+all_text = soup.get_text()
+
+# Extract all links
+links = []
+for link in soup.find_all('a', href=True):
+    links.append(link['href'])
+
+# Extract all images
+images = []
+for img in soup.find_all('img', src=True):
+    images.append(img['src'])</code></pre>
+                    
+                    <h3>Handling Pagination</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import requests
+from bs4 import BeautifulSoup
+
+base_url = 'https://example.com/page/'
+all_data = []
+
+# Loop through pages
+for page_num in range(1, 6):  # Pages 1 to 5
+    url = base_url + str(page_num)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Extract data from the current page
+    items = soup.find_all('div', class_='item')
+    for item in items:
+        title = item.find('h2').text
+        description = item.find('p').text
+        all_data.append({'title': title, 'description': description})
+    
+    # Optional: add a delay to be respectful to the server
+    import time
+    time.sleep(1)</code></pre>
+                    
+                    <h3>Handling Forms and Authentication</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import requests
+
+# Login to a website
+login_url = 'https://example.com/login'
+session = requests.Session()
+
+# Get the login page to retrieve any CSRF token
+response = session.get(login_url)
+# Extract CSRF token (implementation depends on the website)
+# For example, using BeautifulSoup:
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(response.text, 'html.parser')
+csrf_token = soup.find('input', {'name': 'csrf_token'})['value']
+
+# Submit the login form
+login_data = {
+    'username': 'your_username',
+    'password': 'your_password',
+    'csrf_token': csrf_token
+}
+response = session.post(login_url, data=login_data)
+
+# Now you can access protected pages
+protected_page = session.get('https://example.com/protected')</code></pre>
+                    
+                    <h3>Parsing Tables</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+response = requests.get('https://example.com/table')
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Find the table
+table = soup.find('table')
+
+# Extract table headers
+headers = []
+for th in table.find_all('th'):
+    headers.append(th.text.strip())
+
+# Extract table rows
+rows = []
+for tr in table.find_all('tr')[1:]:  # Skip the header row
+    row = []
+    for td in tr.find_all('td'):
+        row.append(td.text.strip())
+    rows.append(row)
+
+# Create a pandas DataFrame
+df = pd.DataFrame(rows, columns=headers)
+print(df)</code></pre>
+                    
+                    <h2>Best Practices and Ethical Considerations</h2>
+                    <ul>
+                        <li><strong>Respect robots.txt:</strong> Check the website's robots.txt file to see if scraping is allowed.</li>
+                        <li><strong>Rate limiting:</strong> Add delays between requests to avoid overloading the server.</li>
+                        <li><strong>User-Agent:</strong> Use a proper User-Agent header to identify your scraper.</li>
+                        <li><strong>Terms of Service:</strong> Make sure scraping doesn't violate the website's terms of service.</li>
+                        <li><strong>API alternatives:</strong> Check if the website offers an API, which is often a better alternative to scraping.</li>
+                        <li><strong>Data privacy:</strong> Be careful with personal data and comply with relevant regulations like GDPR.</li>
+                        <li><strong>Caching:</strong> Cache results to reduce the number of requests to the server.</li>
+                    </ul>
+                    
+                    <h2>Handling Common Challenges</h2>
+                    <h3>Dynamic Content (JavaScript)</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Using Selenium for JavaScript-rendered content
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from bs4 import BeautifulSoup
+
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+driver.get('https://example.com/dynamic')
+
+# Wait for JavaScript to load content
+import time
+time.sleep(3)  # Simple wait
+# Or use explicit wait (better)
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+element = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, 'dynamic-content'))
+)
+
+# Now parse the page with BeautifulSoup
+soup = BeautifulSoup(driver.page_source, 'html.parser')
+# Extract data as usual
+data = soup.find(id='dynamic-content').text
+
+driver.quit()</code></pre>
+                    
+                    <h3>Handling CAPTCHAs</h3>
+                    <p>CAPTCHAs are designed to prevent automated scraping. Some approaches to handle them:</p>
+                    <ul>
+                        <li>Use CAPTCHA solving services (though this may violate terms of service)</li>
+                        <li>Implement manual intervention when a CAPTCHA is detected</li>
+                        <li>Look for alternative data sources or APIs</li>
+                    </ul>
+                    
+                    <h3>IP Blocking</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code># Using proxies to rotate IP addresses
+import requests
+
+proxies = {
+    'http': 'http://user:pass@proxy1.example.com:8080',
+    'https': 'https://user:pass@proxy1.example.com:8080'
+}
+
+response = requests.get('https://example.com', proxies=proxies)
+
+# Using a proxy rotation service
+# Many third-party services offer proxy rotation APIs</code></pre>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='python', module='web_scraping') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

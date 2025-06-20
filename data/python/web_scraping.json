@@ -1,0 +1,41 @@
+{
+    "title": "Python Web Scraping Quiz",
+    "description": "Test your knowledge of web scraping with Python!",
+    "questions": [
+        {
+            "question": "Which library is commonly used for web scraping in Python?",
+            "code": "# Which library would you import for web scraping?",
+            "options": ["BeautifulSoup", "WebScraper"],
+            "correctIndex": 0,
+            "explanation": "BeautifulSoup is a popular Python library for parsing HTML and XML documents, commonly used for web scraping."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "import requests\nfrom bs4 import BeautifulSoup\n\nhtml = '<html><body><h1>Title</h1><p>Paragraph</p></body></html>'\nsoup = BeautifulSoup(html, 'html.parser')\nprint(soup.h1.text)",
+            "options": ["Title", "<h1>Title</h1>"],
+            "correctIndex": 0,
+            "explanation": "soup.h1.text extracts just the text content of the h1 tag, which is 'Title'."
+        },
+        {
+            "question": "What is the correct way to extract all links from a webpage using BeautifulSoup?",
+            "code": "from bs4 import BeautifulSoup\nimport requests\n\nresponse = requests.get('https://example.com')\nsoup = BeautifulSoup(response.text, 'html.parser')\n# Which extracts all links?",
+            "options": ["links = soup.find_all('a')", "links = soup.get_all('a')"],
+            "correctIndex": 0,
+            "explanation": "The find_all() method is used to find all occurrences of a tag in the document. To find all links, you use find_all('a') since links are represented by <a> tags."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "from bs4 import BeautifulSoup\n\nhtml = '<p class=\"highlight\">Text 1</p><p>Text 2</p>'\nsoup = BeautifulSoup(html, 'html.parser')\nprint(soup.find('p', class_='highlight').text)",
+            "options": ["Text 1", "Text 2"],
+            "correctIndex": 0,
+            "explanation": "The find() method with the class_ parameter finds the first <p> tag with class='highlight', which contains 'Text 1'."
+        },
+        {
+            "question": "What is the correct way to handle pagination when scraping multiple pages?",
+            "code": "import requests\nfrom bs4 import BeautifulSoup\n\n# Which approach is best for scraping multiple pages?",
+            "options": ["Use a loop to iterate through page numbers and construct URLs", "Scrape all pages at once using soup.find_all('page')"],
+            "correctIndex": 0,
+            "explanation": "To handle pagination, you typically use a loop to iterate through page numbers, construct the URL for each page, and scrape each page individually."
+        }
+    ]
+}

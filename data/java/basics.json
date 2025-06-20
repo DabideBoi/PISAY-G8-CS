@@ -1,0 +1,41 @@
+{
+    "title": "Java Basics Quiz",
+    "description": "Test your knowledge of fundamental Java programming concepts!",
+    "questions": [
+        {
+            "question": "What is the correct way to declare a variable in Java?",
+            "code": "// Which is the correct way to declare an integer variable?",
+            "options": ["int number = 10;", "var number = 10;"],
+            "correctIndex": 0,
+            "explanation": "In Java, variables must be declared with a specific type. 'int number = 10;' is the traditional way to declare an integer variable."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "public class Main {\n    public static void main(String[] args) {\n        int x = 5;\n        int y = 2;\n        System.out.println(x / y);\n    }\n}",
+            "options": ["2", "2.5"],
+            "correctIndex": 0,
+            "explanation": "In Java, division between two integers results in an integer. The decimal part is truncated, so 5/2 equals 2."
+        },
+        {
+            "question": "What is the correct way to create a single-line comment in Java?",
+            "code": "// Which is the correct way to create a single-line comment?",
+            "options": ["// This is a comment", "# This is a comment"],
+            "correctIndex": 0,
+            "explanation": "In Java, single-line comments start with two forward slashes (//)."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "public class Main {\n    public static void main(String[] args) {\n        String str = \"Hello\";\n        str.concat(\" World\");\n        System.out.println(str);\n    }\n}",
+            "options": ["Hello", "Hello World"],
+            "correctIndex": 0,
+            "explanation": "In Java, strings are immutable. The concat() method returns a new string but doesn't modify the original string. Since the result is not assigned back to str, the original value remains unchanged."
+        },
+        {
+            "question": "Which of the following is the correct main method signature in Java?",
+            "code": "// Which is the correct main method signature?",
+            "options": ["public static void main(String[] args)", "public void main(String args[])"],
+            "correctIndex": 0,
+            "explanation": "The correct main method signature in Java is 'public static void main(String[] args)'. It must be public, static, return void, and accept a String array parameter."
+        }
+    ]
+}

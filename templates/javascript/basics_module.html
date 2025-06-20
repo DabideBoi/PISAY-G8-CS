@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">JavaScript Basics</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to JavaScript</h2>
+                    <p>JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. JavaScript is one of the core technologies of the World Wide Web, alongside HTML and CSS. It enables interactive web pages and is an essential part of web applications.</p>
+                    
+                    <h2>Basic Syntax</h2>
+                    <p>JavaScript statements are commands to the browser and are separated by semicolons:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// A simple JavaScript program
+function greet(name) {
+    // This is a function that greets the person passed in as a parameter
+    console.log(`Hello, ${name}!`);
+}
+
+// Function call
+greet("World");</code></pre>
+                    
+                    <h3>Comments</h3>
+                    <p>JavaScript supports both single-line and multi-line comments:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// This is a single-line comment
+
+/* 
+   This is a multi-line comment
+   It can span multiple lines
+*/</code></pre>
+                    
+                    <h3>Output</h3>
+                    <p>JavaScript can "display" data in different ways:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Writing to the browser console
+console.log("Hello, World!");
+
+// Writing to an HTML element
+document.getElementById("demo").innerHTML = "Hello, World!";
+
+// Writing to an alert box
+alert("Hello, World!");</code></pre>
+                    
+                    <h2>Variables and Data Types</h2>
+                    <p>JavaScript has three ways to declare variables:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Using var (function-scoped, older way)
+var x = 5;
+
+// Using let (block-scoped, preferred for variables that can change)
+let y = 5.99;
+
+// Using const (block-scoped, for constants that cannot be reassigned)
+const PI = 3.14159;</code></pre>
+                    
+                    <h3>Common Data Types</h3>
+                    <ul>
+                        <li><strong>Primitive Types:</strong> String, Number, Boolean, undefined, null, Symbol, BigInt</li>
+                        <li><strong>Reference Types:</strong> Object, Array, Function, Date, RegExp</li>
+                    </ul>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// String
+let name = "John";
+
+// Number
+let age = 30;
+let price = 19.99;
+
+// Boolean
+let isActive = true;
+
+// Array
+let colors = ["red", "green", "blue"];
+
+// Object
+let person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30
+};</code></pre>
+                    
+                    <h2>Operators</h2>
+                    <p>JavaScript provides various operators for performing operations on variables and values:</p>
+                    
+                    <h3>Arithmetic Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>let a = 10;
+let b = 5;
+console.log(a + b);    // Addition: 15
+console.log(a - b);    // Subtraction: 5
+console.log(a * b);    // Multiplication: 50
+console.log(a / b);    // Division: 2
+console.log(a % b);    // Modulus: 0
+console.log(a ** b);   // Exponentiation: 100000</code></pre>
+                    
+                    <h3>Comparison Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>let a = 10;
+let b = 5;
+console.log(a == b);   // Equal to: false
+console.log(a === b);  // Equal value and type: false
+console.log(a != b);   // Not equal: true
+console.log(a !== b);  // Not equal value or type: true
+console.log(a > b);    // Greater than: true
+console.log(a < b);    // Less than: false
+console.log(a >= b);   // Greater than or equal to: true
+console.log(a <= b);   // Less than or equal to: false</code></pre>
+                    
+                    <h3>Logical Operators</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>let a = true;
+let b = false;
+console.log(a && b);  // Logical AND: false
+console.log(a || b);  // Logical OR: true
+console.log(!a);      // Logical NOT: false</code></pre>
+                    
+                    <h2>Control Flow</h2>
+                    <p>JavaScript provides various control flow statements:</p>
+                    
+                    <h3>If-Else Statement</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>let x = 10;
+
+if (x > 5) {
+    console.log("x is greater than 5");
+} else if (x === 5) {
+    console.log("x is equal to 5");
+} else {
+    console.log("x is less than 5");
+}</code></pre>
+                    
+                    <h3>Loops</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// For loop
+for (let i = 0; i < 5; i++) {
+    console.log(i);  // Prints 0, 1, 2, 3, 4
+}
+
+// While loop
+let count = 0;
+while (count < 5) {
+    console.log(count);
+    count++;
+}
+
+// For...of loop (for iterables like arrays)
+const colors = ["red", "green", "blue"];
+for (const color of colors) {
+    console.log(color);
+}
+
+// For...in loop (for object properties)
+const person = { name: "John", age: 30 };
+for (const key in person) {
+    console.log(`${key}: ${person[key]}`);
+}</code></pre>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='javascript', module='basics') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

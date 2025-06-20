@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Collections Framework</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Java Collections Framework</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Collections Framework</h2>
+                    <p>The Java Collections Framework is a unified architecture for representing and manipulating collections, allowing them to be manipulated independently of the details of their representation. It consists of interfaces, implementations, and algorithms.</p>
+                    
+                    <img src="https://www.javatpoint.com/images/java-collection-hierarchy.png" alt="Java Collections Hierarchy" class="mx-auto my-6 max-w-full">
+                    
+                    <h2>Collection Interfaces</h2>
+                    
+                    <h3>Collection Interface</h3>
+                    <p>The Collection interface is the root of the collection hierarchy. A collection represents a group of objects, known as its elements.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.Collection;
+import java.util.ArrayList;
+
+public class CollectionExample {
+    public static void main(String[] args) {
+        Collection<String> collection = new ArrayList<>();
+        
+        // Adding elements
+        collection.add("Apple");
+        collection.add("Banana");
+        collection.add("Cherry");
+        
+        // Size of collection
+        System.out.println("Size: " + collection.size());
+        
+        // Check if collection contains an element
+        System.out.println("Contains 'Apple': " + collection.contains("Apple"));
+        
+        // Iterate through collection
+        for (String fruit : collection) {
+            System.out.println(fruit);
+        }
+        
+        // Remove an element
+        collection.remove("Banana");
+        
+        // Convert collection to array
+        Object[] array = collection.toArray();
+        
+        // Clear the collection
+        collection.clear();
+        
+        // Check if collection is empty
+        System.out.println("Is empty: " + collection.isEmpty());
+    }
+}</code></pre>
+                    
+                    <h3>List Interface</h3>
+                    <p>The List interface extends Collection and represents an ordered collection (also known as a sequence). Lists can contain duplicate elements and allow positional access.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.List;
+import java.util.ArrayList;
+
+public class ListExample {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        
+        // Adding elements
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Cherry");
+        
+        // Adding element at specific position
+        list.add(1, "Orange");
+        
+        // Accessing elements by index
+        System.out.println("Element at index 1: " + list.get(1));
+        
+        // Finding index of an element
+        System.out.println("Index of 'Cherry': " + list.indexOf("Cherry"));
+        
+        // Sublist
+        List<String> subList = list.subList(1, 3);
+        System.out.println("Sublist: " + subList);
+        
+        // Replace element at specific position
+        list.set(0, "Mango");
+        
+        // Iterate through list
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(i + ": " + list.get(i));
+        }
+    }
+}</code></pre>
+                    
+                    <h3>Set Interface</h3>
+                    <p>The Set interface extends Collection and represents a collection that cannot contain duplicate elements. It models the mathematical set abstraction.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.Set;
+import java.util.HashSet;
+
+public class SetExample {
+    public static void main(String[] args) {
+        Set<String> set = new HashSet<>();
+        
+        // Adding elements
+        set.add("Apple");
+        set.add("Banana");
+        set.add("Cherry");
+        
+        // Adding duplicate element (will be ignored)
+        set.add("Apple");
+        
+        // Size of set
+        System.out.println("Size: " + set.size()); // Output: 3
+        
+        // Check if set contains an element
+        System.out.println("Contains 'Apple': " + set.contains("Apple"));
+        
+        // Iterate through set
+        for (String fruit : set) {
+            System.out.println(fruit);
+        }
+        
+        // Remove an element
+        set.remove("Banana");
+    }
+}</code></pre>
+                    
+                    <h3>Queue Interface</h3>
+                    <p>The Queue interface extends Collection and represents a collection designed for holding elements prior to processing. Queues typically, but not necessarily, order elements in a FIFO (first-in-first-out) manner.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.Queue;
+import java.util.LinkedList;
+
+public class QueueExample {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        
+        // Adding elements
+        queue.add("Apple");
+        queue.add("Banana");
+        queue.add("Cherry");
+        
+        // Offer method (preferred for bounded queues)
+        queue.offer("Orange");
+        
+        // Peek at the head of queue without removing
+        System.out.println("Head: " + queue.peek());
+        
+        // Remove and return the head of queue
+        System.out.println("Removed: " + queue.poll());
+        
+        // Iterate through queue
+        for (String fruit : queue) {
+            System.out.println(fruit);
+        }
+        
+        // Size of queue
+        System.out.println("Size: " + queue.size());
+    }
+}</code></pre>
+                    
+                    <h3>Map Interface</h3>
+                    <p>The Map interface maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value. It is not a true Collection, but it's part of the Collections Framework.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.Map;
+import java.util.HashMap;
+
+public class MapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        
+        // Adding key-value pairs
+        map.put("Apple", 10);
+        map.put("Banana", 20);
+        map.put("Cherry", 30);
+        
+        // Get value by key
+        System.out.println("Value for 'Apple': " + map.get("Apple"));
+        
+        // Check if map contains a key
+        System.out.println("Contains key 'Orange': " + map.containsKey("Orange"));
+        
+        // Check if map contains a value
+        System.out.println("Contains value 20: " + map.containsValue(20));
+        
+        // Get all keys
+        System.out.println("Keys: " + map.keySet());
+        
+        // Get all values
+        System.out.println("Values: " + map.values());
+        
+        // Get all entries
+        System.out.println("Entries: " + map.entrySet());
+        
+        // Iterate through map
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        
+        // Remove a key-value pair
+        map.remove("Banana");
+        
+        // Size of map
+        System.out.println("Size: " + map.size());
+    }
+}</code></pre>
+                    
+                    <h2>Collection Implementations</h2>
+                    
+                    <h3>ArrayList</h3>
+                    <p>ArrayList is a resizable-array implementation of the List interface. It provides fast random access and is good for scenarios where the size of the list doesn't change much.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        List<String> arrayList = new ArrayList<>();
+        
+        // Adding elements
+        arrayList.add("Apple");
+        arrayList.add("Banana");
+        arrayList.add("Cherry");
+        
+        // Time complexity:
+        // - add(E): O(1) amortized
+        // - get(int): O(1)
+        // - remove(int): O(n)
+        // - contains(Object): O(n)
+        
+        System.out.println("ArrayList: " + arrayList);
+    }
+}</code></pre>
+                    
+                    <h3>LinkedList</h3>
+                    <p>LinkedList is a doubly-linked list implementation of the List and Deque interfaces. It is good for scenarios where there are frequent insertions and deletions.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.LinkedList;
+import java.util.List;
+
+public class LinkedListExample {
+    public static void main(String[] args) {
+        List<String> linkedList = new LinkedList<>();
+        
+        // Adding elements
+        linkedList.add("Apple");
+        linkedList.add("Banana");
+        linkedList.add("Cherry");
+        
+        // Time complexity:
+        // - add(E): O(1)
+        // - get(int): O(n)
+        // - remove(int): O(n)
+        // - contains(Object): O(n)
+        
+        System.out.println("LinkedList: " + linkedList);
+        
+        // LinkedList specific operations (as it also implements Deque)
+        LinkedList<String> dequeList = (LinkedList<String>) linkedList;
+        dequeList.addFirst("Orange");
+        dequeList.addLast("Grape");
+        
+        System.out.println("First: " + dequeList.getFirst());
+        System.out.println("Last: " + dequeList.getLast());
+    }
+}</code></pre>
+                    
+                    <h3>HashSet</h3>
+                    <p>HashSet is a hash table implementation of the Set interface. It makes no guarantees as to the iteration order of the set.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.HashSet;
+import java.util.Set;
+
+public class HashSetExample {
+    public static void main(String[] args) {
+        Set<String> hashSet = new HashSet<>();
+        
+        // Adding elements
+        hashSet.add("Apple");
+        hashSet.add("Banana");
+        hashSet.add("Cherry");
+        hashSet.add("Apple"); // Duplicate, will be ignored
+        
+        // Time complexity:
+        // - add(E): O(1)
+        // - contains(Object): O(1)
+        // - remove(Object): O(1)
+        
+        System.out.println("HashSet: " + hashSet);
+    }
+}</code></pre>
+                    
+                    <h3>TreeSet</h3>
+                    <p>TreeSet is a NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.TreeSet;
+import java.util.Set;
+import java.util.NavigableSet;
+
+public class TreeSetExample {
+    public static void main(String[] args) {
+        NavigableSet<String> treeSet = new TreeSet<>();
+        
+        // Adding elements
+        treeSet.add("Banana");
+        treeSet.add("Apple");
+        treeSet.add("Cherry");
+        treeSet.add("Apple"); // Duplicate, will be ignored
+        
+        // Time complexity:
+        // - add(E): O(log n)
+        // - contains(Object): O(log n)
+        // - remove(Object): O(log n)
+        
+        System.out.println("TreeSet (sorted): " + treeSet);
+        
+        // NavigableSet specific operations
+        System.out.println("First: " + treeSet.first());
+        System.out.println("Last: " + treeSet.last());
+        System.out.println("Lower than 'Cherry': " + treeSet.lower("Cherry"));
+        System.out.println("Higher than 'Banana': " + treeSet.higher("Banana"));
+    }
+}</code></pre>
+                    
+                    <h3>HashMap</h3>
+                    <p>HashMap is a hash table implementation of the Map interface. It makes no guarantees as to the order of the map.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> hashMap = new HashMap<>();
+        
+        // Adding key-value pairs
+        hashMap.put("Apple", 10);
+        hashMap.put("Banana", 20);
+        hashMap.put("Cherry", 30);
+        
+        // Time complexity:
+        // - put(K, V): O(1)
+        // - get(Object): O(1)
+        // - containsKey(Object): O(1)
+        // - remove(Object): O(1)
+        
+        System.out.println("HashMap: " + hashMap);
+    }
+}</code></pre>
+                    
+                    <h3>TreeMap</h3>
+                    <p>TreeMap is a NavigableMap implementation based on a Red-Black tree. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.TreeMap;
+import java.util.Map;
+import java.util.NavigableMap;
+
+public class TreeMapExample {
+    public static void main(String[] args) {
+        NavigableMap<String, Integer> treeMap = new TreeMap<>();
+        
+        // Adding key-value pairs
+        treeMap.put("Banana", 20);
+        treeMap.put("Apple", 10);
+        treeMap.put("Cherry", 30);
+        
+        // Time complexity:
+        // - put(K, V): O(log n)
+        // - get(Object): O(log n)
+        // - containsKey(Object): O(log n)
+        // - remove(Object): O(log n)
+        
+        System.out.println("TreeMap (sorted by keys): " + treeMap);
+        
+        // NavigableMap specific operations
+        System.out.println("First entry: " + treeMap.firstEntry());
+        System.out.println("Last entry: " + treeMap.lastEntry());
+        System.out.println("Lower entry than 'Cherry': " + treeMap.lowerEntry("Cherry"));
+        System.out.println("Higher entry than 'Banana': " + treeMap.higherEntry("Banana"));
+    }
+}</code></pre>
+                    
+                    <h2>Utility Classes</h2>
+                    
+                    <h3>Collections Class</h3>
+                    <p>The Collections class consists exclusively of static methods that operate on or return collections. It contains methods for sorting, searching, and synchronizing collections.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+
+public class CollectionsExample {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Banana");
+        list.add("Apple");
+        list.add("Cherry");
+        
+        // Sorting
+        Collections.sort(list);
+        System.out.println("Sorted list: " + list);
+        
+        // Binary search (on sorted list)
+        int index = Collections.binarySearch(list, "Banana");
+        System.out.println("Index of 'Banana': " + index);
+        
+        // Reverse
+        Collections.reverse(list);
+        System.out.println("Reversed list: " + list);
+        
+        // Shuffle
+        Collections.shuffle(list);
+        System.out.println("Shuffled list: " + list);
+        
+        // Min and max
+        System.out.println("Min: " + Collections.min(list));
+        System.out.println("Max: " + Collections.max(list));
+        
+        // Fill
+        Collections.fill(list, "Fruit");
+        System.out.println("Filled list: " + list);
+        
+        // Unmodifiable collections
+        List<String> unmodifiableList = Collections.unmodifiableList(list);
+        // unmodifiableList.add("Orange"); // This would throw UnsupportedOperationException
+        
+        // Synchronized collections
+        List<String> synchronizedList = Collections.synchronizedList(list);
+    }
+}</code></pre>
+                    
+                    <h3>Arrays Class</h3>
+                    <p>The Arrays class contains various methods for manipulating arrays (such as sorting and searching). It also contains a static factory that allows arrays to be viewed as lists.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.Arrays;
+import java.util.List;
+
+public class ArraysExample {
+    public static void main(String[] args) {
+        String[] array = {"Banana", "Apple", "Cherry"};
+        
+        // Sorting
+        Arrays.sort(array);
+        System.out.println("Sorted array: " + Arrays.toString(array));
+        
+        // Binary search (on sorted array)
+        int index = Arrays.binarySearch(array, "Banana");
+        System.out.println("Index of 'Banana': " + index);
+        
+        // Fill
+        Arrays.fill(array, "Fruit");
+        System.out.println("Filled array: " + Arrays.toString(array));
+        
+        // Convert array to list
+        array = new String[]{"Banana", "Apple", "Cherry"};
+        List<String> list = Arrays.asList(array);
+        System.out.println("List from array: " + list);
+        
+        // Compare arrays
+        String[] array2 = {"Banana", "Apple", "Cherry"};
+        System.out.println("Arrays equal: " + Arrays.equals(array, array2));
+        
+        // Copy array
+        String[] arrayCopy = Arrays.copyOf(array, array.length);
+        System.out.println("Copied array: " + Arrays.toString(arrayCopy));
+    }
+}</code></pre>
+                    
+                    <h2>Best Practices</h2>
+                    <ul>
+                        <li><strong>Choose the Right Collection:</strong> Select the appropriate collection implementation based on your specific requirements (e.g., ArrayList for random access, LinkedList for frequent insertions/deletions).</li>
+                        <li><strong>Use Generics:</strong> Always use generics with collections to ensure type safety.</li>
+                        <li><strong>Prefer Interface Types:</strong> Declare collection variables using interface types (e.g., List, Set, Map) rather than implementation types.</li>
+                        <li><strong>Consider Thread Safety:</strong> Use thread-safe collections (e.g., ConcurrentHashMap, CopyOnWriteArrayList) or synchronize access to collections in multi-threaded environments.</li>
+                        <li><strong>Use the Collections Utility Class:</strong> Leverage the utility methods provided by the Collections class for common operations.</li>
+                        <li><strong>Be Aware of Performance:</strong> Understand the time complexity of collection operations to make informed decisions.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='java', module='collections') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

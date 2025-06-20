@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Multithreading</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Java Multithreading</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Multithreading</h2>
+                    <p>Multithreading is a Java feature that allows concurrent execution of two or more parts of a program for maximum utilization of CPU. Each part of such program is called a thread. Threads are lightweight processes within a process.</p>
+                    
+                    <p>Multithreading offers several benefits:</p>
+                    <ul>
+                        <li>Better resource utilization</li>
+                        <li>Enhanced performance on multi-processor or multi-core systems</li>
+                        <li>Improved responsiveness in GUI applications</li>
+                        <li>Simplified program design in some situations</li>
+                    </ul>
+                    
+                    <h2>Thread Creation in Java</h2>
+                    <p>In Java, there are two ways to create a thread:</p>
+                    
+                    <h3>1. Extending the Thread Class</h3>
+                    <p>You can create a thread by extending the Thread class and overriding its run() method:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class MyThread extends Thread {
+    @Override
+    public void run() {
+        // Code to be executed in this thread
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + i);
+            try {
+                Thread.sleep(500); // Pause for 500 milliseconds
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        // Create and start threads
+        MyThread thread1 = new MyThread();
+        thread1.setName("Thread-1");
+        
+        MyThread thread2 = new MyThread();
+        thread2.setName("Thread-2");
+        
+        thread1.start(); // Start thread1
+        thread2.start(); // Start thread2
+        
+        System.out.println("Main thread continues execution...");
+    }
+}</code></pre>
+                    
+                    <h3>2. Implementing the Runnable Interface</h3>
+                    <p>You can create a thread by implementing the Runnable interface and passing an instance of your class to a Thread constructor:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        // Code to be executed in this thread
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + ": " + i);
+            try {
+                Thread.sleep(500); // Pause for 500 milliseconds
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        // Create a runnable instance
+        MyRunnable runnable = new MyRunnable();
+        
+        // Create threads with the runnable
+        Thread thread1 = new Thread(runnable, "Thread-1");
+        Thread thread2 = new Thread(runnable, "Thread-2");
+        
+        thread1.start(); // Start thread1
+        thread2.start(); // Start thread2
+        
+        System.out.println("Main thread continues execution...");
+    }
+}</code></pre>
+                    
+                    <div class="alert alert-info shadow-lg my-4">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>Implementing Runnable is generally preferred over extending Thread because:
+                                <ul>
+                                    <li>Java doesn't support multiple inheritance, so extending Thread limits your class from extending other classes</li>
+                                    <li>It separates the task from the thread execution mechanism</li>
+                                    <li>It's more flexible and can be used with thread pools and executors</li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <h2>Thread Lifecycle</h2>
+                    <p>A thread in Java goes through various states during its lifecycle:</p>
+                    
+                    <ol>
+                        <li><strong>New:</strong> A thread that has been created but not yet started.</li>
+                        <li><strong>Runnable:</strong> A thread that is ready to run is moved to runnable state. The thread may be running or may be ready to run at any given point in time.</li>
+                        <li><strong>Blocked:</strong> A thread that is blocked waiting for a monitor lock.</li>
+                        <li><strong>Waiting:</strong> A thread that is waiting indefinitely for another thread to perform a particular action.</li>
+                        <li><strong>Timed Waiting:</strong> A thread that is waiting for another thread to perform an action for up to a specified waiting time.</li>
+                        <li><strong>Terminated:</strong> A thread that has exited.</li>
+                    </ol>
+                    
+                    <img src="https://www.baeldung.com/wp-content/uploads/2018/02/Java_Thread_Lifecycle.jpg" alt="Thread Lifecycle" class="mx-auto my-6 max-w-full">
+                    
+                    <h2>Thread Methods and Properties</h2>
+                    
+                    <h3>Important Thread Methods</h3>
+                    <ul>
+                        <li><code>start()</code>: Starts the thread, causing the run() method to be called.</li>
+                        <li><code>run()</code>: Contains the code that constitutes the new thread.</li>
+                        <li><code>sleep(long millis)</code>: Causes the currently executing thread to sleep for the specified number of milliseconds.</li>
+                        <li><code>join()</code>: Waits for this thread to die.</li>
+                        <li><code>yield()</code>: Causes the currently executing thread to temporarily pause and allow other threads to execute.</li>
+                        <li><code>interrupt()</code>: Interrupts this thread.</li>
+                        <li><code>isAlive()</code>: Tests if this thread is alive.</li>
+                    </ul>
+                    
+                    <h3>Thread Priorities</h3>
+                    <p>Thread priorities are used by the thread scheduler to decide when each thread should be allowed to run. In Java, thread priorities range from 1 (lowest) to 10 (highest).</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class ThreadPriorityExample {
+    public static void main(String[] args) {
+        Thread thread1 = new Thread(() -> {
+            System.out.println("Thread 1 is running with priority: " + Thread.currentThread().getPriority());
+        });
+        
+        Thread thread2 = new Thread(() -> {
+            System.out.println("Thread 2 is running with priority: " + Thread.currentThread().getPriority());
+        });
+        
+        // Set thread priorities
+        thread1.setPriority(Thread.MIN_PRIORITY); // 1
+        thread2.setPriority(Thread.MAX_PRIORITY); // 10
+        
+        thread1.start();
+        thread2.start();
+    }
+}</code></pre>
+                    
+                    <h2>Thread Synchronization</h2>
+                    <p>When multiple threads try to access the same resources, there can be data inconsistency issues. Thread synchronization is the process of ensuring that two or more concurrent processes or threads do not simultaneously execute some particular program segment known as a critical section.</p>
+                    
+                    <h3>Synchronized Methods</h3>
+                    <p>You can use the synchronized keyword to synchronize a method:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class Counter {
+    private int count = 0;
+    
+    // Synchronized method
+    public synchronized void increment() {
+        count++;
+    }
+    
+    public int getCount() {
+        return count;
+    }
+}
+
+public class SynchronizedMethodExample {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+        
+        // Create threads
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.increment();
+            }
+        });
+        
+        Thread thread2 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.increment();
+            }
+        });
+        
+        // Start threads
+        thread1.start();
+        thread2.start();
+        
+        // Wait for threads to complete
+        thread1.join();
+        thread2.join();
+        
+        System.out.println("Final count: " + counter.getCount()); // Should be 2000
+    }
+}</code></pre>
+                    
+                    <h3>Synchronized Blocks</h3>
+                    <p>You can also synchronize a block of code:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class Counter {
+    private int count = 0;
+    private final Object lock = new Object(); // Lock object
+    
+    public void increment() {
+        // Synchronized block
+        synchronized (lock) {
+            count++;
+        }
+    }
+    
+    public int getCount() {
+        return count;
+    }
+}</code></pre>
+                    
+                    <h3>Deadlock</h3>
+                    <p>Deadlock is a situation where two or more threads are blocked forever, waiting for each other. Here's an example of a deadlock situation:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class DeadlockExample {
+    private static final Object lock1 = new Object();
+    private static final Object lock2 = new Object();
+    
+    public static void main(String[] args) {
+        Thread thread1 = new Thread(() -> {
+            synchronized (lock1) {
+                System.out.println("Thread 1: Holding lock 1...");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Thread 1: Waiting for lock 2...");
+                synchronized (lock2) {
+                    System.out.println("Thread 1: Holding lock 1 & 2...");
+                }
+            }
+        });
+        
+        Thread thread2 = new Thread(() -> {
+            synchronized (lock2) {
+                System.out.println("Thread 2: Holding lock 2...");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Thread 2: Waiting for lock 1...");
+                synchronized (lock1) {
+                    System.out.println("Thread 2: Holding lock 1 & 2...");
+                }
+            }
+        });
+        
+        thread1.start();
+        thread2.start();
+    }
+}</code></pre>
+                    
+                    <div class="alert alert-warning shadow-lg my-4">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                            <span>To avoid deadlocks:
+                                <ul>
+                                    <li>Always acquire locks in the same order</li>
+                                    <li>Avoid nested locks if possible</li>
+                                    <li>Use lock timeouts</li>
+                                    <li>Use thread join and proper thread scheduling</li>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <h2>Thread Communication</h2>
+                    <p>Threads can communicate with each other using methods like wait(), notify(), and notifyAll():</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class ProducerConsumerExample {
+    private static final int BUFFER_SIZE = 5;
+    private static final Queue<Integer> buffer = new LinkedList<>();
+    private static final Object lock = new Object();
+    
+    public static void main(String[] args) {
+        // Producer thread
+        Thread producer = new Thread(() -> {
+            int value = 0;
+            while (true) {
+                synchronized (lock) {
+                    while (buffer.size() == BUFFER_SIZE) {
+                        try {
+                            System.out.println("Buffer is full, producer is waiting...");
+                            lock.wait(); // Release lock and wait
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    
+                    System.out.println("Producing: " + value);
+                    buffer.add(value++);
+                    lock.notifyAll(); // Notify waiting threads
+                }
+                
+                try {
+                    Thread.sleep(1000); // Slow down production
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        // Consumer thread
+        Thread consumer = new Thread(() -> {
+            while (true) {
+                synchronized (lock) {
+                    while (buffer.isEmpty()) {
+                        try {
+                            System.out.println("Buffer is empty, consumer is waiting...");
+                            lock.wait(); // Release lock and wait
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    
+                    int value = buffer.poll();
+                    System.out.println("Consuming: " + value);
+                    lock.notifyAll(); // Notify waiting threads
+                }
+                
+                try {
+                    Thread.sleep(2000); // Slow down consumption
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        producer.start();
+        consumer.start();
+    }
+}</code></pre>
+                    
+                    <h2>Concurrent Utilities (java.util.concurrent)</h2>
+                    <p>Java provides a rich set of concurrent utilities in the java.util.concurrent package to simplify multithreaded programming.</p>
+                    
+                    <h3>Executor Framework</h3>
+                    <p>The Executor framework provides a way of decoupling task submission from the mechanics of how each task will be run.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ExecutorExample {
+    public static void main(String[] args) {
+        // Create a fixed thread pool with 3 threads
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+        
+        // Submit tasks to the executor
+        for (int i = 0; i < 10; i++) {
+            final int taskId = i;
+            executor.submit(() -> {
+                System.out.println("Task " + taskId + " is running on thread " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Task " + taskId + " completed");
+            });
+        }
+        
+        // Shutdown the executor
+        executor.shutdown();
+    }
+}</code></pre>
+                    
+                    <h3>Callable and Future</h3>
+                    <p>Callable is similar to Runnable, but it can return a result and throw checked exceptions. Future represents the result of an asynchronous computation.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.concurrent.*;
+
+public class CallableFutureExample {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        
+        // Create a Callable
+        Callable<Integer> task = () -> {
+            System.out.println("Calculating...");
+            Thread.sleep(2000);
+            return 42;
+        };
+        
+        // Submit the Callable and get a Future
+        Future<Integer> future = executor.submit(task);
+        
+        try {
+            // This will block until the result is available
+            Integer result = future.get();
+            System.out.println("Result: " + result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        
+        executor.shutdown();
+    }
+}</code></pre>
+                    
+                    <h3>CompletableFuture</h3>
+                    <p>CompletableFuture extends Future and provides a more comprehensive set of methods for composing asynchronous operations.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.concurrent.CompletableFuture;
+
+public class CompletableFutureExample {
+    public static void main(String[] args) {
+        // Create and run a CompletableFuture
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "Hello";
+        });
+        
+        // Chain operations
+        CompletableFuture<String> finalFuture = future
+            .thenApply(s -> s + " World") // Transform the result
+            .thenApply(String::toUpperCase); // Transform again
+        
+        // Get the result
+        try {
+            String result = finalFuture.get();
+            System.out.println(result); // HELLO WORLD
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                    
+                    <h3>Concurrent Collections</h3>
+                    <p>Java provides thread-safe collections in the java.util.concurrent package:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.concurrent.*;
+
+public class ConcurrentCollectionsExample {
+    public static void main(String[] args) {
+        // ConcurrentHashMap - thread-safe alternative to HashMap
+        ConcurrentMap<String, Integer> concurrentMap = new ConcurrentHashMap<>();
+        concurrentMap.put("one", 1);
+        concurrentMap.put("two", 2);
+        
+        // CopyOnWriteArrayList - thread-safe alternative to ArrayList
+        CopyOnWriteArrayList<String> copyOnWriteList = new CopyOnWriteArrayList<>();
+        copyOnWriteList.add("apple");
+        copyOnWriteList.add("banana");
+        
+        // BlockingQueue - supports operations that wait for the queue to become non-empty when retrieving an element
+        BlockingQueue<String> blockingQueue = new LinkedBlockingQueue<>();
+        try {
+            blockingQueue.put("message");
+            String message = blockingQueue.take();
+            System.out.println(message);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                    
+                    <h3>Atomic Variables</h3>
+                    <p>Atomic variables provide operations that execute atomically, without the need for explicit synchronization:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>import java.util.concurrent.atomic.*;
+
+public class AtomicVariablesExample {
+    public static void main(String[] args) {
+        // AtomicInteger
+        AtomicInteger atomicInt = new AtomicInteger(0);
+        atomicInt.incrementAndGet(); // Atomic increment
+        System.out.println(atomicInt.get()); // 1
+        
+        // AtomicBoolean
+        AtomicBoolean atomicBool = new AtomicBoolean(false);
+        atomicBool.compareAndSet(false, true); // Set to true if currently false
+        System.out.println(atomicBool.get()); // true
+        
+        // AtomicReference
+        AtomicReference<String> atomicRef = new AtomicReference<>("initial");
+        atomicRef.set("updated");
+        System.out.println(atomicRef.get()); // updated
+    }
+}</code></pre>
+                    
+                    <h2>Best Practices for Multithreading</h2>
+                    <ul>
+                        <li><strong>Minimize Shared Mutable State:</strong> The fewer variables that are shared between threads, the fewer opportunities for threading issues.</li>
+                        <li><strong>Prefer Immutability:</strong> Immutable objects are inherently thread-safe.</li>
+                        <li><strong>Use Higher-Level Concurrency Utilities:</strong> Prefer using java.util.concurrent utilities over low-level synchronization.</li>
+                        <li><strong>Avoid Blocking Operations:</strong> Blocking operations can lead to thread starvation and poor performance.</li>
+                        <li><strong>Be Careful with Thread Priorities:</strong> Thread priorities are platform-dependent and should not be relied upon for correctness.</li>
+                        <li><strong>Document Thread Safety:</strong> Clearly document the thread safety guarantees of your classes.</li>
+                        <li><strong>Test Thoroughly:</strong> Multithreaded code is notoriously difficult to test. Use tools like stress tests and race detectors.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='java', module='multithreading') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

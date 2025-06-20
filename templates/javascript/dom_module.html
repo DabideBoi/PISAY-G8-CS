@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">JavaScript DOM</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to the DOM</h2>
+                    <p>The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects; that way, programming languages like JavaScript can interact with the page.</p>
+                    
+                    <h2>DOM Structure</h2>
+                    <p>The DOM represents an HTML document as a tree-like structure where each node is an object representing a part of the document:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code><!DOCTYPE html>
+<html>
+  <head>
+    <title>My Title</title>
+  </head>
+  <body>
+    <h1>A Heading</h1>
+    <p>A paragraph</p>
+  </body>
+</html></code></pre>
+                    
+                    <p>This HTML document would be represented as:</p>
+                    <ul>
+                        <li>Document
+                            <ul>
+                                <li>html
+                                    <ul>
+                                        <li>head
+                                            <ul>
+                                                <li>title
+                                                    <ul>
+                                                        <li>"My Title" (text node)</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>body
+                                            <ul>
+                                                <li>h1
+                                                    <ul>
+                                                        <li>"A Heading" (text node)</li>
+                                                    </ul>
+                                                </li>
+                                                <li>p
+                                                    <ul>
+                                                        <li>"A paragraph" (text node)</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h2>Accessing DOM Elements</h2>
+                    <h3>Selecting Elements</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// By ID
+const element = document.getElementById('myId');
+
+// By class name (returns a live HTMLCollection)
+const elements = document.getElementsByClassName('myClass');
+
+// By tag name (returns a live HTMLCollection)
+const paragraphs = document.getElementsByTagName('p');
+
+// By CSS selector (returns the first matching element)
+const element = document.querySelector('.myClass');
+
+// By CSS selector (returns all matching elements as a NodeList)
+const elements = document.querySelectorAll('p.intro');</code></pre>
+                    
+                    <h3>Navigating the DOM</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Parent node
+const parent = element.parentNode;
+
+// Child nodes (includes text nodes and comments)
+const children = element.childNodes;
+
+// First and last child
+const firstChild = element.firstChild;
+const lastChild = element.lastChild;
+
+// Element children only (excludes text nodes and comments)
+const children = element.children;
+const firstElement = element.firstElementChild;
+const lastElement = element.lastElementChild;
+
+// Siblings
+const nextSibling = element.nextSibling;
+const previousSibling = element.previousSibling;
+const nextElement = element.nextElementSibling;
+const previousElement = element.previousElementSibling;</code></pre>
+                    
+                    <h2>Manipulating the DOM</h2>
+                    <h3>Changing Content</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Change text content (excludes HTML tags)
+element.textContent = 'New text content';
+
+// Change HTML content (parses HTML)
+element.innerHTML = '<span>New HTML content</span>';
+
+// Change value of an input field
+document.getElementById('myInput').value = 'New value';</code></pre>
+                    
+                    <h3>Creating and Adding Elements</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Create a new element
+const newElement = document.createElement('div');
+
+// Add text to the element
+newElement.textContent = 'Hello, World!';
+
+// Add attributes
+newElement.id = 'myNewDiv';
+newElement.className = 'container';
+newElement.setAttribute('data-custom', 'value');
+
+// Append to the DOM
+document.body.appendChild(newElement);
+
+// Insert before another element
+const referenceElement = document.getElementById('referenceId');
+document.body.insertBefore(newElement, referenceElement);
+
+// Modern methods
+parentElement.append(newElement);  // Adds at the end
+parentElement.prepend(newElement); // Adds at the beginning
+referenceElement.before(newElement); // Adds before the reference
+referenceElement.after(newElement);  // Adds after the reference
+referenceElement.replaceWith(newElement); // Replaces the reference</code></pre>
+                    
+                    <h3>Removing Elements</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Remove a child element
+const child = document.getElementById('childId');
+child.parentNode.removeChild(child);
+
+// Modern method
+element.remove();</code></pre>
+                    
+                    <h3>Modifying Attributes</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Get attribute
+const value = element.getAttribute('href');
+
+// Set attribute
+element.setAttribute('href', 'https://example.com');
+
+// Remove attribute
+element.removeAttribute('disabled');
+
+// Check if attribute exists
+const hasAttribute = element.hasAttribute('required');
+
+// Direct property access (for standard attributes)
+element.id = 'newId';
+element.className = 'newClass';
+element.href = 'https://example.com';</code></pre>
+                    
+                    <h3>Modifying CSS</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Inline styles
+element.style.color = 'red';
+element.style.backgroundColor = 'blue';
+element.style.fontSize = '16px';
+
+// Multiple styles at once
+element.style.cssText = 'color: red; background-color: blue; font-size: 16px;';
+
+// Add/remove CSS classes
+element.classList.add('active');
+element.classList.remove('inactive');
+element.classList.toggle('visible');
+element.classList.replace('old-class', 'new-class');
+const hasClass = element.classList.contains('active');</code></pre>
+                    
+                    <h2>Event Handling</h2>
+                    <h3>Adding Event Listeners</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Using addEventListener
+element.addEventListener('click', function(event) {
+    console.log('Element clicked!');
+    console.log(event); // The event object
+});
+
+// Using arrow function
+element.addEventListener('mouseover', (event) => {
+    console.log('Mouse over element!');
+});
+
+// Named function
+function handleClick(event) {
+    console.log('Button clicked!');
+}
+document.getElementById('myButton').addEventListener('click', handleClick);
+
+// Removing event listeners
+element.removeEventListener('click', handleClick);</code></pre>
+                    
+                    <h3>Common Events</h3>
+                    <ul>
+                        <li><strong>Mouse Events:</strong> click, dblclick, mousedown, mouseup, mouseover, mouseout, mousemove</li>
+                        <li><strong>Keyboard Events:</strong> keydown, keyup, keypress</li>
+                        <li><strong>Form Events:</strong> submit, change, focus, blur</li>
+                        <li><strong>Document/Window Events:</strong> load, resize, scroll, unload</li>
+                    </ul>
+                    
+                    <h3>Event Propagation</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Event bubbling (default)
+// Events propagate from the target element up to the document
+
+// Stop propagation
+element.addEventListener('click', function(event) {
+    event.stopPropagation();
+    console.log('This event will not bubble up!');
+});
+
+// Prevent default behavior
+document.getElementById('myLink').addEventListener('click', function(event) {
+    event.preventDefault();
+    console.log('Link click prevented!');
+});
+
+// Capture phase (events propagate from document down to the target)
+element.addEventListener('click', function(event) {
+    console.log('Captured during capture phase!');
+}, true); // true enables capture phase</code></pre>
+                    
+                    <h2>DOM Traversal and Manipulation Example</h2>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Create a simple todo list
+function createTodoList() {
+    // Create elements
+    const todoList = document.createElement('ul');
+    todoList.className = 'todo-list';
+    
+    const items = ['Learn JavaScript', 'Study DOM', 'Build a project'];
+    
+    // Add items to the list
+    items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        
+        // Add a delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.addEventListener('click', function() {
+            li.remove();
+        });
+        
+        li.appendChild(deleteBtn);
+        todoList.appendChild(li);
+    });
+    
+    // Add the list to the document
+    document.body.appendChild(todoList);
+    
+    // Add a form to add new items
+    const form = document.createElement('form');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Add new item';
+    
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'submit';
+    submitBtn.textContent = 'Add';
+    
+    form.appendChild(input);
+    form.appendChild(submitBtn);
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        if (input.value.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = input.value;
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.addEventListener('click', function() {
+                li.remove();
+            });
+            
+            li.appendChild(deleteBtn);
+            todoList.appendChild(li);
+            
+            input.value = '';
+        }
+    });
+    
+    document.body.appendChild(form);
+}</code></pre>
+                    
+                    <h2>Best Practices</h2>
+                    <ul>
+                        <li><strong>Minimize DOM Manipulation:</strong> DOM operations can be expensive. Batch your changes when possible.</li>
+                        <li><strong>Use Document Fragments:</strong> When adding multiple elements, use document fragments to minimize reflows.</li>
+                        <li><strong>Cache DOM References:</strong> Store references to elements you access frequently.</li>
+                        <li><strong>Use Event Delegation:</strong> Instead of adding event listeners to many elements, add one to their parent.</li>
+                        <li><strong>Clean Up Event Listeners:</strong> Remove event listeners when they're no longer needed to prevent memory leaks.</li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='javascript', module='dom') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

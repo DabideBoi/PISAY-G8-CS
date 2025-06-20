@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Basics</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">CSS Basics</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to CSS</h2>
+                    <p>CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML. CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.</p>
+                    
+                    <h2>CSS Syntax</h2>
+                    <p>A CSS rule consists of a selector and a declaration block:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>selector {
+    property: value;
+    property: value;
+}</code></pre>
+                    
+                    <h3>Example</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: blue;
+    font-size: 24px;
+}</code></pre>
+                    
+                    <h2>Adding CSS to HTML</h2>
+                    <p>There are three ways to insert CSS into your HTML:</p>
+                    
+                    <h3>1. Inline CSS</h3>
+                    <p>Using the style attribute within HTML elements:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;h1 style="color: blue; font-size: 24px;"&gt;This is a heading&lt;/h1&gt;</code></pre>
+                    
+                    <h3>2. Internal CSS</h3>
+                    <p>Using the &lt;style&gt; element in the &lt;head&gt; section:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;head&gt;
+    &lt;style&gt;
+        h1 {
+            color: blue;
+            font-size: 24px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                    
+                    <h3>3. External CSS</h3>
+                    <p>Using an external CSS file:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</code></pre>
+                    
+                    <p>With the following content in styles.css:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: blue;
+    font-size: 24px;
+}</code></pre>
+                    
+                    <h2>CSS Selectors</h2>
+                    <p>CSS selectors are used to "find" (or select) the HTML elements you want to style.</p>
+                    
+                    <h3>Element Selector</h3>
+                    <p>Selects all elements with the specified element name:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>p {
+    color: red;
+}</code></pre>
+                    
+                    <h3>ID Selector</h3>
+                    <p>Selects an element with a specific id attribute:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>#header {
+    background-color: lightblue;
+}</code></pre>
+                    
+                    <h3>Class Selector</h3>
+                    <p>Selects all elements with a specific class attribute:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.highlight {
+    background-color: yellow;
+}</code></pre>
+                    
+                    <h3>Descendant Selector</h3>
+                    <p>Selects all elements that are descendants of a specified element:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>div p {
+    color: green;
+}</code></pre>
+                    
+                    <h3>Child Selector</h3>
+                    <p>Selects all elements that are direct children of a specified element:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>div > p {
+    color: blue;
+}</code></pre>
+                    
+                    <h3>Adjacent Sibling Selector</h3>
+                    <p>Selects an element that is directly after another specific element:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 + p {
+    margin-top: 0;
+}</code></pre>
+                    
+                    <h3>Attribute Selector</h3>
+                    <p>Selects elements with a specific attribute:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>input[type="text"] {
+    border: 1px solid gray;
+}</code></pre>
+                    
+                    <h3>Pseudo-classes</h3>
+                    <p>Selects elements based on a certain state:</p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>a:hover {
+    color: red;
+}
+
+li:first-child {
+    font-weight: bold;
+}</code></pre>
+                    
+                    <h2>CSS Box Model</h2>
+                    <p>All HTML elements can be considered as boxes. The CSS box model describes the rectangular boxes that are generated for elements in the document tree and laid out according to the visual formatting model.</p>
+                    
+                    <p>The box model consists of:</p>
+                    <ul>
+                        <li><strong>Content</strong> - The content of the box, where text and images appear</li>
+                        <li><strong>Padding</strong> - Clears an area around the content (inside the box)</li>
+                        <li><strong>Border</strong> - A border that goes around the padding and content</li>
+                        <li><strong>Margin</strong> - Clears an area outside the border</li>
+                    </ul>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>div {
+    width: 300px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 20px;
+}</code></pre>
+                    
+                    <p>Total width = width + left padding + right padding + left border + right border + left margin + right margin</p>
+                    
+                    <h2>CSS Colors</h2>
+                    <p>Colors in CSS can be specified in several ways:</p>
+                    
+                    <h3>Color Names</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: red;
+}</code></pre>
+                    
+                    <h3>RGB Values</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: rgb(255, 0, 0);  /* Red */
+}</code></pre>
+                    
+                    <h3>RGBA Values (RGB with Alpha/Transparency)</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: rgba(255, 0, 0, 0.5);  /* Semi-transparent red */
+}</code></pre>
+                    
+                    <h3>HEX Values</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: #ff0000;  /* Red */
+}</code></pre>
+                    
+                    <h3>HSL Values (Hue, Saturation, Lightness)</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>h1 {
+    color: hsl(0, 100%, 50%);  /* Red */
+}</code></pre>
+                    
+                    <h2>CSS Typography</h2>
+                    <p>CSS provides several properties for styling text:</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>p {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    text-decoration: underline;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}</code></pre>
+                    
+                    <h2>CSS Layout</h2>
+                    <p>CSS provides several techniques for laying out elements on a page:</p>
+                    
+                    <h3>Display Property</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>div {
+    display: block;  /* Default for div */
+}
+
+span {
+    display: inline;  /* Default for span */
+}
+
+nav li {
+    display: inline-block;  /* Combines features of both */
+}
+
+.hidden {
+    display: none;  /* Removes the element */
+}</code></pre>
+                    
+                    <h3>Position Property</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>div {
+    position: static;  /* Default */
+}
+
+.relative {
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+.absolute {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}</code></pre>
+                    
+                    <h3>Float Property</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}</code></pre>
+                    
+                    <h3>Flexbox</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item {
+    flex: 1;
+}</code></pre>
+                    
+                    <h3>Grid</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.item-a {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.item-b {
+    grid-column: 3;
+    grid-row: 1 / 3;
+}</code></pre>
+                    
+                    <h2>CSS Responsive Design</h2>
+                    <p>Responsive web design makes your web page look good on all devices:</p>
+                    
+                    <h3>Viewport Meta Tag</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                    
+                    <h3>Media Queries</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>/* For desktop */
+.container {
+    width: 960px;
+}
+
+/* For tablet */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+
+/* For mobile */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+}</code></pre>
+                    
+                    <h2>CSS Transitions and Animations</h2>
+                    <h3>Transitions</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>button {
+    background-color: blue;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: darkblue;
+}</code></pre>
+                    
+                    <h3>Animations</h3>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100px);
+    }
+}
+
+.box {
+    animation: slide 2s ease infinite alternate;
+}</code></pre>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='web', module='css') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

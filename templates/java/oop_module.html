@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Object-Oriented Programming</title>
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto">
+            <div class="card-body">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="card-title text-3xl font-bold">Java Object-Oriented Programming</h1>
+                    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <h2>Introduction to Object-Oriented Programming</h2>
+                    <p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and code. The data is in the form of fields (attributes or properties), and the code is in the form of procedures (methods or functions).</p>
+                    
+                    <p>Java is a pure object-oriented programming language, which means everything in Java is associated with classes and objects, along with their attributes and methods.</p>
+                    
+                    <h2>Four Pillars of OOP</h2>
+                    
+                    <h3>1. Encapsulation</h3>
+                    <p>Encapsulation is the mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit. It restricts direct access to some of an object's components, which is a means of preventing accidental interference and misuse of the data.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class BankAccount {
+    // Private variables (encapsulated)
+    private double balance;
+    private String accountNumber;
+    
+    // Constructor
+    public BankAccount(String accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+    
+    // Public methods to access and modify the private variables
+    public double getBalance() {
+        return balance;
+    }
+    
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+    
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: $" + amount);
+        } else {
+            System.out.println("Invalid withdrawal amount or insufficient funds");
+        }
+    }
+}</code></pre>
+                    
+                    <h3>2. Inheritance</h3>
+                    <p>Inheritance is a mechanism where a new class (subclass or derived class) is derived from an existing class (superclass or base class). The subclass inherits the fields and methods of the superclass, allowing for code reuse and establishing a relationship between the classes.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Base class (superclass)
+public class Animal {
+    protected String name;
+    protected int age;
+    
+    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    public void eat() {
+        System.out.println(name + " is eating");
+    }
+    
+    public void sleep() {
+        System.out.println(name + " is sleeping");
+    }
+}
+
+// Derived class (subclass)
+public class Dog extends Animal {
+    private String breed;
+    
+    public Dog(String name, int age, String breed) {
+        super(name, age); // Call the superclass constructor
+        this.breed = breed;
+    }
+    
+    public void bark() {
+        System.out.println(name + " is barking");
+    }
+    
+    // Method overriding
+    @Override
+    public void eat() {
+        System.out.println(name + " the " + breed + " is eating dog food");
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog("Buddy", 3, "Golden Retriever");
+        dog.eat();   // Calls the overridden method in Dog
+        dog.sleep(); // Calls the inherited method from Animal
+        dog.bark();  // Calls the method specific to Dog
+    }
+}</code></pre>
+                    
+                    <h3>3. Polymorphism</h3>
+                    <p>Polymorphism means "many forms", and it occurs when we have many classes that are related to each other by inheritance. It allows us to perform a single action in different ways.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Base class
+public class Shape {
+    public double calculateArea() {
+        return 0; // Default implementation
+    }
+}
+
+// Derived classes
+public class Circle extends Shape {
+    private double radius;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+public class Rectangle extends Shape {
+    private double width;
+    private double height;
+    
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+    
+    @Override
+    public double calculateArea() {
+        return width * height;
+    }
+}
+
+// Usage with polymorphism
+public class Main {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        Shape rectangle = new Rectangle(4, 6);
+        
+        System.out.println("Circle area: " + circle.calculateArea());
+        System.out.println("Rectangle area: " + rectangle.calculateArea());
+        
+        // We can also use polymorphism with arrays or collections
+        Shape[] shapes = {new Circle(3), new Rectangle(2, 4), new Circle(7)};
+        
+        for (Shape shape : shapes) {
+            System.out.println("Area: " + shape.calculateArea());
+        }
+    }
+}</code></pre>
+                    
+                    <h3>4. Abstraction</h3>
+                    <p>Abstraction is the concept of hiding the complex implementation details and showing only the necessary features of an object. It helps in reducing programming complexity and effort.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Abstract class
+public abstract class Vehicle {
+    protected String brand;
+    protected String model;
+    
+    public Vehicle(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
+    }
+    
+    // Abstract method (no implementation)
+    public abstract void start();
+    
+    // Concrete method (with implementation)
+    public void stop() {
+        System.out.println("Vehicle stopped");
+    }
+    
+    public String getInfo() {
+        return brand + " " + model;
+    }
+}
+
+// Concrete class implementing the abstract class
+public class Car extends Vehicle {
+    private int numDoors;
+    
+    public Car(String brand, String model, int numDoors) {
+        super(brand, model);
+        this.numDoors = numDoors;
+    }
+    
+    // Implementation of the abstract method
+    @Override
+    public void start() {
+        System.out.println("Car started with key");
+    }
+    
+    public int getNumDoors() {
+        return numDoors;
+    }
+}
+
+// Another concrete class
+public class Motorcycle extends Vehicle {
+    private boolean hasSidecar;
+    
+    public Motorcycle(String brand, String model, boolean hasSidecar) {
+        super(brand, model);
+        this.hasSidecar = hasSidecar;
+    }
+    
+    // Implementation of the abstract method
+    @Override
+    public void start() {
+        System.out.println("Motorcycle started with kickstart");
+    }
+    
+    public boolean hasSidecar() {
+        return hasSidecar;
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        // Vehicle vehicle = new Vehicle(); // Error: Cannot instantiate abstract class
+        
+        Vehicle car = new Car("Toyota", "Camry", 4);
+        Vehicle motorcycle = new Motorcycle("Honda", "CBR", false);
+        
+        System.out.println(car.getInfo());
+        car.start(); // Calls the implementation in Car
+        car.stop();  // Calls the inherited method
+        
+        System.out.println(motorcycle.getInfo());
+        motorcycle.start(); // Calls the implementation in Motorcycle
+    }
+}</code></pre>
+                    
+                    <h2>Interfaces</h2>
+                    <p>An interface in Java is a blueprint of a class. It has static constants and abstract methods. It cannot be instantiated, but can be implemented by classes or extended by other interfaces.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>// Interface definition
+public interface Drawable {
+    void draw(); // Abstract method (no implementation)
+    
+    // Default method (with implementation, introduced in Java 8)
+    default void display() {
+        System.out.println("Displaying...");
+    }
+    
+    // Static method (with implementation, introduced in Java 8)
+    static void info() {
+        System.out.println("Drawable interface");
+    }
+}
+
+// Class implementing the interface
+public class Circle implements Drawable {
+    private double radius;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    // Implementation of the abstract method
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle with radius " + radius);
+    }
+}
+
+// Another class implementing the interface
+public class Rectangle implements Drawable {
+    private double width;
+    private double height;
+    
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+    
+    // Implementation of the abstract method
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle with width " + width + " and height " + height);
+    }
+    
+    // Override the default method
+    @Override
+    public void display() {
+        System.out.println("Displaying rectangle...");
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        Drawable circle = new Circle(5);
+        Drawable rectangle = new Rectangle(4, 6);
+        
+        circle.draw();     // Calls the implementation in Circle
+        circle.display();  // Calls the default method
+        
+        rectangle.draw();    // Calls the implementation in Rectangle
+        rectangle.display(); // Calls the overridden method
+        
+        Drawable.info();     // Calls the static method
+    }
+}</code></pre>
+                    
+                    <h2>Class Relationships</h2>
+                    
+                    <h3>1. Association</h3>
+                    <p>Association represents a relationship between two or more objects where all objects have their own lifecycle and there is no owner.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class Teacher {
+    private String name;
+    
+    public Teacher(String name) {
+        this.name = name;
+    }
+    
+    public String getName() {
+        return name;
+    }
+}
+
+public class Student {
+    private String name;
+    
+    public Student(String name) {
+        this.name = name;
+    }
+    
+    public String getName() {
+        return name;
+    }
+}
+
+// Association example
+public class Course {
+    private String courseName;
+    private Teacher teacher;
+    private List<Student> students;
+    
+    public Course(String courseName, Teacher teacher) {
+        this.courseName = courseName;
+        this.teacher = teacher;
+        this.students = new ArrayList<>();
+    }
+    
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+    
+    public void displayCourseInfo() {
+        System.out.println("Course: " + courseName);
+        System.out.println("Teacher: " + teacher.getName());
+        System.out.println("Students:");
+        
+        for (Student student : students) {
+            System.out.println("- " + student.getName());
+        }
+    }
+}</code></pre>
+                    
+                    <h3>2. Aggregation</h3>
+                    <p>Aggregation is a special form of association where one object contains references to other objects, but those objects can exist independently.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class Department {
+    private String name;
+    private List<Employee> employees;
+    
+    public Department(String name) {
+        this.name = name;
+        this.employees = new ArrayList<>();
+    }
+    
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+    
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+    
+    public String getName() {
+        return name;
+    }
+}
+
+public class Employee {
+    private String name;
+    private int id;
+    
+    public Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public int getId() {
+        return id;
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        // Create employees
+        Employee emp1 = new Employee("John", 101);
+        Employee emp2 = new Employee("Jane", 102);
+        
+        // Create department and add employees
+        Department dept = new Department("Engineering");
+        dept.addEmployee(emp1);
+        dept.addEmployee(emp2);
+        
+        // Employees can exist without the department
+        Employee emp3 = new Employee("Mike", 103);
+    }
+}</code></pre>
+                    
+                    <h3>3. Composition</h3>
+                    <p>Composition is a strong form of aggregation where one object contains other objects, and those contained objects cannot exist without the container object.</p>
+                    
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto"><code>public class Engine {
+    private String type;
+    private int horsePower;
+    
+    public Engine(String type, int horsePower) {
+        this.type = type;
+        this.horsePower = horsePower;
+    }
+    
+    public void start() {
+        System.out.println(type + " engine started");
+    }
+    
+    public void stop() {
+        System.out.println(type + " engine stopped");
+    }
+}
+
+public class Car {
+    private String brand;
+    private String model;
+    private Engine engine; // Composition
+    
+    public Car(String brand, String model, String engineType, int horsePower) {
+        this.brand = brand;
+        this.model = model;
+        this.engine = new Engine(engineType, horsePower); // Engine is created inside Car
+    }
+    
+    public void startCar() {
+        System.out.println("Starting " + brand + " " + model);
+        engine.start();
+    }
+    
+    public void stopCar() {
+        System.out.println("Stopping " + brand + " " + model);
+        engine.stop();
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Toyota", "Camry", "V6", 268);
+        car.startCar();
+        car.stopCar();
+        
+        // We cannot access the Engine directly
+        // Engine engine = car.engine; // Error: engine is private
+    }
+}</code></pre>
+                    
+                    <h2>Best Practices in OOP</h2>
+                    <ul>
+                        <li><strong>Encapsulate What Varies:</strong> Identify the aspects of your application that vary and separate them from what stays the same.</li>
+                        <li><strong>Program to an Interface, Not an Implementation:</strong> Depend on abstractions, not on concrete classes.</li>
+                        <li><strong>Favor Composition Over Inheritance:</strong> Use composition for code reuse when possible, as it offers more flexibility.</li>
+                        <li><strong>SOLID Principles:</strong>
+                            <ul>
+                                <li><strong>S</strong>ingle Responsibility Principle: A class should have only one reason to change.</li>
+                                <li><strong>O</strong>pen/Closed Principle: Classes should be open for extension but closed for modification.</li>
+                                <li><strong>L</strong>iskov Substitution Principle: Subtypes must be substitutable for their base types.</li>
+                                <li><strong>I</strong>nterface Segregation Principle: Many client-specific interfaces are better than one general-purpose interface.</li>
+                                <li><strong>D</strong>ependency Inversion Principle: Depend on abstractions, not on concretions.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-8 flex justify-between">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Quiz</a>
+                        <a href="{{ url_for('quiz_module', language='java', module='oop') }}" class="btn btn-primary">Take the Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

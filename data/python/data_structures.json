@@ -1,0 +1,41 @@
+{
+    "title": "Python Data Structures Quiz",
+    "description": "Test your knowledge of Python's built-in data structures!",
+    "questions": [
+        {
+            "question": "Which of the following is a mutable data structure in Python?",
+            "code": "# Which of these can be modified after creation?",
+            "options": ["list", "tuple"],
+            "correctIndex": 0,
+            "explanation": "Lists in Python are mutable, meaning they can be modified after creation. Tuples are immutable."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "my_dict = {'a': 1, 'b': 2}\nmy_dict['c'] = 3\nprint(my_dict)",
+            "options": ["{'a': 1, 'b': 2, 'c': 3}", "Error: cannot add new keys"],
+            "correctIndex": 0,
+            "explanation": "Dictionaries in Python are mutable. You can add new key-value pairs using the square bracket notation."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "my_list = [1, 2, 3]\nmy_list.append([4, 5])\nprint(len(my_list))",
+            "options": ["4", "5"],
+            "correctIndex": 0,
+            "explanation": "The append() method adds the entire object as a single element. So [4, 5] is added as one element, making the length 4."
+        },
+        {
+            "question": "What is the difference between a list and a tuple in Python?",
+            "code": "# Which statement is true?",
+            "options": ["Lists are mutable, tuples are immutable", "Lists can contain mixed types, tuples cannot"],
+            "correctIndex": 0,
+            "explanation": "The key difference is that lists are mutable (can be changed after creation) while tuples are immutable (cannot be changed after creation)."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "set1 = {1, 2, 3}\nset2 = {3, 4, 5}\nprint(set1.intersection(set2))",
+            "options": ["{3}", "{1, 2, 4, 5}"],
+            "correctIndex": 0,
+            "explanation": "The intersection() method returns a set containing only the elements that are common to both sets, which is just {3}."
+        }
+    ]
+}

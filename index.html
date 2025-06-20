@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-8">
@@ -20,14 +20,13 @@
                 <div id="home-screen">
                     <p class="text-center mb-6">Test your knowledge of C++ with these interactive quizzes!</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Programming Basics Quiz Card -->
                         <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
                             <div class="card-body">
                                 <h2 class="card-title">Programming Basics</h2>
                                 <p>Learn the fundamental concepts of programming and C++.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='basics') }}" class="btn btn-outline">Learn</a>
+                                <div class="card-actions justify-end mt-4">
                                     <button class="btn btn-primary topic-btn" data-topic="basics">Start Quiz</button>
                                 </div>
                             </div>
@@ -38,8 +37,7 @@
                             <div class="card-body">
                                 <h2 class="card-title">If-Else & Switch</h2>
                                 <p>Test your knowledge of conditional statements and their outputs.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='conditionals') }}" class="btn btn-outline">Learn</a>
+                                <div class="card-actions justify-end mt-4">
                                     <button class="btn btn-primary topic-btn" data-topic="conditionals">Start Quiz</button>
                                 </div>
                             </div>
@@ -50,8 +48,7 @@
                             <div class="card-body">
                                 <h2 class="card-title">Loops</h2>
                                 <p>Test your knowledge of for, while, and do-while loops.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='loops') }}" class="btn btn-outline">Learn</a>
+                                <div class="card-actions justify-end mt-4">
                                     <button class="btn btn-primary topic-btn" data-topic="loops">Start Quiz</button>
                                 </div>
                             </div>
@@ -62,21 +59,8 @@
                             <div class="card-body">
                                 <h2 class="card-title">Functions</h2>
                                 <p>Test your knowledge of C++ functions, parameters, and return values.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='functions') }}" class="btn btn-outline">Learn</a>
+                                <div class="card-actions justify-end mt-4">
                                     <button class="btn btn-primary topic-btn" data-topic="functions">Start Quiz</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Arrays Quiz Card -->
-                        <div class="card bg-base-200 shadow-md hover:shadow-lg transition-shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">Arrays (1D & 2D)</h2>
-                                <p>Test your knowledge of one-dimensional and two-dimensional arrays in C++.</p>
-                                <div class="card-actions justify-end mt-4 flex gap-2">
-                                    <a href="{{ url_for('learn_module', module='arrays') }}" class="btn btn-outline">Learn</a>
-                                    <button class="btn btn-primary topic-btn" data-topic="arrays">Start Quiz</button>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +71,7 @@
                 <div id="start-screen" class="text-center hidden">
                     <h2 id="topic-title" class="text-2xl font-bold mb-4">C++ If-Else & Switch Quiz</h2>
                     <p id="topic-description" class="mb-4">Test your knowledge of C++ If-Else statements and Switch cases!</p>
-                    <p class="mb-6">This quiz contains 30 questions about C++ loops and their outputs.</p>
+                    <p class="mb-6">This quiz contains 20 questions about C++ loops and their outputs.</p>
                     <div class="flex justify-center gap-4">
                         <button id="back-to-home-btn" class="btn btn-outline">Back to Home</button>
                         <button id="start-btn" class="btn btn-primary">Start Quiz</button>
@@ -97,7 +81,7 @@
                 <!-- Quiz Container -->
                 <div id="quiz-container" class="hidden">
                     <div class="flex justify-between mb-4">
-                        <span class="badge badge-lg">Question <span id="current-question">1</span>/30</span>
+                        <span class="badge badge-lg">Question <span id="current-question">1</span>/20</span>
                         <span class="badge badge-lg">Score: <span id="score">0</span></span>
                     </div>
                     
@@ -125,7 +109,7 @@
                 <div id="results-screen" class="text-center hidden">
                     <h2 class="text-2xl font-bold mb-4">Quiz Completed!</h2>
                     <p class="mb-2">Your final score:</p>
-                    <p id="final-score" class="text-3xl font-bold mb-6">0/30</p>
+                    <p id="final-score" class="text-3xl font-bold mb-6">0/20</p>
                     <div class="flex justify-center gap-4">
                         <button id="home-btn" class="btn btn-outline">Home</button>
                         <button id="review-btn" class="btn btn-secondary">Review Answers</button>
@@ -136,6 +120,6 @@
         </div>
     </div>
     
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+{
+    "title": "Python File I/O Quiz",
+    "description": "Test your knowledge of file operations in Python!",
+    "questions": [
+        {
+            "question": "What is the correct way to open a file for reading in Python?",
+            "code": "# Which is the correct way to open 'data.txt' for reading?",
+            "options": ["with open('data.txt', 'r') as file:", "file = open('data.txt', 'read')"],
+            "correctIndex": 0,
+            "explanation": "The correct way to open a file is using the open() function with the file name and mode. 'r' is the mode for reading."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "with open('example.txt', 'w') as f:\n    f.write('Hello')\n    f.write(' World')\n\nwith open('example.txt', 'r') as f:\n    print(f.read())",
+            "options": ["Hello World", "HelloWorld"],
+            "correctIndex": 1,
+            "explanation": "The write() method doesn't add spaces. It writes exactly what you provide, so 'Hello' followed by ' World' becomes 'HelloWorld'."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "with open('example.txt', 'w') as f:\n    f.write('Line 1\\n')\n    f.write('Line 2\\n')\n\nwith open('example.txt', 'r') as f:\n    print(f.readline().strip())",
+            "options": ["Line 1", "Line 1\nLine 2"],
+            "correctIndex": 0,
+            "explanation": "The readline() method reads a single line from the file. The strip() method removes the newline character, so only 'Line 1' is printed."
+        },
+        {
+            "question": "What is the correct way to read all lines from a file into a list?",
+            "code": "# Which is the correct way to read all lines into a list?",
+            "options": ["with open('file.txt', 'r') as f:\n    lines = f.readlines()", "with open('file.txt', 'r') as f:\n    lines = f.read_all_lines()"],
+            "correctIndex": 0,
+            "explanation": "The readlines() method reads all lines from a file and returns them as a list of strings."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "import os\n\nif os.path.exists('example.txt'):\n    print('File exists')\nelse:\n    print('File does not exist')",
+            "options": ["It depends on whether 'example.txt' exists in the current directory", "File exists"],
+            "correctIndex": 0,
+            "explanation": "The os.path.exists() function checks if a file or directory exists. The output depends on whether 'example.txt' exists in the current directory."
+        }
+    ]
+}

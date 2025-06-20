@@ -1,0 +1,41 @@
+{
+    "title": "JavaScript Basics Quiz",
+    "description": "Test your knowledge of fundamental JavaScript programming concepts!",
+    "questions": [
+        {
+            "question": "What is the correct way to declare a variable in modern JavaScript?",
+            "code": "// Which is the preferred way to declare a variable in modern JS?",
+            "options": ["let x = 10;", "var x = 10;"],
+            "correctIndex": 0,
+            "explanation": "In modern JavaScript, 'let' is preferred over 'var' for variable declarations because it has block scope."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "let x = 5;\nlet y = '5';\nconsole.log(x == y);",
+            "options": ["true", "false"],
+            "correctIndex": 0,
+            "explanation": "The == operator performs type coercion, so it converts the number 5 to a string and then compares, resulting in true."
+        },
+        {
+            "question": "What is the difference between let and var in JavaScript?",
+            "code": "// What is the output of this code?\nfunction test() {\n  if (true) {\n    var x = 1;\n    let y = 2;\n  }\n  console.log(x);\n  console.log(y);\n}",
+            "options": ["1, ReferenceError", "1, 2"],
+            "correctIndex": 0,
+            "explanation": "var has function scope, so x is accessible outside the if block. let has block scope, so y is only accessible within the if block, causing a ReferenceError when trying to access it outside."
+        },
+        {
+            "question": "What is the output of this code?",
+            "code": "console.log(typeof null);",
+            "options": ["object", "null"],
+            "correctIndex": 0,
+            "explanation": "In JavaScript, typeof null returns 'object', which is considered a historical bug in the language."
+        },
+        {
+            "question": "What is the correct way to check if a variable is an array in JavaScript?",
+            "code": "// Which is the correct way to check if 'arr' is an array?",
+            "options": ["Array.isArray(arr)", "typeof arr === 'array'"],
+            "correctIndex": 0,
+            "explanation": "Array.isArray() is the correct method to check if a variable is an array. typeof arr returns 'object' for arrays, which doesn't distinguish them from other objects."
+        }
+    ]
+}
